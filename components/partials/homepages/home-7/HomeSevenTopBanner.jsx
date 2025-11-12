@@ -112,8 +112,6 @@ const HomeSevenTopBanner = (props) => {
         dispatch(getViewVehPrd(null));
         dispatch(getViewAddCart(1));
         
-        alert("URL33333")
-        
         localStorage.setItem("urlviewprd", JSON.stringify(null));
         router.push({
             pathname: "/searchinteractive/searchinteractive",

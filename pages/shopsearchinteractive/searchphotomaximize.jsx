@@ -560,7 +560,6 @@ const SearchPhotoMaximize = (props) => {
     //console.log("datosBuscar : ", datosBuscar);
     useEffect(() => {
         if (!viewSearch) {
-            alert("URL0404040404")
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
             Router.push(urlviewprd);
         }

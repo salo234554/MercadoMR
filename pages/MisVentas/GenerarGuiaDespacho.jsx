@@ -952,12 +952,6 @@ export default function GenerarGuiaDespacho({ setModalGuiaDespacho }) {
                     //getGuia(response.data.remesa);
                 }
 
-                //console.log("MENSAJE : ", response.data.mensaje);
-                //console.log("REMESA : ", response.data.remesa);
-                //console.log("URLENVIO : ", response.data.urlrelacionenvio);
-                //console.log("URLREMESA : ", response.data.urlremesa);
-                //console.log("URLROTULO : ", response.data.urlrotulos);
-                //setShowModalMensajes(true);
             } catch (error) {
                 console.error('Errorxx:', error);
             }

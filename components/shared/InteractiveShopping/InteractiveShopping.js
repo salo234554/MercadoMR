@@ -34,8 +34,6 @@ function InteractiveShopping(props) {
     const enviadatoslocalstorage = () => {
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
 
-        alert("URL444444")
-
         localStorage.setItem("urlviewprd", JSON.stringify(null));
         dispatch(getViewVehPrd(0));
         localStorage.setItem("viewsearchinteractive", JSON.stringify(false));
