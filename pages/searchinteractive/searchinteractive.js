@@ -243,13 +243,16 @@ function SearchInteractive() {
 
 
     useEffect(() => {
+        alert("ASASASASAS")
         if (viewvehprd == 1) {
+            alert("LKASKLAKSLKASLKA")
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
             router.push(urlviewprd);
         }
     }, [viewvehprd]);
 
     useEffect(() => {
+        alert("232323232323")
         dispatch(getValFltrCiudad(0));
     }, []);
 
