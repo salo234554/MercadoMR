@@ -70,7 +70,6 @@ const HomeOneTopBanners = () => {
         //setCilindrajes(data.tiposcilindrajes)
         dispatch(getViewVehPrd(null));
         dispatch(getViewAddCart(1));
-         alert("URL111111")
         localStorage.setItem("urlviewprd", JSON.stringify(null));
     }, []);
 
@@ -160,7 +159,7 @@ const HomeOneTopBanners = () => {
             localStorage.getItem("datoscarroceriasvehiculos")
         );
 
-        console.log("CARROCERIAS : ", carroceriasvehiculos);
+        //console.log("CARROCERIAS : ", carroceriasvehiculos);
 
         const newDet = [];
         carroceriasvehiculos &&
