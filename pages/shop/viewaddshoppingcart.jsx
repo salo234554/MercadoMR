@@ -58,7 +58,7 @@ const ViewAddShoppingCart = (props) => {
 
     // Asignamos Datos al arreglo de Usuarios desde el state
     const datosusuarios = useSelector((state) => state.userlogged.userlogged);
-   
+
     useEffect(() => {
         if (nombreimagen1) {
             setNameImage(nombreimagen1);
@@ -229,7 +229,7 @@ const ViewAddShoppingCart = (props) => {
                                     src={URL_IMAGES_RESULTS + nombreimagen1}
                                     alt="First slide"
                                 />
-                                <div className="mtmenos20 ml-80">
+                                <div className="mtmenos20 ml-65">
                                     <i
                                         className="checkaddshoppingcart fa fa-check-circle"
                                         aria-hidden="true"></i>
@@ -259,16 +259,16 @@ const ViewAddShoppingCart = (props) => {
                                     </Grid>
                                 </div>
                             </Grid>
-                            <Grid item xs={3} md={3} lg={3}>
+                            <Grid item xs={2} md={2} lg={2}>
                                 <Grid container alignItems="center" spacing={1}>
-                                    <Grid item xs={6} md={6} lg={6}>
+                                    <Grid item xs={8.5} md={8.5} lg={8.5}>
                                         <Link href="/shop/shopping-cart">
                                             <div className="btnvercarrito">
                                                 Ver tu carrito
                                             </div>
                                         </Link>
                                     </Grid>
-                                    <Grid item xs={5} md={5} lg={5}>
+                                    <Grid item xs={3} md={3} lg={3}>
                                         <div
                                             className="btncomprarcarrito"
                                             onClick={() => continuarCompra()}>

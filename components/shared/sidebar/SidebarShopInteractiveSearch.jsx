@@ -5,6 +5,7 @@ import WidgetShopByLocationSearch from "~/components/shared/widgets/WidgetShopBy
 import WidgetFilterByPriceRangeSearch from "~/components/shared/widgets/WidgetFilterByPriceRangeSearch";
 import { getCitySelect } from "../../../store/cityselect/action";
 import { useSelector, useDispatch } from "react-redux";
+import { getViewAddCart } from "~/store/viewaddcart/action";
 
 let ciudadesselAlt = [];
 
@@ -112,6 +113,7 @@ const SidebarShopInteractiveSearch = (props) => {
                         <div className="pt-140">
                             <hr />
                             <br />
+
                             <WidgetShopFilterByConditionsSearch
                                 condicionPrd={condicionPrd}
                                 setCondicionPrd={setCondicionPrd}

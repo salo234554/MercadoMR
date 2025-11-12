@@ -3918,12 +3918,14 @@ html {}
 }
 
 .productoagregarcarritodos {
-    width: 1200px !important;
+    width: 960px !important;
     height: 90px !important;
     border: solid #F0F2F5 !important;
     font-size: 16px !important;
     margin-bottom: 30px !important;
     margin-left: -200px !important;
+    position: relative;
+    left: 230px;
 }
 
 .productoagregarcarritotres {
@@ -3943,7 +3945,7 @@ html {}
 
 
 .btnvercarrito {
-    width: 130px !important;
+    width: 105px !important;
     height: 40px !important;
     border-radius: 7px !important;
     background-color: #2D2E83;
@@ -3955,7 +3957,7 @@ html {}
 }
 
 .btncomprarcarrito {
-    width: 130px !important;
+    width: 125px !important;
     height: 40px !important;
     border-radius: 7px !important;
     background-color: #F0F2F5;
@@ -32912,14 +32914,14 @@ label {
 }
 
 .sizesidebarinteractivedos {
-    margin-top: 120px !important;
+    margin-top: 100px !important;
     margin-left: 15px !important;
     z-index: 3 !important;
     width: 300px;
 }
 
 .sizesidebarinteractivetres {
-    margin-top: 150px !important;
+    margin-top: 100px !important;
     margin-left: 15px !important;
     z-index: 3 !important;
     width: 300px;
@@ -34560,7 +34562,7 @@ label {
 /*AQUI FIJAR VEHICULO */
 .fijardatosvehiculo {
     position: relative !important;
-    top: 520px !important;
+    top: 420px !important;
     left: 230px !important;
     padding-top: 40px !important;
     padding-left: 60px !important;
@@ -34589,7 +34591,7 @@ label {
 
 .fijardatosvehiculohabitaculo {
     position: relative !important;
-    top: 520px !important;
+    top: 420px !important;
     left: 230px !important;
     padding-top: 40px !important;
     padding-left: 60px !important;
@@ -34602,7 +34604,7 @@ label {
 
 .fijardatosvehiculomotorelectrico {
     position: relative !important;
-    top: 520px !important;
+    top: 420px !important;
     left: 230px !important;
     padding-top: 40px !important;
     padding-left: 60px !important;
@@ -38444,18 +38446,18 @@ label {
     margin-top: 10px !important;
     width: 600px !important;
     margin-bottom: 7px !important;
-    margin-left: 60px !important;
+    margin-left: 55px !important;
     color: #2D2E83 !important;
-    font-size: 24px !important;
+    font-size: 23px !important;
 }
 
 .textoaddhsoppingcart {
     margin-top: -20px !important;
-    width: 750px !important;
+    width: 700px !important;
     margin-bottom: 7px !important;
-    margin-left: 60px !important;
+    margin-left: 55px !important;
     color: #B8BCD9 !important;
-    font-size: 20px !important;
+    font-size: 19.5px !important;
     cursor: pointer;
     white-space: nowrap;       /* evita el salto de línea */
     overflow: hidden;          /* oculta el texto que se desborda */
@@ -39039,8 +39041,8 @@ label {
 .imageaddshoppingcart {
     margin-top: 5px !important;
     margin-left: 0px !important;
-    width: 70px !important;
-    height: 70px !important;
+    width: 60px !important;
+    height: 60px !important;
     object-fit: scale-down !important;
     cursor: pointer;
 }
