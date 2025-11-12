@@ -1,0 +1,64 @@
+import React, { useState, useEffect, Suspense } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Row, Col, Modal, Form } from "react-bootstrap";
+import InfoIcon from "@material-ui/icons/Info";
+
+function ModalLogin(props) {
+    const { shown, close, titulo, mensaje, tipo } = props;
+
+    return shown ? (
+        <div
+            className="modal-fondo mtmenos15"
+            onClick={() => {
+                close(false);
+            }}>
+            <div
+                className="modal-mensajes-login redondearventamensajes "
+                onClick={(e) => {
+                    // do not close modal if anything inside modal content is clicked
+                    e.stopPropagation();
+                }}>
+                 <button
+                    type="button"
+                    className="cerrarmodal ml-40 sinborder colorbase"
+                    data-dismiss="modal"
+                    onClick={() => close(false)}>
+                    {" "}
+                    X{" "}
+                </button>
+                <div>
+
+                    <Row>
+                        <Col xl={1} lg={1} md={1} sm={1} xs={1}>
+                            <div className="iconoventanamensajes mtmenos14">
+                                <InfoIcon style={{ fontSize: 45 }} />
+                            </div>
+                        </Col>
+                        <Col xl={9} lg={9} md={9} sm={9}>
+                            <div className="ml-30 titulodetaildescription">
+                                {titulo}
+                            </div>
+                        </Col>
+                        
+                           
+                        
+                    </Row>
+                </div>
+                <div className="mt-20 textoventanamensajes">
+                    <div>{mensaje}</div>
+                </div>
+                <div className=" mt-45">
+                    <Button
+                        variant="outline-light"
+                        className="ps-btn redondearborde"
+                        onClick={() => close(false)}>
+                        {" "}
+                        Cerrar
+                    </Button>
+                </div>
+            </div>
+        </div>
+    ) : null;
+}
+
+export default ModalLogin;
