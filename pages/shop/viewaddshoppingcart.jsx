@@ -216,7 +216,6 @@ const ViewAddShoppingCart = (props) => {
         }
     };
 
-
     return (
         <div>
             <div className="container none1200px">

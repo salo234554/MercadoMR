@@ -244,7 +244,7 @@ function SearchInteractive() {
 
 
     useEffect(() => {
-        alert("ASASASASAS")
+         alert("URL777777")
         if (viewvehprd == 1) {
             alert("LKASKLAKSLKASLKA")
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
@@ -263,7 +263,7 @@ function SearchInteractive() {
     //console.log("selectviewprd :",selectviewprd)
 
     useEffect(() => {
-         alert("2222222")
+       alert("URL8888888")
         if (selectviewprd > 0) {
             dispatch(getCloseOpenVehSearch(0));
             dispatch(getValFltrCiudad(0));
@@ -1104,6 +1104,7 @@ function SearchInteractive() {
     }
 
     const colocarDatosState = (historyveh) => {
+         alert("URL999999")
         localStorage.setItem("urlviewprd", JSON.stringify(null));
         dispatch(getViewAddCart(0));
         dispatch(getViewVehPrd(0));
@@ -1675,7 +1676,7 @@ function SearchInteractive() {
     };
 
     const mostrarCarroceria = () => {
-        alert("11111111111")
+        alert("URL10101010101")
         localStorage.setItem("aadditemcar", JSON.stringify(false));
         localStorage.setItem("editdata", JSON.stringify(false));
         localStorage.setItem("activargrilla", JSON.stringify(0));

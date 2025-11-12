@@ -70,6 +70,7 @@ const HomeOneTopBanners = () => {
         //setCilindrajes(data.tiposcilindrajes)
         dispatch(getViewVehPrd(null));
         dispatch(getViewAddCart(1));
+         alert("URL111111")
         localStorage.setItem("urlviewprd", JSON.stringify(null));
     }, []);
 

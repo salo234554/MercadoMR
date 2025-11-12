@@ -1642,6 +1642,7 @@ const Searcher = React.forwardRef<HTMLButtonElement, Props>(
         const handleIr = (path) => {
             localStorage.setItem("placeholdersearch", JSON.stringify(""));
             dispatch(getViewVehPrd(null));
+            alert("URL22222")
             localStorage.setItem("urlviewprd", JSON.stringify(null));
             handleClick();
 

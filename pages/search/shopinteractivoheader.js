@@ -110,6 +110,7 @@ const ShopInteractivoHeader = (props) => {
 
     const maximizar = () => {
         const url = window.location.pathname;
+         alert("URL555555")
         localStorage.setItem("urlviewprd", JSON.stringify(url));
         dispatch(getViewVehPrd(0));
         sessionStorage.setItem("datavalfltrciudad", JSON.stringify([]));
@@ -186,6 +187,8 @@ const ShopInteractivoHeader = (props) => {
 
         localStorage.setItem("activerangeprice", JSON.stringify(false));
         const url = window.location.pathname;
+
+         alert("URL666666")
         localStorage.setItem("urlviewprd", JSON.stringify(url));
         dispatch(getViewVehPrd(0));
         sessionStorage.setItem("datavalfltrciudad", JSON.stringify([]));

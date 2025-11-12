@@ -619,9 +619,7 @@ const SearchItemsMaximize = (props) => {
 
     useEffect(() => {
         if (!viewSearch) {
-            //let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
-            //dispatch(getActivarViewPrd(true));
-            //dispatch(getViewVehPrd(0));
+             alert("URL02020202")
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
             Router.push(urlviewprd);
         }
