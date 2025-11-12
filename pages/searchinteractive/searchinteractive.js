@@ -242,7 +242,6 @@ function SearchInteractive() {
         (state) => state.viewvehprd.viewvehprd
     );
 
-
     useEffect(() => {
         if (viewvehprd == 1) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
@@ -258,7 +257,6 @@ function SearchInteractive() {
     let selectviewprd = useSelector((state) => state.selectviewprd.selectviewprd);
 
     //console.log("selectviewprd :",selectviewprd)
-
     useEffect(() => {
         if (selectviewprd > 0) {
             dispatch(getCloseOpenVehSearch(0));

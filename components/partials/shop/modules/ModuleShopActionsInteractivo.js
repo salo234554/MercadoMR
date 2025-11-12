@@ -175,6 +175,7 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const MostrarFotosItems = (seleccion) => {
+        dispatch(getViewAddCart(1));
         dispatch(getOptionSelect(3));
         showItem = "fa fa-bars gripone";
         showPhoto = "fa fa-th-large griptwo";
