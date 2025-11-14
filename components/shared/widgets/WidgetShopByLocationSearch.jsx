@@ -91,6 +91,7 @@ const WidgetShopByLocationSearch = (props) => {
     useEffect(() => {
         if (clearLocation == 0) {
             limpiarFiltro();
+            localStorage.setItem("ctlrCount", JSON.stringify(true));
         }
     }, [clearLocation]);
 

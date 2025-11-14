@@ -656,7 +656,7 @@ const SearchPhotoItemsMaximize = (props) => {
         }
     }, [viewaddcart]);
 
-    console.log("viewaddcart : ", viewaddcart);
+    console.log("viewaddcart : ", viewaddcart, " - ", addcartId, " - ", addcartIdLogin);
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>

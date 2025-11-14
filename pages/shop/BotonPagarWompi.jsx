@@ -1,6 +1,7 @@
 import React from "react";
 
 const BotonPagarWompi = ({ infoUserPago = {}, referencia = "" }) => {
+    console.log("INFOUSER : ", infoUserPago)
     return (
         <form
             action="https://checkout.wompi.co/p/"

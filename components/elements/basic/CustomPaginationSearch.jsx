@@ -16,7 +16,7 @@ const CustomPaginationSearch = ({ numeroPaginas, setOrderPrice }) => {
         (state) => state.pageselect.pageselect
     );
 
-    console.log("NUM PAG : ", numeroPaginas);
+    console.log("NUMPAGXXX : ", numeropaginas);
 
     const SeleccionaPagina = (pag) => {
         dispatch(getPageSelect(pag));

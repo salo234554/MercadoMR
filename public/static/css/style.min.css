@@ -55357,3 +55357,11 @@ input[type="radio"]:checked {
     width: 100%;
     min-width: 970px;
 }
+.posicioniconcart{
+    position: relative;
+    left: 90px;
+    top: -18px;
+    font-size: 25px !important;
+    cursor: pointer;
+    color: #2D2E83 !important;
+}

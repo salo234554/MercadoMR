@@ -4,10 +4,12 @@ import Link from "next/link";
 import useEcomerce from "~/hooks/useEcomerce";
 import { useDispatch, useSelector } from "react-redux";
 import { URL_BD_MR, URL_IMAGES_RESULTS } from "../../helpers/Constants";
-import { Box, Grid, Button } from "@mui/material";
+import { Box, Grid, Button, Tooltip, IconButton } from "@mui/material";
 import axios from "axios";
 import { getDataShoppingCart } from "../../store/datashoppingcart/action";
 import { FaCheckCircle } from "react-icons/fa";
+import { FaRegWindowClose } from "react-icons/fa";
+import { getViewAddCart } from "~/store/viewaddcart/action";
 
 const breadcrumb = [
     {
@@ -27,7 +29,7 @@ let undsel = [];
 
 const ViewAddShoppingCart = (props) => {
     const { idproducto, nombreimagen1, titulonombre } = props;
-    console.log("IMG 291 : ", idproducto, " - ", nombreimagen1);
+    //console.log("IMG 291 : ", idproducto, " - ", nombreimagen1);
     const router = useRouter();
     const { loading, products, getProducts } = useEcomerce();
     const dispatch = useDispatch();
@@ -58,6 +60,7 @@ const ViewAddShoppingCart = (props) => {
 
     // Asignamos Datos al arreglo de Usuarios desde el state
     const datosusuarios = useSelector((state) => state.userlogged.userlogged);
+    const viewaddcart = useSelector((state) => state.viewaddcart.viewaddcart);
 
     useEffect(() => {
         if (nombreimagen1) {
@@ -216,6 +219,16 @@ const ViewAddShoppingCart = (props) => {
         }
     };
 
+    useEffect(() => {
+        if (viewaddcart > 0) {
+            dispatch(getViewAddCart(0));
+        }
+    }, []);
+
+    const closeViewAddCart = () => {
+        dispatch(getViewAddCart(1));
+    };
+
     return (
         <div>
             <div className="container none1200px">
@@ -235,7 +248,7 @@ const ViewAddShoppingCart = (props) => {
                                         aria-hidden="true"></i>
                                 </div>
                             </Grid>
-                            <Grid item xs={7} md={7} lg={7}>
+                            <Grid item xs={6.5} md={6.5} lg={6.5}>
                                 <div className="mlmenos110">
                                     <Grid
                                         container
@@ -276,6 +289,12 @@ const ViewAddShoppingCart = (props) => {
                                         </div>
                                     </Grid>
                                 </Grid>
+                            </Grid>
+                            <Grid item xs={0.5} md={0.5} lg={0.5}>
+                                <FaRegWindowClose
+                                    onClick={() => closeViewAddCart()}
+                                    className="posicioniconcart"
+                                />
                             </Grid>
                         </Grid>
                     </div>

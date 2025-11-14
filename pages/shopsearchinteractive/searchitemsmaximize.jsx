@@ -583,18 +583,21 @@ const SearchItemsMaximize = (props) => {
     useEffect(() => {
         //alert("BBBBBBBB")
         let ctlrCount = JSON.parse(localStorage.getItem("ctlrCount"));
+        
         if (count < 2 || ctlrCount) {
-            //alert("000000")
             let numprd = allprd2?.length;
             setCount(count + 1);
             localStorage.setItem("ctlrCount", JSON.stringify(false));
             let numpag = (numprd / registrosPorPagina).toFixed(0);
+
             let arraypg = [];
+
             if (numpag < 1) {
                 dispatch(getNumberPages([1]));
                 setNumeroPaginas(1);
-            } else setNumeroPaginas(numpag);
-
+            } else {
+                setNumeroPaginas(numpag);
+            }
             for (var i = 1; i <= numpag; i++) {
                 arraypg.push(i);
             }
