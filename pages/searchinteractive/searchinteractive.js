@@ -989,6 +989,7 @@ function SearchInteractive() {
     }, [editardatos, datasearchinteractive, datosannos]);
 
     const leerDatosHistorial = () => {
+        localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         sessionStorage.setItem("findbyvehicle", JSON.stringify(true));
         sessionStorage.setItem("dataExpandirBase", JSON.stringify([]));

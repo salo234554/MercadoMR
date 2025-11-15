@@ -1959,9 +1959,6 @@ const LoginAccount = () => {
                                                                 console.log(
                                                                     "PRD EXISTE EN Wish List"
                                                                 );
-                                                                alert(
-                                                                    "Producto ya existe en lista de deseos!"
-                                                                );
                                                                 mensajeModal();
                                                             } else
                                                                 agregarListaDeseo();

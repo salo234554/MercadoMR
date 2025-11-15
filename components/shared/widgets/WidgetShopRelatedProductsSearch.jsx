@@ -3,9 +3,11 @@ import ProductRelatedSearchInteractive from "../../elements/products/ProductRela
 import SkeletonProduct from "~/components/elements/skeletons/SkeletonProduct";
 import axios from "axios";
 import { URL_BD_MR, URL_IMAGES_RESULTS } from "../../../helpers/Constants";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getBlockScreen } from "~/store/blockscreen/action";
 
 const WidgetShopRelatedProductsSearch = ({ collectionSlug }) => {
+    const dispatch = useDispatch();
     const [productItems, setProductItems] = useState(null);
     const [loading, setLoading] = useState(false);
     const [classBlock, setClassBlock] = useState("ps-related-products mb-160");
@@ -78,6 +80,10 @@ const WidgetShopRelatedProductsSearch = ({ collectionSlug }) => {
     }
 
     useEffect(() => {
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        if (ira == 5) {
+            dispatch(getBlockScreen(1));
+        }
         if (blockscreen == 1)
             setClassBlock("ps-related-products mb-160 deshabilitardos");
         else setClassBlock("ps-related-products mb-160");
