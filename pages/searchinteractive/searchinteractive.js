@@ -722,10 +722,6 @@ function SearchInteractive() {
             let marcasearch = (dataselectsearch?.nombremarca?.trim()).replace(/;/g, "");
             let nombres = [];
 
-            console.log("dataselectsearch : ", marcasearch)
-
-            //tipoVehiculo
-
             if (marcasearch && marcasearch != "null" && marcasearch != "; null") {
                 setNombreMarcaVehSel(marcasearch);
             } else {
@@ -743,7 +739,6 @@ function SearchInteractive() {
 
             //console.log("EDITDATAXXXX : ", tipovehsel)
             let marcasVeh = JSON.parse(localStorage.getItem("datosmarcasvehiculos"));
-            console.log("marcasselectsearch :", tipovehsel + " - ", marcasearch + " - ", marcasVeh);
 
             marcasVeh &&
                 marcasVeh.map((row, index) => {
@@ -931,7 +926,6 @@ function SearchInteractive() {
             let marcasearch = (dataselectsearch?.nombremarca?.trim()).replace(/;/g, "");
             //tipoVehiculo
             if (marcasearch && marcasearch != "null" && marcasearch != "; null" && !marcasearch) {
-                console.log("MARCASSSSS : ", marcasearch)
                 setNombreMarcaVehSel(marcasearch);
             } else {
                 let custommarca = JSON.parse(localStorage.getItem("custommarca"));
@@ -2193,6 +2187,7 @@ function SearchInteractive() {
                 }
             });
         setModels(newDet);
+
     };
 
     const handleChangeModels = (selectedOptions) => {
@@ -2546,9 +2541,10 @@ function SearchInteractive() {
     //console.log("MARCAS : ", marcas)
 
     const selectMarcaVeh = (data) => {
-
         //setNombreMarcaVeh();
         if (data) {
+            localStorage.setItem("custommarca", JSON.stringify(data?.text));
+
             setNombreMarcaVeh(data?.text);
             let nombres = [];
             listMarcasVehiculos &&

@@ -307,6 +307,7 @@ const LoginAccount = () => {
     }
 
     const login = async () => {
+        localStorage.setItem("addwishlisterror", JSON.stringify(false));
         localStorage.setItem("selectvehgarage", JSON.stringify(null));
         localStorage.setItem("idvehgarage", JSON.stringify(null));
         let uidUsuario = null;
@@ -919,7 +920,6 @@ const LoginAccount = () => {
                                                     params,
                                                 })
                                                     .then((res) => {
-                                                    
                                                         const grabarItemhistorial =
                                                             async () => {
                                                                 let params = {
@@ -980,8 +980,7 @@ const LoginAccount = () => {
                                             grabarItem();
                                         };
                                     } else if (ira == 5) {
-                                        //alert("IR A " + ira);
-                                        let datitem = JSON.parse(
+                                         let datitem = JSON.parse(
                                             localStorage.getItem(
                                                 "itemswishlistadd"
                                             )
@@ -1012,9 +1011,49 @@ const LoginAccount = () => {
                                                             console.log(
                                                                 "PRD EXISTE EN Wish List"
                                                             );
+                                                           
+                                                            localStorage.setItem(
+                                                                "addwishlisterror",
+                                                                JSON.stringify(
+                                                                    true
+                                                                )
+                                                            );
+
+                                                            dispatch(
+                                                                getSelectViewPrd(
+                                                                    10
+                                                                )
+                                                            );
+                                                            dispatch(
+                                                                getViewVehPrd(1)
+                                                            );
+                                                            dispatch(
+                                                                getViewSearch(
+                                                                    true
+                                                                )
+                                                            );
+                                                            localStorage.setItem(
+                                                                "activargrilla",
+                                                                JSON.stringify(
+                                                                    3
+                                                                )
+                                                            );
+                                                            //alert(datitem.ruta);
+                                                            router.push(
+                                                                datitem.ruta
+                                                            );
+
+                                                            localStorage.setItem(
+                                                                "itemswishlistadd",
+                                                                JSON.stringify(
+                                                                    "Ok"
+                                                                )
+                                                            );
+
                                                             mensajeModal();
-                                                        } else
+                                                        } else {
                                                             agregarListaDeseo();
+                                                        }
                                                     })
                                                     .catch(function (error) {
                                                         console.log(
@@ -1028,7 +1067,6 @@ const LoginAccount = () => {
 
                                         const agregarListaDeseo = () => {
                                             const grabarItem = async () => {
-                                                //alert("GRABAR");
                                                 let params = {
                                                     idproducto:
                                                         datitem.idproducto,
@@ -1044,7 +1082,6 @@ const LoginAccount = () => {
                                                     params,
                                                 })
                                                     .then((res) => {
-
                                                         const grabarItemhistorial =
                                                             async () => {
                                                                 let params = {
@@ -1081,7 +1118,6 @@ const LoginAccount = () => {
                                                                             console.log(
                                                                                 "ERROR HISTORIAL LISTA DESEOS"
                                                                             );
-
                                                                         }
                                                                     );
                                                             };
@@ -1859,7 +1895,6 @@ const LoginAccount = () => {
                                                         params,
                                                     })
                                                         .then((res) => {
-                                                           
                                                             const grabarItemhistorial =
                                                                 async () => {
                                                                     let params =
@@ -1927,7 +1962,6 @@ const LoginAccount = () => {
                                                 grabarItem();
                                             };
                                         } else if (ira == 5) {
-                                            //alert("IR A " + ira);
                                             let datitem = JSON.parse(
                                                 localStorage.getItem(
                                                     "itemswishlistadd"
@@ -1959,9 +1993,91 @@ const LoginAccount = () => {
                                                                 console.log(
                                                                     "PRD EXISTE EN Wish List"
                                                                 );
+
+                                                                localStorage.setItem(
+                                                                    "addwishlisterror",
+                                                                    JSON.stringify(
+                                                                        true
+                                                                    )
+                                                                );
+
+                                                                dispatch(
+                                                                    getSelectViewPrd(
+                                                                        10
+                                                                    )
+                                                                );
+                                                                dispatch(
+                                                                    getViewVehPrd(
+                                                                        1
+                                                                    )
+                                                                );
+                                                                dispatch(
+                                                                    getViewSearch(
+                                                                        true
+                                                                    )
+                                                                );
+                                                                localStorage.setItem(
+                                                                    "activargrilla",
+                                                                    JSON.stringify(
+                                                                        3
+                                                                    )
+                                                                );
+                                                                //alert(datitem.ruta);
+                                                                router.push(
+                                                                    datitem.ruta
+                                                                );
+
+                                                                localStorage.setItem(
+                                                                    "itemswishlistadd",
+                                                                    JSON.stringify(
+                                                                        "Ok"
+                                                                    )
+                                                                );
+
                                                                 mensajeModal();
-                                                            } else
+                                                            } else {
+                                                                localStorage.setItem(
+                                                                    "addwishlisterror",
+                                                                    JSON.stringify(
+                                                                        true
+                                                                    )
+                                                                );
+
+                                                                dispatch(
+                                                                    getSelectViewPrd(
+                                                                        10
+                                                                    )
+                                                                );
+                                                                dispatch(
+                                                                    getViewVehPrd(
+                                                                        1
+                                                                    )
+                                                                );
+                                                                dispatch(
+                                                                    getViewSearch(
+                                                                        true
+                                                                    )
+                                                                );
+                                                                localStorage.setItem(
+                                                                    "activargrilla",
+                                                                    JSON.stringify(
+                                                                        3
+                                                                    )
+                                                                );
+                                                                //alert(datitem.ruta);
+                                                                router.push(
+                                                                    datitem.ruta
+                                                                );
+
+                                                                localStorage.setItem(
+                                                                    "itemswishlistadd",
+                                                                    JSON.stringify(
+                                                                        "Ok"
+                                                                    )
+                                                                );
+
                                                                 agregarListaDeseo();
+                                                            }
                                                         })
                                                         .catch(function (
                                                             error
@@ -1993,7 +2109,6 @@ const LoginAccount = () => {
                                                         params,
                                                     })
                                                         .then((res) => {
-                                                            
                                                             const grabarItemhistorial =
                                                                 async () => {
                                                                     let params =

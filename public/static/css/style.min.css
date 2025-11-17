@@ -9271,6 +9271,12 @@ body::after {
     }
 }
 
+{
+    /*
+  margin-left: 40px !important; Responsive
+    */
+}
+
 .rowMobile {
     display: flex;
 }
