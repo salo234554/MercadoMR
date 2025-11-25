@@ -167,6 +167,7 @@ const ProductListPhotoImageView = ({ product }) => {
                 "¡Bienvenido! Para agregar a lista de deseo debes ingresar a tu cuenta";
             setTituloMensajesShoppingCart(texto);
             setTextoMensajesShoppingCart(texto);
+            localStorage.setItem("iraviewprd",JSON.stringify(1000));
             //setLogin(true);
             return;
         }
@@ -503,7 +504,7 @@ const ProductListPhotoImageView = ({ product }) => {
             );
             let texto = "";
             setTextoMensajesShoppingCart(texto);
-            //setLogin(true);
+            localStorage.setItem("iraviewprd",JSON.stringify(2000));
             return;
         }
 

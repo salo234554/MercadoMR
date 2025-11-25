@@ -39,14 +39,22 @@ export default function useProductGroupInteractive() {
     }, [datosubicarproducto]);
 
     const viewPrdSingle = () => {
-        localStorage.setItem("ira", JSON.stringify(18));
+        let iraviewprd = JSON.parse(localStorage.getItem("iraviewprd"));
+        if (iraviewprd === 1000)
+            localStorage.setItem("ira", JSON.stringify(15));
+        else
+            if (iraviewprd === 2000)
+                localStorage.setItem("ira", JSON.stringify(17));
+            else
+                localStorage.setItem("ira", JSON.stringify(18));
 
         let datax = JSON.parse(localStorage.getItem("keyword"));
         let datay = "";
         if (datax) {
             datay = datax[0]?.word;
         }
-        localStorage.setItem("urlviewprd", JSON.stringify("/search?keyword="+datay));
+        localStorage.setItem("urlviewprd", JSON.stringify("/search?keyword=" + datay));
+        localStorage.setItem("iraviewprd", JSON.stringify(false));
     }
 
     return {

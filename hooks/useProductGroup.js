@@ -100,8 +100,14 @@ export default function useProductGroup() {
     }, [page]);
 
     const viewPrdSingle = () => {
-   
-        localStorage.setItem("ira", JSON.stringify(18));
+        let iraviewprd = JSON.parse(localStorage.getItem("iraviewprd"));
+        if (iraviewprd === 1000)
+            localStorage.setItem("ira", JSON.stringify(15));
+        else
+            if (iraviewprd === 2000)
+                localStorage.setItem("ira", JSON.stringify(17));
+            else
+                localStorage.setItem("ira", JSON.stringify(18));
 
         let datax = JSON.parse(localStorage.getItem("keyword"));
         let datay = "";
@@ -109,6 +115,7 @@ export default function useProductGroup() {
             datay = datax[0]?.word;
         }
         localStorage.setItem("urlviewprd", JSON.stringify("/search?keyword=" + datay));
+        localStorage.setItem("iraviewprd", JSON.stringify(0));
     }
 
     return {

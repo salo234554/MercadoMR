@@ -156,7 +156,7 @@ const ModuleShopResults = (props) => {
 
         let ira = JSON.parse(localStorage.getItem("ira"));
 
-        if (ira == 15) {
+        if (ira == 15 || ira == 17) {
             let grillaselect = JSON.parse(localStorage.getItem("grillaselect"));
 
             if (grillaselect == 1) {
