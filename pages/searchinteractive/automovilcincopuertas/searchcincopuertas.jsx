@@ -93,8 +93,8 @@ const SearchInteractiveCincoPuertas = (props) => {
     let selectviewprd = useSelector(
         (state) => state.selectviewprd.selectviewprd
     );
-    //console.log("VIEW SEARCH : ", selectviewprd);
-
+    
+   
     useEffect(() => {
         if (selectviewprd > 0 && viewSearch) {
             cerrarVenta();

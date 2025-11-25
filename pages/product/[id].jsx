@@ -115,6 +115,10 @@ const ProductDetailPage = () => {
         }
     }, [irInicio]);
 
+    window.addEventListener("popstate", function (event) {
+        localStorage.setItem("ira", JSON.stringify(null));
+    });
+
     return (
         <ContainerPrd title="Product">
             <div className="ps-page ps-page--product" id="section-1">

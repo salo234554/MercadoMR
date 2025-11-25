@@ -156,9 +156,6 @@ const SearchPhotoMaximize = (props) => {
     }, [datosBuscar]);
 
     useEffect(() => {
-        //alert("+++++++++*******");
-        //alert(selectviewprd);
-        //alert(ViewCheckout);
         if (ViewCheckout) {
             async function leerProducto(idprd) {
                 let params = {
@@ -439,7 +436,6 @@ const SearchPhotoMaximize = (props) => {
                 itemsIni = 0;
                 itemsFin = registrosPorPagina;
             } else if (paginaselect == i) {
-                //alert(paginaselect)
                 itemsIni = registrosPorPagina * (i - 1) + 1;
                 itemsFin = registrosPorPagina * i;
             }
@@ -561,7 +557,8 @@ const SearchPhotoMaximize = (props) => {
     useEffect(() => {
         if (!viewSearch) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
-            Router.push(urlviewprd);
+
+            if (urlviewprd) Router.push(urlviewprd);
         }
     }, [viewSearch]);
 

@@ -12,13 +12,15 @@ function ModalMensajesWishList(props) {
     const cerrar = () => {
         close(false);
         dispatch(getBlockScreen(0));
+        localStorage.setItem("ira", JSON.stringify(null));
     };
 
     useEffect(() => {
         if (shown) {
             dispatch(getBlockScreen(1));
         } else {
-            dispatch(getBlockScreen(0));
+            let ira = JSON.parse(localStorage.getItem("ira"));
+            if (ira != 15) dispatch(getBlockScreen(0));
         }
     }, [shown]);
 

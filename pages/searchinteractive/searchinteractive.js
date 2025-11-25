@@ -419,9 +419,6 @@ function SearchInteractive() {
     }, [editardatosbuscador]);
 
     useEffect(() => {
-        //Lee datos editar variables sistema tren motriz
-        // AQUI PODEMOS CONTROLAR LA ACTIVIACION DE LOS ALERT POR CAMPO, SI SE NECESITA
-        // SE VALIDA SI SE EDUTA DESDE SISTEMAS DEL MOTOR
         if (editengine) {
             //colocarDatosState(interactivesearch);
         } else {
@@ -983,6 +980,7 @@ function SearchInteractive() {
     }, [editardatos, datasearchinteractive, datosannos]);
 
     const leerDatosHistorial = () => {
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         sessionStorage.setItem("findbyvehicle", JSON.stringify(true));
@@ -2472,7 +2470,7 @@ function SearchInteractive() {
 
     // Control maximo de caracteres en marcas
     useEffect(() => {
-        if (nombreMarcaVeh != "Marca") {
+       if (nombreMarcaVeh != "Marca") {
             let longtexto = 11; //nombreMarcaVeh.length;
             if (longtexto > 13)
                 longtexto = 13;

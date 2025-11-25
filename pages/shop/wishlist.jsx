@@ -82,6 +82,9 @@ const WishlistScreen = ({ ecomerce }) => {
         (state) => state.wishlist.datawishlist
     );
 
+    let addedtocart = useSelector((state) => state.addedtocart.addedtocart);
+    //console.log("addedtocart  : ", addedtocart);
+
     useEffect(() => {
         if (datosusuarios.activo == 30) {
             setShowModalControlAcceso(true);
@@ -746,6 +749,15 @@ const WishlistScreen = ({ ecomerce }) => {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const paginatedCompras = itemsListWish.slice(startIndex, endIndex);
+
+    
+    useEffect(() => {
+       if(!addedtocart){
+        alert("VALIDAR CAR")
+        setAddcartId(null);
+        setAddcartIdLogin(null);
+       }
+    }, [addedtocart]);
 
     return (
         <Container title="Wishlist">

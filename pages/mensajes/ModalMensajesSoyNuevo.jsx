@@ -37,20 +37,11 @@ function ModalMensajesSoyNuevo(props) {
         if (shown) {
             dispatch(getBlockScreen(1));
         } else {
-            dispatch(getBlockScreen(0));
+            let ira = JSON.parse(localStorage.getItem("ira"));
+            if (ira != 15) dispatch(getBlockScreen(0));
         }
     }, [shown]);
-
-    const iralogin = () => {
-        if (router.pathname == "/loginaccount") {
-            close(false);
-        } else {
-            dispatch(getBlockScreen(0));
-            router.push("/loginaccount#login");
-        }
-        //close(false);
-    };
-
+    
     const tengocuenta = () => {
         let item = {
             login: true,

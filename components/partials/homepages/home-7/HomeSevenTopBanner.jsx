@@ -108,10 +108,16 @@ const HomeSevenTopBanner = (props) => {
     };
 
     const selectTipoVeh = (selectedOptions) => {
+        localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
+        localStorage.setItem("rutaira", JSON.stringify(null));
+        localStorage.setItem("carroceriaselect", JSON.stringify(null));
+
         sessionStorage.setItem("findbyvehicle", JSON.stringify(true));
         dispatch(getViewVehPrd(null));
         dispatch(getViewAddCart(1));
-        
+
         localStorage.setItem("urlviewprd", JSON.stringify(null));
         router.push({
             pathname: "/searchinteractive/searchinteractive",

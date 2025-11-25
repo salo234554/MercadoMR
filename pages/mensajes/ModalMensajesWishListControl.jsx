@@ -37,7 +37,8 @@ function ModalMensajesWishListControl(props) {
         if (shown) {
             dispatch(getBlockScreen(1));
         } else {
-            dispatch(getBlockScreen(0));
+            let ira = JSON.parse(localStorage.getItem("ira"));
+            if (ira != 15) dispatch(getBlockScreen(0));
         }
     }, [shown]);
 

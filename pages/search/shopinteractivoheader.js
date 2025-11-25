@@ -12,6 +12,7 @@ import { getBlockScreen } from "../../store/blockscreen/action";
 import { getViewSearch } from "../../store/viewsearch/action";
 import { getPageSelect } from "../../store/pageselect/action";
 import { getRangosPrecio } from "~/store/rangosprecio/action";
+import { getAddEdToCart } from "~/store/addedtocart/action";
 
 import { CgSearch } from "react-icons/cg";
 import { IoMenu } from "react-icons/io5";
@@ -23,6 +24,7 @@ import { getZoomDataSearch } from "~/store/zoomdatasearch/action";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
 import { getSelectViewPrd } from "~/store/selectviewprd/action";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import ModalMensajesWishList from "../mensajes/ModalMensajesWishList";
 
 const ShopInteractivoHeader = (props) => {
     const {
@@ -49,6 +51,10 @@ const ShopInteractivoHeader = (props) => {
     const [selectPhoto, setSelectPhoto] = useState("botonheaderinteractivoderecha");
     const [selectMaximizar, setSelectMaximizar] = useState("botonheaderinteractivoderecha");
     const [titulo, setTitulo] = useState("Ordenar por");
+
+    const [showMensajesWishList, setShowMensajesWishList] = useState(false);
+    const [tituloMensajesWishList, setTituloMensajesWishList] = useState(false);
+    const [textoMensajesWishList, setTextoMensajesWishList] = useState(false);
 
     let selectviewprd = useSelector((state) => state.selectviewprd.selectviewprd);
     let viewSearch = useSelector((state) => state.viewsearch.viewsearch);
@@ -147,25 +153,46 @@ const ShopInteractivoHeader = (props) => {
 
     useEffect(() => {
         let activargrilla = JSON.parse(localStorage.getItem("activargrilla"));
-        if (activargrilla == 1) {
-            setMaximizarOption(1);
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        let itemswishlistadd = JSON.parse(localStorage.getItem("itemswishlistadd"));
+
+        if (ira == 17) {
+            setMaximizarOption(0);
             setOptionSelect(1);
             setRegistrosPorPagina(9);
+            setShowMensajesWishList(true);
+            setTituloMensajesWishList("Carrito de compras");
+            let texto = "Producto agregado al carrito de compras";
+            setTextoMensajesWishList(texto);
+            dispatch(getAddEdToCart(null));
         } else
-            if (activargrilla == 2) {
-                setMaximizarOption(2);
-                setOptionSelect(2);
-                setRegistrosPorPagina(6);
+            if (ira == 16 && itemswishlistadd) {
+                setMaximizarOption(0);
+                setOptionSelect(1);
+                setRegistrosPorPagina(9);
+                setShowMensajesWishList(true);
+                setTituloMensajesWishList("Lista de deseos");
+                let texto = "Producto agregado a lista de deseo";
+                setTextoMensajesWishList(texto);
             } else
-                if (activargrilla == 3) {
-                    setMaximizarOption(3);
-                    setOptionSelect(3);
-                    setRegistrosPorPagina(6);
-                }
+                if (activargrilla == 1) {
+                    setMaximizarOption(1);
+                    setOptionSelect(1);
+                    setRegistrosPorPagina(9);
+                } else
+                    if (activargrilla == 2) {
+                        setMaximizarOption(2);
+                        setOptionSelect(2);
+                        setRegistrosPorPagina(6);
+                    } else
+                        if (activargrilla == 3) {
+                            setMaximizarOption(3);
+                            setOptionSelect(3);
+                            setRegistrosPorPagina(6);
+                        }
     }, []);
 
     const minimizar = () => {
-
         //*****REINICIAL FILTRO DE PRECIOS ***/
         let item = {
             menorprecio: 1,
@@ -229,6 +256,13 @@ const ShopInteractivoHeader = (props) => {
 
     return (
         <div className="tamañobuscadorsearchinteractive">
+            <ModalMensajesWishList
+                shown={showMensajesWishList}
+                close={setShowMensajesWishList}
+                titulo={tituloMensajesWishList}
+                mensaje={textoMensajesWishList}
+                tipo="1"
+            />
             <div className="rightFiltersInteractiveSearch">
                 <div className="searchContNewSearchInteractiveMain">
                     <div className="searchContNewSearchInteractive">

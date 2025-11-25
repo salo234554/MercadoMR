@@ -33,8 +33,11 @@ function InteractiveShopping(props) {
 
     const enviadatoslocalstorage = () => {
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
-
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("urlviewprd", JSON.stringify(null));
+        localStorage.setItem("carroceriaselect", JSON.stringify(null));
+        
         dispatch(getViewVehPrd(0));
         localStorage.setItem("viewsearchinteractive", JSON.stringify(false));
         localStorage.setItem("aadditemcar", JSON.stringify(false));

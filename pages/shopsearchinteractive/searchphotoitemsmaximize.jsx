@@ -155,9 +155,7 @@ const SearchPhotoItemsMaximize = (props) => {
         (state) => state.datasearchinteractive.datasearchinteractive
     );
 
-    const viewaddcart = useSelector(
-        (state) => state.viewaddcart.viewaddcart
-    );
+    const viewaddcart = useSelector((state) => state.viewaddcart.viewaddcart);
 
     useEffect(() => {
         let openviewprdsearch = JSON.parse(
@@ -172,7 +170,6 @@ const SearchPhotoItemsMaximize = (props) => {
     let ubicacion;
 
     useEffect(() => {
-        //alert("888499494933")
         if (ViewCheckout) {
             async function leerProducto(idprd) {
                 let params = {
@@ -510,7 +507,6 @@ const SearchPhotoItemsMaximize = (props) => {
                 itemsIni = 0;
                 itemsFin = registrosPorPagina;
             } else if (paginaselect == i) {
-                //alert(paginaselect)
                 itemsIni = registrosPorPagina * (i - 1) + 1;
                 itemsFin = registrosPorPagina * i;
             }
@@ -567,7 +563,6 @@ const SearchPhotoItemsMaximize = (props) => {
     }, [addcartId, addedtocart, paginaselect]);
 
     useEffect(() => {
-        //alert("3434334343434")
         async function leerProducto(idprd) {
             let params = {
                 idarticulo: idprd,
@@ -592,10 +587,8 @@ const SearchPhotoItemsMaximize = (props) => {
     }, [selectviewprd]);
 
     useEffect(() => {
-        //alert("CCCCCCCCCCC")
         let ctlrCount = JSON.parse(localStorage.getItem("ctlrCount"));
         if (count < 2 || ctlrCount) {
-            //alert("111111")
             let numprd = allprd2?.length;
             setCount(count + 1);
             localStorage.setItem("ctlrCount", JSON.stringify(false));
@@ -630,7 +623,8 @@ const SearchPhotoItemsMaximize = (props) => {
     useEffect(() => {
         if (!viewSearch) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
-            Router.push(urlviewprd);
+            
+            if (urlviewprd) Router.push(urlviewprd);
         }
     }, [viewSearch]);
 
@@ -656,7 +650,14 @@ const SearchPhotoItemsMaximize = (props) => {
         }
     }, [viewaddcart]);
 
-    console.log("viewaddcart : ", viewaddcart, " - ", addcartId, " - ", addcartIdLogin);
+    console.log(
+        "viewaddcart : ",
+        viewaddcart,
+        " - ",
+        addcartId,
+        " - ",
+        addcartIdLogin
+    );
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>

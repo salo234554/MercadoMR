@@ -888,6 +888,9 @@ const ShopScreen = (props) => {
             },
         });
         localStorage.setItem("ctlredirigir", JSON.stringify("91209012"));
+        localStorage.setItem("ira", JSON.stringify(16));
+        const url = window.location.pathname;
+        localStorage.setItem("urlviewprd", JSON.stringify(url));
         //router.push(URL_MK_MR + "product/" + data.idproducto);
     };
 

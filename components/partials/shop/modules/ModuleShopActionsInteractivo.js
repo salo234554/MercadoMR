@@ -135,20 +135,6 @@ const ModuleShopActionsInteractivo = (props) => {
                 }
     }, [optionSelect]);
 
-    //function handleSelecteLayout(e, layout) {
-    function handleSelecteLayout(e) {
-        let layout = {
-            id: 1,
-            image: "/static/img/icon/bar.svg",
-            imageActive: "/static/img/icon/bars.svg",
-            url: "/shop?layout=list"
-        }
-        //console.log("LAYOU : ", layout)
-        e.preventDefault();
-        setSelectedLayout(layout);
-        Router.push(layout.url, undefined, { scroll: false });
-    }
-
     //console.log("OPTION : ", 'ITEM: ', showItem, 'FOTO: ', showPhoto, 'ITEMFOTO: ', showItemPhoto)
     const MostrarItems = (seleccion) => {
         dispatch(getOptionSelect(1));
@@ -163,6 +149,8 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const MostrarFotos = (seleccion) => {
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getOptionSelect(2));
         showItem = "fa fa-bars gripone";
         showPhoto = "fa fa-th-large griptwoselect";
@@ -175,6 +163,8 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const MostrarFotosItems = (seleccion) => {
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getViewAddCart(1));
         dispatch(getOptionSelect(3));
         showItem = "fa fa-bars gripone";
@@ -190,6 +180,8 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const maximizar = () => {
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getChangeSearch(0));
         localStorage.setItem("openviewprdsearch", JSON.stringify(true));
         if (maximizarOption === 0) {
@@ -199,8 +191,11 @@ const ModuleShopActionsInteractivo = (props) => {
         }
     };
 
-    //AQUIESTA
     const minimizar = () => {
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
+        localStorage.setItem("rutaira", JSON.stringify(null));
+
         //localStorage.setItem("openviewprdsearch", JSON.stringify(true));
         dispatch(getViewAddCart(1));
         dispatch(getViewVehPrd(0));

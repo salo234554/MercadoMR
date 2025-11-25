@@ -19,6 +19,7 @@ import axios from "axios";
 import { URL_BD_MR } from "../../helpers/Constants";
 import LoadingMotorEectrico from "../../components/elements/Loading/LoadingMotorEectrico";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import ViewAddShoppingCart from "../shop/viewaddshoppingcart";
 
 const breadcrumb = [
     {
@@ -104,6 +105,10 @@ const SearchItemsMaximize = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const irA = useRef(null);
     const [count, setCount] = useState(0);
+    const [viewaddcart, setViewaddcart] = useState(false);
+    const [imagenAddCart, setImagenAddCart] = useState(null);
+    const [idprdAddCart, setIdPrdAddcart] = useState(null);
+    const [nameprdAddCart, setNamePrdAddcart] = useState(null);
 
     const datosbuscadorinteractivo = useSelector(
         (state) => state.datasearchinteractive.datasearchinteractive
@@ -217,6 +222,18 @@ const SearchItemsMaximize = (props) => {
     useEffect(() => {
         dispatch(getValFltrCiudad(1));
         ubicacion = JSON.parse(localStorage.getItem("ubicacionproducto"));
+        let iraprd14 = JSON.parse(localStorage.getItem("iraprd14"));
+
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        setImagenAddCart(iraprd14?.imagen);
+        setIdPrdAddcart(iraprd14?.idprd);
+        setNamePrdAddcart(iraprd14?.name);
+
+        if (iraprd14) {
+            setViewaddcart(true);
+        } else {
+            setViewaddcart(false);
+        }
     }, []);
 
     useEffect(() => {
@@ -550,12 +567,6 @@ const SearchItemsMaximize = (props) => {
         products = <p>Producto no encontrado.</p>;
     }
 
-    const encontrar = () => {
-        localStorage.setItem("placeholdersearch", JSON.stringify(""));
-        localStorage.setItem("eraseplaceholder", JSON.stringify(0));
-        Router.push("/Contactanos/");
-    };
-
     useEffect(() => {
         async function leerProducto(idprd) {
             let params = {
@@ -583,7 +594,7 @@ const SearchItemsMaximize = (props) => {
     useEffect(() => {
         //alert("BBBBBBBB")
         let ctlrCount = JSON.parse(localStorage.getItem("ctlrCount"));
-        
+
         if (count < 2 || ctlrCount) {
             let numprd = allprd2?.length;
             setCount(count + 1);
@@ -623,7 +634,8 @@ const SearchItemsMaximize = (props) => {
     useEffect(() => {
         if (!viewSearch) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
-            Router.push(urlviewprd);
+
+            if (urlviewprd) Router.push(urlviewprd);
         }
     }, [viewSearch]);
 
@@ -711,7 +723,15 @@ const SearchItemsMaximize = (props) => {
                                 className={classActionInteractive}
                                 //onClick={() => ViewProduct()}
                             >
-                                {" "}
+                                {viewaddcart ? (
+                                    <div className="productoagregarcarritocuatro">
+                                        <ViewAddShoppingCart
+                                            idproducto={idprdAddCart}
+                                            nombreimagen1={imagenAddCart}
+                                            titulonombre={nameprdAddCart}
+                                        />
+                                    </div>
+                                ) : null}
                                 <ModuleShopActionsInteractivo
                                     optionSelect={optionSelect}
                                     setOptionSelect={setOptionSelect}

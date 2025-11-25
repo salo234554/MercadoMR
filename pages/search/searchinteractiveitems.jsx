@@ -291,9 +291,10 @@ const SearchInteractiveItems = (props) => {
             //alert("000000000")
             //console.log("XXXXXXXX :", dataPrdtItemsAll, " - ", filtersearch)
 
-            if(!filtersearch || filtersearch?.length == 0){
+            if (!filtersearch || filtersearch?.length == 0) {
                 dataPrdtItemsAll = JSON.parse(
-                sessionStorage.getItem("dataPrdtItemsAll"));
+                    sessionStorage.getItem("dataPrdtItemsAll")
+                );
             }
 
             dataPrdtItemsAll &&
@@ -450,6 +451,11 @@ const SearchInteractiveItems = (props) => {
             setclassSearch("Marginlrft60Int");
         } else if (maximizarOption === 0) {
             setclassSearch("");
+        }
+
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        if(ira == 16){
+            setMaximizarOption(0);
         }
     }, [optionSelect, maximizarOption]);
 

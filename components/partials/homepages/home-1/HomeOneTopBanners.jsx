@@ -109,6 +109,12 @@ const HomeOneTopBanners = () => {
     }, []);
 
     const selectTipoVeh = (selectedOptions) => {
+        localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
+        localStorage.setItem("rutaira", JSON.stringify(null));
+        localStorage.setItem("carroceriaselect", JSON.stringify(null));
+        
         setNombreCarroceriaVeh("Carrocería");
         setNombreMarcaVeh("Marca");
         setTipoVehiculo(selectedOptions);

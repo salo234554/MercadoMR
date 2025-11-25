@@ -18,12 +18,13 @@ const ProductListInteractiveOptionOne = ({ product }) => {
     const { price, badges, iditem } = useProductInteractive();
     const datosusuarios = useSelector((state) => state.userlogged.userlogged);
 
-     const router = useRouter();
+    const router = useRouter();
 
     const onClickImagen = () => {
         dispatch(getViewSearch(true));
         dispatch(getSelectViewPrd(product.id));
         dispatch(getViewCheckout(false));
+        localStorage.setItem("ira", JSON.stringify(14));
         const addItemVisita = async () => {
             let params = {
                 idproducto: product.id,
@@ -40,11 +41,11 @@ const ProductListInteractiveOptionOne = ({ product }) => {
             })
                 .then((res) => {
                     if (res.data.type == 1) {
-                        console.log("LEER : ", res.data)
-                    } else console.log("ERROR : ", res.data)
+                        console.log("LEER : ", res.data);
+                    } else console.log("ERROR : ", res.data);
                 })
                 .catch(function (error) {
-                    console.log("ERROR : ", res.data)
+                    console.log("ERROR : ", res.data);
                     return;
                 });
         };
@@ -66,11 +67,11 @@ const ProductListInteractiveOptionOne = ({ product }) => {
             })
                 .then((res) => {
                     if (res.data.type == 1) {
-                        console.log("LEER : ", res.data)
-                    } else console.log("ERROR : ", res.data)
+                        console.log("LEER : ", res.data);
+                    } else console.log("ERROR : ", res.data);
                 })
                 .catch(function (error) {
-                    console.log("ERROR : ", res.data)
+                    console.log("ERROR : ", res.data);
                     return;
                 });
         };
@@ -85,18 +86,17 @@ const ProductListInteractiveOptionOne = ({ product }) => {
         <div className="bordeproductlistinteractivemaximizeIntMNew">
             <Grid container alignItems="center" className="none650px">
                 <Grid item xs={9} md={9} lg={9} pl={0}>
-                    <div className="textoproductlistinteractivemaximizeInt none1255px"
-                        onClick={() => onClickImagen(product)}
-                    >
+                    <div
+                        className="textoproductlistinteractivemaximizeInt none1255px"
+                        onClick={() => onClickImagen(product)}>
                         {product.name}
                     </div>
-                    <div className="textoproductlistinteractivemaximizeIntShow"
-                        onClick={handleClick}
-                    >
-                        {product.name} 
+                    <div
+                        className="textoproductlistinteractivemaximizeIntShow"
+                        onClick={handleClick}>
+                        {product.name}
                     </div>
                 </Grid>
-
 
                 <Grid item xs={1} md={1} lg={1}>
                     <a className="pSpecialInt colorbase"> $ </a>
@@ -119,7 +119,6 @@ const ProductListInteractiveOptionOne = ({ product }) => {
                     <h4>{myNumber(1, product.price, 2)}</h4>
                 </div>
             </div>
-
         </div>
     );
 };

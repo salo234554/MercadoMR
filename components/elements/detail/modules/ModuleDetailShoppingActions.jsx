@@ -86,13 +86,13 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     }, []);
 
     useEffect(() => {
-        if(product){
+        if (product) {
             let dataaddcart = {
                 idproducto: product?.id,
                 nombreimagen1: product?.nombreImagen,
                 titulonombre: product?.name,
                 cantidad: unidadesSelect,
-            }
+            };
             localStorage.setItem("itemaddcart", JSON.stringify(dataaddcart));
         }
     }, [product]);
@@ -238,6 +238,10 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                 JSON.stringify(itemswishlistadd)
             );
 
+            let leeira = JSON.parse(localStorage.getItem("ira"));
+
+            if (leeira != 16) localStorage.setItem("ira", JSON.stringify(15));
+
             setShowModalMensajesShoppingCart(true);
             setTituloMensajesShoppingCart("Lista de deseos");
             let texto =
@@ -324,7 +328,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     const comprarAhora = () => {
-        console.log("PRODUCT : ", product)
+        console.log("PRODUCT : ", product);
 
         if (product?.usuario == datosusuarios.uid) {
             setShowModalControlAcceso(true);
@@ -487,31 +491,33 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                     params,
                                 })
                                     .then((res) => {
-                                        const grabarItemCarritoHistorial = async () => {
-                                            let params = {
-                                                idproducto: product?.id,
-                                                compatible: product?.compatible,
-                                                usuario: datosusuarios.uid,
-                                                cantidad: unidadesSelect,
-                                            };
-                                            //console.log("PROD : ", params);
+                                        const grabarItemCarritoHistorial =
+                                            async () => {
+                                                let params = {
+                                                    idproducto: product?.id,
+                                                    compatible:
+                                                        product?.compatible,
+                                                    usuario: datosusuarios.uid,
+                                                    cantidad: unidadesSelect,
+                                                };
+                                                //console.log("PROD : ", params);
 
-                                            await axios({
-                                                method: "post",
-                                                url: URL_BD_MR + "581",
-                                                params,
-                                            })
-                                                .then((res) => {
-                                                    console.log(
-                                                        "OK item  add carrito de compra"
-                                                    );
+                                                await axios({
+                                                    method: "post",
+                                                    url: URL_BD_MR + "581",
+                                                    params,
                                                 })
-                                                .catch(function (error) {
-                                                    console.log(
-                                                        "Error item add carrito de compra"
-                                                    );
-                                                });
-                                        };
+                                                    .then((res) => {
+                                                        console.log(
+                                                            "OK item  add carrito de compra"
+                                                        );
+                                                    })
+                                                    .catch(function (error) {
+                                                        console.log(
+                                                            "Error item add carrito de compra"
+                                                        );
+                                                    });
+                                            };
                                         grabarItemCarritoHistorial();
 
                                         const leeItemAgregadoCarrito =
@@ -877,7 +883,35 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             /* Guarda datos del producto que se debe agregar al localstorage */
             let itemshoppingcartadd;
 
-            if (leeira == 6) {
+            //Utilizamos el 15 tanto para agregar al carrito como a la lista de deseos
+            if (leeira == 14 || leeira == 16) {
+             
+                if (leeira == 14) {
+                    dispatch(getLeeIra(leeira));
+                } else {
+                    dispatch(getLeeIra(17));
+                    localStorage.setItem("ira", JSON.stringify(17));
+                }
+
+                let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
+                itemshoppingcartadd = {
+                    ruta: urlviewprd,
+                    idproducto: data?.id,
+                    compatible: data?.compatible,
+                    cantidad: unidadesSelect,
+                    nombreimagen1: product?.images[0]?.name,
+                    titulonombre: product?.name,
+                    valida: 1,
+                };
+
+                let iraprd14 = {
+                    name: product?.name,
+                    idprd: product?.id,
+                    imagen: product?.nombreImagen,
+                };
+
+                localStorage.setItem("iraprd14", JSON.stringify(iraprd14));
+            } else if (leeira == 6) {
                 dispatch(getLeeIra(6));
                 itemshoppingcartadd = {
                     ruta: rutaira,
@@ -951,14 +985,10 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                             params,
                         })
                             .then((res) => {
-                                console.log(
-                                    "OK item  add carrito de compra"
-                                );
+                                console.log("OK item  add carrito de compra");
                             })
                             .catch(function (error) {
-                                console.log(
-                                    "Error item add carrito de compra"
-                                );
+                                console.log("Error item add carrito de compra");
                             });
                     };
                     grabarItemCarritoHistorial();
@@ -992,7 +1022,8 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                         res.data?.listaritemcarrito[0]
                                             ?.titulonombre,
                                     cantidad:
-                                        res.data?.listaritemcarrito[0]?.cantidad,
+                                        res.data?.listaritemcarrito[0]
+                                            ?.cantidad,
                                 };
 
                                 dispatch(getAddEdToCart(item));
@@ -1119,119 +1150,113 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                 <label className="ps-product__label">
                     Unidades disponibles: {product?.numerounidades}
                 </label>
-                {
-                    product?.numerounidades > 0 ?
-                        <div>
-                            <Row className="cajaunidadeselect">
-                                <Col xs={4} sm={4} md={4} lg={4}>
-                                    <button
-                                        className={classUnd}
-                                        onClick={() => selCantidad(-1)}>
-                                        _
-                                    </button>
-                                </Col>
-                                <Col xs={5} sm={5} md={5} lg={5}>
-                                    <input
-                                        className="cajaunidadeinput"
-                                        type="text"
-                                        defaultValue="1"
-                                        value={unidadesSelect}
-                                        //onChange={(e)=>handleChangeInput(e.target.value)}
-                                        placeholder="1"
-                                    />
-                                </Col>
-                                <Col xs={2} sm={2} md={2} lg={2}>
-                                    <button
-                                        className={classUndMas}
-                                        onClick={() => selCantidad(1)}>
-                                        +
-                                    </button>
-                                </Col>
-                            </Row>
+                {product?.numerounidades > 0 ? (
+                    <div>
+                        <Row className="cajaunidadeselect">
+                            <Col xs={4} sm={4} md={4} lg={4}>
+                                <button
+                                    className={classUnd}
+                                    onClick={() => selCantidad(-1)}>
+                                    _
+                                </button>
+                            </Col>
+                            <Col xs={5} sm={5} md={5} lg={5}>
+                                <input
+                                    className="cajaunidadeinput"
+                                    type="text"
+                                    defaultValue="1"
+                                    value={unidadesSelect}
+                                    //onChange={(e)=>handleChangeInput(e.target.value)}
+                                    placeholder="1"
+                                />
+                            </Col>
+                            <Col xs={2} sm={2} md={2} lg={2}>
+                                <button
+                                    className={classUndMas}
+                                    onClick={() => selCantidad(1)}>
+                                    +
+                                </button>
+                            </Col>
+                        </Row>
 
-                            <div className="mt-20 flex flex-wrap gap-2">
+                        <div className="mt-20 flex flex-wrap gap-2">
+                            <h1
+                                className="botoncomprarahora"
+                                onClick={() => comprarAhora()}>
+                                Comprar ahora
+                            </h1>
 
-                                <h1
-                                    className="botoncomprarahora"
-                                    onClick={() => comprarAhora()}>
-                                    Comprar ahora
-                                </h1>
-
-                                <h1
-                                    className="botonagregarcarrito"
-                                    onClick={(e) =>
-                                        controlNumPrdCar(product)
-                                    }>
-                                    Agregar al carrito
-                                </h1>
-
-                            </div>
-                            <Row className="subrayartextosingleview ">
-                                <Col xs={12} sm={12} md={12} lg={12}>
-                                    <a onClick={(e) => validaPrdListWish()}>
-                                        Agregar a lista de deseos{" "}
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    </a>
-                                </Col>
-                            </Row>
+                            <h1
+                                className="botonagregarcarrito"
+                                onClick={(e) => controlNumPrdCar(product)}>
+                                Agregar al carrito
+                            </h1>
                         </div>
-                        :
-                        <div>
-                            <Row className="cajaunidadeselect">
-                                <Col xs={4} sm={4} md={4} lg={4}>
-                                    <button
-                                        className={classUnd}
-                                        onClick={() => selCantidad(-1)}>
-                                        _
-                                    </button>
-                                </Col>
-                                <Col xs={5} sm={5} md={5} lg={5}>
-                                    <input
-                                        className="cajaunidadeinput disabledButton2"
-                                        type="text"
-                                        defaultValue="0"
-                                        value={0}
-                                        //onChange={(e)=>handleChangeInput(e.target.value)}
-                                        placeholder="1"
-                                    />
-                                </Col>
-                                <Col xs={2} sm={2} md={2} lg={2}>
-                                    <button
-                                        className={classUndMas}
-                                        onClick={() => selCantidad(1)}>
-                                        +
-                                    </button>
-                                </Col>
-                            </Row>
+                        <Row className="subrayartextosingleview ">
+                            <Col xs={12} sm={12} md={12} lg={12}>
+                                <a onClick={(e) => validaPrdListWish()}>
+                                    Agregar a lista de deseos{" "}
+                                    <i
+                                        class="fa fa-heart-o"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </Col>
+                        </Row>
+                    </div>
+                ) : (
+                    <div>
+                        <Row className="cajaunidadeselect">
+                            <Col xs={4} sm={4} md={4} lg={4}>
+                                <button
+                                    className={classUnd}
+                                    onClick={() => selCantidad(-1)}>
+                                    _
+                                </button>
+                            </Col>
+                            <Col xs={5} sm={5} md={5} lg={5}>
+                                <input
+                                    className="cajaunidadeinput disabledButton2"
+                                    type="text"
+                                    defaultValue="0"
+                                    value={0}
+                                    //onChange={(e)=>handleChangeInput(e.target.value)}
+                                    placeholder="1"
+                                />
+                            </Col>
+                            <Col xs={2} sm={2} md={2} lg={2}>
+                                <button
+                                    className={classUndMas}
+                                    onClick={() => selCantidad(1)}>
+                                    +
+                                </button>
+                            </Col>
+                        </Row>
 
-                            <div className="mt-20 flex flex-wrap gap-2">
+                        <div className="mt-20 flex flex-wrap gap-2">
+                            <h1
+                                className="botoncomprarahora disabledButton2"
+                                onClick={() => comprarAhora()}>
+                                Comprar ahora
+                            </h1>
 
-                                <h1
-                                    className="botoncomprarahora disabledButton2"
-                                    onClick={() => comprarAhora()}>
-                                    Comprar ahora
-                                </h1>
-
-                                <h1
-                                    className="botonagregarcarrito disabledButton2"
-                                    onClick={(e) =>
-                                        controlNumPrdCar(product)
-                                    }>
-                                    Agregar al carrito
-                                </h1>
-
-                            </div>
-                            <Row className="subrayartextosingleview disabledButton2">
-                                <Col xs={12} sm={12} md={12} lg={12}>
-                                    <a onClick={(e) => validaPrdListWish()}>
-                                        Agregar a lista de deseos{" "}
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    </a>
-                                </Col>
-                            </Row>
+                            <h1
+                                className="botonagregarcarrito disabledButton2"
+                                onClick={(e) => controlNumPrdCar(product)}>
+                                Agregar al carrito
+                            </h1>
                         </div>
-                }
-
+                        <Row className="subrayartextosingleview disabledButton2">
+                            <Col xs={12} sm={12} md={12} lg={12}>
+                                <a onClick={(e) => validaPrdListWish()}>
+                                    Agregar a lista de deseos{" "}
+                                    <i
+                                        class="fa fa-heart-o"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </Col>
+                        </Row>
+                    </div>
+                )}
             </div>
         </div>
     );

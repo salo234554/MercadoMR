@@ -15,6 +15,7 @@ import { getViewCheckout } from "../../../store/viewcheckout/action";
 import { useRouter } from "next/router";
 import ModuleProductImagesResultsDos from "~/components/elements/products/modules/ModuleProductImagesResultsDos";
 import ModuleProductImagesResultsDosSearchInt from "./modules/ModuleProductImagesResultsDosSearchInt";
+
 const ProductSearchViewInteractiveSearch = ({ product }) => {
     const router = useRouter();
     const { price, badges } = useProduct();
@@ -69,17 +70,16 @@ const ProductSearchViewInteractiveSearch = ({ product }) => {
             })
                 .then((res) => {
                     if (res.data > 0) {
-                        console.log("LEER : ", res.data)
-                    } else console.log("ERROR : ", res.data)
+                        console.log("LEER : ", res.data);
+                    } else console.log("ERROR : ", res.data);
                 })
                 .catch(function (error) {
-                    console.log("ERROR : ", res.data)
+                    console.log("ERROR : ", res.data);
                     return;
                 });
         };
         addItemHistoryPrd();
     };
-
 
     const handleClick = () => {
         router.push(`/product/${product.id}`);
@@ -88,50 +88,46 @@ const ProductSearchViewInteractiveSearch = ({ product }) => {
     return (
         <div className="ps-product ps-product--grid">
             <div className="none650px">
-                <div className="cajaimagesresult"
-                    onClick={() => onClickImagen()}
-                >
+                <div
+                    className="cajaimagesresult"
+                    onClick={() => onClickImagen()}>
                     <div className="ps-product__thumbnail">
-                        <Link href="/product/[id]" as={`/product/${product.id}`}>
-                            <a className="ps-product__overlay"></a>
-                        </Link>
-                        <ModuleProductImagesResultsDosSearchInt product={product} />
+                        <a className="ps-product__overlay"></a>
+                        <ModuleProductImagesResultsDosSearchInt
+                            product={product}
+                        />
                         {badges(product)}
                     </div>
                 </div>
                 <div className="ps-product__content marginProductTopMobile">
-                    <div
-                        onClick={() => onClickImagen()}
-                    >
-                        <Link href="/product/[id]" as={`/product/${product.id}`}>
-                            <a className="textoimagenesresult">
-                                <p>{product.name}</p></a>
-                        </Link>
+                    <div onClick={() => onClickImagen()}>
+                        <a className="textoimagenesresult">
+                            <p>{product.name}</p>
+                        </a>
                     </div>
                     {price(product)}
                 </div>
             </div>
 
             <div className="divImgToLink" onClick={handleClick}>
-                <div className="cajaimagesresult"
-                >
+                <div className="cajaimagesresult">
                     <div className="ps-product__thumbnail">
                         <a className="ps-product__overlay"></a>
-                        <ModuleProductImagesResultsDosSearchInt product={product} />
+                        <ModuleProductImagesResultsDosSearchInt
+                            product={product}
+                        />
                         {badges(product)}
                     </div>
                 </div>
                 <div className="ps-product__content marginProductTopMobile">
-                    <div
-                    >
+                    <div>
                         <a className="textoimagenesresult">
-                            <p>{product.name}</p></a>
+                            <p>{product.name}</p>
+                        </a>
                     </div>
                     {price(product)}
                 </div>
             </div>
-
-
         </div>
     );
 };

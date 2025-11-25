@@ -979,8 +979,13 @@ const LoginAccount = () => {
                                             };
                                             grabarItem();
                                         };
-                                    } else if (ira == 5) {
-                                         let datitem = JSON.parse(
+                                    } else if (
+                                        ira == 5 ||
+                                        ira == 15 ||
+                                        ira == 16
+                                    ) {
+                                        alert("15-----111111");
+                                        let datitem = JSON.parse(
                                             localStorage.getItem(
                                                 "itemswishlistadd"
                                             )
@@ -1011,7 +1016,7 @@ const LoginAccount = () => {
                                                             console.log(
                                                                 "PRD EXISTE EN Wish List"
                                                             );
-                                                           
+
                                                             localStorage.setItem(
                                                                 "addwishlisterror",
                                                                 JSON.stringify(
@@ -1136,10 +1141,25 @@ const LoginAccount = () => {
                                                             "activargrilla",
                                                             JSON.stringify(3)
                                                         );
-                                                        //alert(datitem.ruta);
-                                                        router.push(
-                                                            datitem.ruta
-                                                        );
+                                                        let redirigir =
+                                                            JSON.parse(
+                                                                localStorage.getItem(
+                                                                    "urlviewprd"
+                                                                )
+                                                            );
+
+                                                        if (ira == 5) {
+                                                            router.push(
+                                                                datitem.ruta
+                                                            );
+                                                        } else if (
+                                                            ira == 15 ||
+                                                            ira == 16
+                                                        ) {
+                                                            router.push(
+                                                                redirigir
+                                                            );
+                                                        }
 
                                                         localStorage.setItem(
                                                             "itemswishlistadd",
@@ -1303,6 +1323,156 @@ const LoginAccount = () => {
                                                 });
                                         };
                                         router.push(datitem.ruta);
+                                    } else if (ira == 14 || ira == 17) {
+                                        let datitem = JSON.parse(
+                                            localStorage.getItem(
+                                                "itemshoppingcartadd"
+                                            )
+                                        );
+
+                                        const controlNumPrdCar = (data) => {
+                                            let continuar = true;
+
+                                            const leerItemsCarrito =
+                                                async () => {
+                                                    let params = {
+                                                        usuario:
+                                                            DatosUsuario[0].uid,
+                                                    };
+
+                                                    await axios({
+                                                        method: "post",
+                                                        url: URL_BD_MR + "59",
+                                                        params,
+                                                    })
+                                                        .then((res) => {
+                                                            if (
+                                                                res.data.type ==
+                                                                1
+                                                            ) {
+                                                                if (
+                                                                    res.data
+                                                                        .listarcarritocompra
+                                                                        .length >=
+                                                                    15
+                                                                ) {
+                                                                    continuar = false;
+                                                                    setShowModalMensajes(
+                                                                        true
+                                                                    );
+                                                                    setTituloMensajes(
+                                                                        "Carrito de compra"
+                                                                    );
+                                                                    let texto =
+                                                                        "Puedes agregar maximo 15 productos al carrito de compra";
+                                                                    setTextoMensajes(
+                                                                        texto
+                                                                    );
+                                                                    return;
+                                                                } else
+                                                                    grabarItemCarrito();
+                                                            } else {
+                                                                continuar = true;
+                                                                grabarItemCarrito();
+                                                            }
+                                                        })
+                                                        .catch(function (
+                                                            error
+                                                        ) {
+                                                            console.log(
+                                                                "Error leyendo items carrito de compra"
+                                                            );
+                                                        });
+                                                };
+                                            leerItemsCarrito();
+                                        };
+                                        controlNumPrdCar();
+
+                                        const grabarItemCarrito = async () => {
+                                            let params = {
+                                                compatible: datitem.compatible,
+                                                idproducto: datitem.idproducto,
+                                                usuario: DatosUsuario[0].uid,
+                                                cantidad: 1,
+                                            };
+
+                                            await axios({
+                                                method: "post",
+                                                url: URL_BD_MR + "58",
+                                                params,
+                                            })
+                                                .then((res) => {
+                                                    const grabarItemCarritoHistorial =
+                                                        async () => {
+                                                            let params = {
+                                                                compatible:
+                                                                    datitem.compatible,
+                                                                idproducto:
+                                                                    datitem.idproducto,
+                                                                usuario:
+                                                                    DatosUsuario[0]
+                                                                        .uid,
+                                                                cantidad: 1,
+                                                            };
+
+                                                            await axios({
+                                                                method: "post",
+                                                                url:
+                                                                    URL_BD_MR +
+                                                                    "581",
+                                                                params,
+                                                            })
+                                                                .then((res) => {
+                                                                    console.log(
+                                                                        "OK item  add carrito de compra"
+                                                                    );
+                                                                })
+                                                                .catch(
+                                                                    function (
+                                                                        error
+                                                                    ) {
+                                                                        console.log(
+                                                                            "Error item add carrito de compra"
+                                                                        );
+                                                                    }
+                                                                );
+                                                        };
+                                                    grabarItemCarritoHistorial();
+
+                                                    let row = [];
+                                                    let item = {
+                                                        idproducto:
+                                                            datitem.idproducto,
+                                                        nombreimagen1:
+                                                            datitem.nombreimagen1,
+                                                        titulonombre:
+                                                            datitem.titulonombre,
+                                                        cantidad: 1,
+                                                    };
+                                                    dispatch(
+                                                        getAddEdToCart(item)
+                                                    );
+                                                    localStorage.setItem(
+                                                        "aadditemcar",
+                                                        JSON.stringify(true)
+                                                    );
+                                                    row.push(item);
+                                                    dispatch(getAddLogin(row));
+                                                    localStorage.setItem(
+                                                        "addedtocart",
+                                                        JSON.stringify(item)
+                                                    );
+                                                })
+                                                .catch(function (error) {
+                                                    console.log(
+                                                        "Error leyendo items carrito de compra"
+                                                    );
+                                                });
+                                        };
+
+                                        if (datitem.valida == 0)
+                                            router.push(datitem.ruta);
+                                        else router.push(datitem.ruta);
                                     } else if (ira == 3) {
                                         let datitem = JSON.parse(
                                             localStorage.getItem(
@@ -1517,7 +1687,6 @@ const LoginAccount = () => {
                             setTextoMensajes(
                                 "El correo y/o la contraseña ingresada no corresponde, para cambiar, dar click en olvidaste contraseña!"
                             );
-                            //router.push("/");
                         });
                 }
             } else {
@@ -1527,8 +1696,7 @@ const LoginAccount = () => {
 
                 localStorage.setItem("placeholdersearch", JSON.stringify(""));
                 let ira = JSON.parse(localStorage.getItem("ira"));
-                //console.log("LOGIN : ", formData?.email);
-                //Consulta en la BD de MR para ver si el email esta asociado a una cuenta
+
                 if (!formData?.email || !formData?.password) {
                     setShowModalMensajes(true);
                     setTituloMensajes("Iniciar sesión");
@@ -1561,8 +1729,6 @@ const LoginAccount = () => {
                     emailusuario
                 );
 
-                //console.log("EMAIL : ", respuestauser, " - ", emailusuario);
-
                 const auth = getAuth(firebase);
                 signInWithEmailAndPassword(
                     auth,
@@ -1576,8 +1742,6 @@ const LoginAccount = () => {
                         const dat = {
                             usuario: user.metadata.createdAt,
                         };
-                        //console.log("ACCESO OK");
-                        //.push("/");
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -1613,12 +1777,6 @@ const LoginAccount = () => {
                         }
                     }
                 } else {
-                    /*
-                    setShowModalMensajesSoyNuevo(true);
-                    setTituloMensajesSoyNuevo("Aún no eres parte de la comunidad MR");
-                    let texto = "";
-                    setTextoMensajesSoyNuevo(texto);
-                    */
                     setShowModalMensajes(true);
                     setTituloMensajes("Iniciar sesión");
                     setTextoMensajes(
@@ -1961,7 +2119,12 @@ const LoginAccount = () => {
                                                 };
                                                 grabarItem();
                                             };
-                                        } else if (ira == 5) {
+                                        } else if (
+                                            ira == 5 ||
+                                            ira == 15 ||
+                                            ira == 16
+                                        ) {
+                                            alert("15-----22222");
                                             let datitem = JSON.parse(
                                                 localStorage.getItem(
                                                     "itemswishlistadd"
@@ -2022,10 +2185,26 @@ const LoginAccount = () => {
                                                                         3
                                                                     )
                                                                 );
-                                                                //alert(datitem.ruta);
-                                                                router.push(
-                                                                    datitem.ruta
-                                                                );
+
+                                                                let redirigir =
+                                                                    JSON.parse(
+                                                                        localStorage.getItem(
+                                                                            "urlviewprd"
+                                                                        )
+                                                                    );
+
+                                                                if (ira == 5) {
+                                                                    router.push(
+                                                                        datitem.ruta
+                                                                    );
+                                                                } else if (
+                                                                    ira == 15 ||
+                                                                    ira == 16
+                                                                ) {
+                                                                    router.push(
+                                                                        redirigir
+                                                                    );
+                                                                }
 
                                                                 localStorage.setItem(
                                                                     "itemswishlistadd",
@@ -2063,10 +2242,6 @@ const LoginAccount = () => {
                                                                     JSON.stringify(
                                                                         3
                                                                     )
-                                                                );
-                                                                //alert(datitem.ruta);
-                                                                router.push(
-                                                                    datitem.ruta
                                                                 );
 
                                                                 localStorage.setItem(
@@ -2172,10 +2347,25 @@ const LoginAccount = () => {
                                                                     3
                                                                 )
                                                             );
-                                                            //alert(datitem.ruta);
-                                                            router.push(
-                                                                datitem.ruta
-                                                            );
+                                                            let redirigir =
+                                                                JSON.parse(
+                                                                    localStorage.getItem(
+                                                                        "urlviewprd"
+                                                                    )
+                                                                );
+
+                                                            if (ira == 5) {
+                                                                router.push(
+                                                                    datitem.ruta
+                                                                );
+                                                            } else if (
+                                                                ira == 15 ||
+                                                                ira == 16
+                                                            ) {
+                                                                router.push(
+                                                                    redirigir
+                                                                );
+                                                            }
 
                                                             localStorage.setItem(
                                                                 "itemswishlistadd",
@@ -2366,6 +2556,181 @@ const LoginAccount = () => {
                                                         });
                                                 };
                                             router.push(datitem.ruta);
+                                        } else if (ira == 14 || ira == 17) {
+                                            let datitem = JSON.parse(
+                                                localStorage.getItem(
+                                                    "itemshoppingcartadd"
+                                                )
+                                            );
+
+                                            const controlNumPrdCar = (data) => {
+                                                let continuar = true;
+
+                                                const leerItemsCarrito =
+                                                    async () => {
+                                                        let params = {
+                                                            usuario:
+                                                                DatosUsuario[0]
+                                                                    .uid,
+                                                        };
+
+                                                        await axios({
+                                                            method: "post",
+                                                            url:
+                                                                URL_BD_MR +
+                                                                "59",
+                                                            params,
+                                                        })
+                                                            .then((res) => {
+                                                                if (
+                                                                    res.data
+                                                                        .type ==
+                                                                    1
+                                                                ) {
+                                                                    if (
+                                                                        res.data
+                                                                            .listarcarritocompra
+                                                                            .length >=
+                                                                        15
+                                                                    ) {
+                                                                        continuar = false;
+                                                                        setShowModalMensajes(
+                                                                            true
+                                                                        );
+                                                                        setTituloMensajes(
+                                                                            "Carrito de compra"
+                                                                        );
+                                                                        let texto =
+                                                                            "Puedes agregar maximo 15 productos al carrito de compra";
+                                                                        setTextoMensajes(
+                                                                            texto
+                                                                        );
+                                                                        return;
+                                                                    } else
+                                                                        grabarItemCarrito();
+                                                                } else {
+                                                                    continuar = true;
+                                                                    grabarItemCarrito();
+                                                                }
+                                                            })
+                                                            .catch(function (
+                                                                error
+                                                            ) {
+                                                                console.log(
+                                                                    "Error leyendo items carrito de compra"
+                                                                );
+                                                            });
+                                                    };
+                                                leerItemsCarrito();
+                                            };
+                                            controlNumPrdCar();
+
+                                            const grabarItemCarrito =
+                                                async () => {
+                                                    let params = {
+                                                        compatible:
+                                                            datitem.compatible,
+                                                        idproducto:
+                                                            datitem.idproducto,
+                                                        usuario:
+                                                            DatosUsuario[0].uid,
+                                                        cantidad: 1,
+                                                    };
+
+                                                    await axios({
+                                                        method: "post",
+                                                        url: URL_BD_MR + "58",
+                                                        params,
+                                                    })
+                                                        .then((res) => {
+                                                            const grabarItemCarritoHistorial =
+                                                                async () => {
+                                                                    let params =
+                                                                        {
+                                                                            compatible:
+                                                                                datitem.compatible,
+                                                                            idproducto:
+                                                                                datitem.idproducto,
+                                                                            usuario:
+                                                                                DatosUsuario[0]
+                                                                                    .uid,
+                                                                            cantidad: 1,
+                                                                        };
+
+                                                                    await axios(
+                                                                        {
+                                                                            method: "post",
+                                                                            url:
+                                                                                URL_BD_MR +
+                                                                                "581",
+                                                                            params,
+                                                                        }
+                                                                    )
+                                                                        .then(
+                                                                            (
+                                                                                res
+                                                                            ) => {
+                                                                                console.log(
+                                                                                    "OK item  add carrito de compra"
+                                                                                );
+                                                                            }
+                                                                        )
+                                                                        .catch(
+                                                                            function (
+                                                                                error
+                                                                            ) {
+                                                                                console.log(
+                                                                                    "Error item add carrito de compra"
+                                                                                );
+                                                                            }
+                                                                        );
+                                                                };
+                                                            grabarItemCarritoHistorial();
+
+                                                            let row = [];
+                                                            let item = {
+                                                                idproducto:
+                                                                    datitem.idproducto,
+                                                                nombreimagen1:
+                                                                    datitem.nombreimagen1,
+                                                                titulonombre:
+                                                                    datitem.titulonombre,
+                                                                cantidad: 1,
+                                                            };
+                                                            dispatch(
+                                                                getAddEdToCart(
+                                                                    item
+                                                                )
+                                                            );
+                                                            localStorage.setItem(
+                                                                "aadditemcar",
+                                                                JSON.stringify(
+                                                                    true
+                                                                )
+                                                            );
+                                                            row.push(item);
+                                                            dispatch(
+                                                                getAddLogin(row)
+                                                            );
+                                                            localStorage.setItem(
+                                                                "addedtocart",
+                                                                JSON.stringify(
+                                                                    item
+                                                                )
+                                                            );
+                                                        })
+                                                        .catch(function (
+                                                            error
+                                                        ) {
+                                                            console.log(
+                                                                "Error leyendo items carrito de compra"
+                                                            );
+                                                        });
+                                                };
+
+                                            if (datitem.valida == 0)
+                                                router.push(datitem.ruta);
+                                            else router.push(datitem.ruta);
                                         } else if (ira == 3) {
                                             let datitem = JSON.parse(
                                                 localStorage.getItem(

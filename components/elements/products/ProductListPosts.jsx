@@ -229,6 +229,7 @@ const ProductListPosts = ({ product }) => {
     };
 
     useEffect(() => {
+        laert("LKALKALSKLAKS")
         if (selectOptions == 1) {
             localStorage.setItem("accion", JSON.stringify("editar"));
             setShowModalMensajesDuplicar(true);
