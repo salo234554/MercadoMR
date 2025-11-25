@@ -138,6 +138,7 @@ const ModuleShopResults = (props) => {
         sessionStorage.removeItem('paginaActualGeneral');
         dispatch(getLongPage(1));
         localStorage.setItem("activargrilla", JSON.stringify(1));
+        localStorage.setItem("grillaselect", JSON.stringify(value));
 
         if (value == 1) {
             MostrarItems();
@@ -146,22 +147,40 @@ const ModuleShopResults = (props) => {
                 MostrarFotos();
             } else
                 if (value == 3) {
-                    MostrarFotosItems();    
+                    MostrarFotosItems();
                 }
     }
 
     useEffect(() => {
         let activargrilla = JSON.parse(localStorage.getItem("activargrilla"));
-        if (activargrilla == 1) {
-            MostrarItems();
-        } else
-            if (activargrilla == 2) {
-                MostrarFotos();
+
+        let ira = JSON.parse(localStorage.getItem("ira"));
+
+        if (ira == 15) {
+            let grillaselect = JSON.parse(localStorage.getItem("grillaselect"));
+
+            if (grillaselect == 1) {
+                MostrarItems();
             } else
-                if (activargrilla == 3) {
-                    MostrarFotosItems();
+                if (grillaselect == 2) {
+                    MostrarFotos();
                 } else
-                    dispatch(getGripSelect(2));
+                    if (grillaselect == 3) {
+                        MostrarFotosItems();
+                    } else
+                        MostrarFotos();
+
+        } else
+            if (activargrilla == 1) {
+                MostrarItems();
+            } else
+                if (activargrilla == 2) {
+                    MostrarFotos();
+                } else
+                    if (activargrilla == 3) {
+                        MostrarFotosItems();
+                    } else
+                        dispatch(getGripSelect(2));
     }, []);
 
     const MostrarItems = () => {

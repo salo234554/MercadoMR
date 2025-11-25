@@ -38,7 +38,17 @@ export default function useProductGroupInteractive() {
             setMostrarZoom("ps-layout__item");
     }, [datosubicarproducto]);
 
-    //console.log("VALOR VIEW PRODUCTO : ", showInteractivo)
+    const viewPrdSingle = () => {
+        localStorage.setItem("ira", JSON.stringify(18));
+
+        let datax = JSON.parse(localStorage.getItem("keyword"));
+        let datay = "";
+        if (datax) {
+            datay = datax[0]?.word;
+        }
+        localStorage.setItem("urlviewprd", JSON.stringify("/search?keyword="+datay));
+    }
+
     return {
         withCarousel: (source, loading, setting) => {
 
@@ -202,16 +212,12 @@ export default function useProductGroupInteractive() {
                     const items = resprod.map((item, index) => (
                         <div className={mostrarZoom} key={item.id}>
                             <ProductListInteractiveMaximize product={item} iditem={index} />
-                            {/*
-                                index % 2 == 0 ?
-                                    <ProductListInteractiveMaximize product={item} iditem={index} />
-                                    :
-                                    <ProductListInteractiveMaximizeDos product={item} iditem={index} />
-                    */}
                         </div>
                     ));
                     view = (
-                        <div className="ps-layout--list ps-shop-items">
+                        <div className="ps-layout--list ps-shop-items"
+                            onClick={viewPrdSingle}
+                        >
                             {items}
                         </div>
                     );

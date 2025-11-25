@@ -25,15 +25,15 @@ import { getFiltroPrd } from "../../store/filtroprd/action";
 import { getFiltroCondicionPrd } from "../../store/filtrocondicionprd/action";
 import { getRangosPrecio } from "../../store/rangosprecio/action";
 import { getUpdateData } from "../../store/updatedata/action";
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import { styled as muiStyled } from '@mui/material/styles';
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import { styled as muiStyled } from "@mui/material/styles";
 import PromotionSecureInformation from "../../components/shared/sections/PromotionInformationSearch";
 import FooterDefault from "../../components/shared/footers/FooterDefault";
 import ModalControlAcceso from "../mensajes/ModalControlAcceso";
 import { IoClose } from "react-icons/io5";
 import { getNumberPages } from "../../store/numberpages/action";
-import { getLongPage } from "../../store/longpage/action"
+import { getLongPage } from "../../store/longpage/action";
 
 import { getChangeSearchPrice } from "../../store/changesearchprice/action";
 
@@ -47,7 +47,6 @@ import { getAddLogin } from "../../store/addlogin/action";
 
 let ciudadesAlt = [];
 let ciudadesselAlt = [];
-
 
 const breadcrumb = [
     {
@@ -75,7 +74,7 @@ let longprd = 0;
 let registrosPorPagina = 2;
 let itemsProduct = [];
 let itemsPrdTot = [];
-let totalPaginas = 0
+let totalPaginas = 0;
 
 const SearchResultScreen = () => {
     const Router = useRouter();
@@ -109,9 +108,9 @@ const SearchResultScreen = () => {
     const [citySelected, setCitySelected] = useState([]);
     const [pagina, setPagina] = useState(1);
     let itemsPorPagina = 8;
-    const isXs = useMediaQuery('(max-width:600px)');
-    const isSm = useMediaQuery('(min-width:601px) and (max-width:960px)');
-    const isMd = useMediaQuery('(min-width:961px) and (max-width:1580px)');
+    const isXs = useMediaQuery("(max-width:600px)");
+    const isSm = useMediaQuery("(min-width:601px) and (max-width:960px)");
+    const isMd = useMediaQuery("(min-width:961px) and (max-width:1580px)");
     let longpage = useSelector((state) => state.longpage.longpage);
 
     const [activar, setActivar] = useState("habilitar");
@@ -198,36 +197,31 @@ const SearchResultScreen = () => {
     const orderbyprd = useSelector(
         (state) => state.filtroorderbyprd.filtroorderbyprd
     );
-    const filtrocondprd = useSelector((state) => state.filtrocondicionprd.filtrocondicionprd);
+    const filtrocondprd = useSelector(
+        (state) => state.filtrocondicionprd.filtrocondicionprd
+    );
 
     const openclosecity = useSelector(
         (state) => state.openclosecity.openclosecity
     );
 
-    let paginaselect = useSelector(
-        (state) => state.pageselect.pageselect
-    );
+    let paginaselect = useSelector((state) => state.pageselect.pageselect);
 
     const changesearchprice = useSelector(
         (state) => state.changesearchprice.changesearchprice
     );
 
-    const updatedata = useSelector(
-        (state) => state.updatedata.updatedata
-    );
+    const updatedata = useSelector((state) => state.updatedata.updatedata);
     if (selectGrid === 1) {
         if (isXs) itemsPorPagina = 12;
-
         else if (isMd) itemsPorPagina = 20;
         else itemsPorPagina = 15;
     } else if (selectGrid === 2) {
         if (isXs) itemsPorPagina = 17;
-
         else if (isMd) itemsPorPagina = 30;
         else itemsPorPagina = 15;
     } else if (selectGrid === 3) {
         if (isXs) itemsPorPagina = 10;
-
         else if (isMd) itemsPorPagina = 12;
         else itemsPorPagina = 12;
     }
@@ -260,7 +254,7 @@ const SearchResultScreen = () => {
     useEffect(() => {
         let numprd = dataPrd?.length;
 
-        let numpag = ((numprd / registrosPorPagina)).toFixed(0);
+        let numpag = (numprd / registrosPorPagina).toFixed(0);
         let arraypg = [];
         setNumeroPaginas(numpag);
 
@@ -275,12 +269,16 @@ const SearchResultScreen = () => {
 
     useEffect(() => {
         let array = [];
-        if ((itemsProduct?.length != productItems?.length && productItems?.length > 0) || updatedata) {
+        if (
+            (itemsProduct?.length != productItems?.length &&
+                productItems?.length > 0) ||
+            updatedata
+        ) {
             itemsProduct = productItems;
             itemsPrdTot = productItems;
             dispatch(getUpdateData(false));
         }
-    }, [paginaselect, itemsPrdTot, productItems, updatedata])
+    }, [paginaselect, itemsPrdTot, productItems, updatedata]);
 
     useEffect(() => {
         dispatch(getNumberPrdSelect(longprd));
@@ -295,10 +293,17 @@ const SearchResultScreen = () => {
         );
 
         let contrview = JSON.parse(localStorage.getItem("contrview"));
+        let ira = JSON.parse(localStorage.getItem("ira"));
 
         //console.log("291 ", addlogin);
-
-        if (addlogin.length > 0) {
+        if (ira == 17) {
+            let iraprd14 = JSON.parse(localStorage.getItem("iraprd14"));
+            setAddcartId(1);
+            setAddcartIdLogin(iraprd14?.idprd);
+            setAddcartImagen(iraprd14?.imagen);
+            setAddcartTitulo(iraprd14?.name);
+            setAddcartCantidad(1);
+        } else if (addlogin.length > 0) {
             setAddcartId(0);
             localStorage.setItem("itemshoppingcartadd", JSON.stringify(null));
             setAddcartIdLogin(addlogin[0]?.idproducto);
@@ -375,7 +380,6 @@ const SearchResultScreen = () => {
             const validaPrdShoppingCar = () => {
                 localStorage.setItem("contrview", JSON.stringify(0));
                 const leerItem = async () => {
-
                     const leerItems = async () => {
                         let params = {
                             idproducto: itemshoppingcartadd.idproducto,
@@ -384,11 +388,12 @@ const SearchResultScreen = () => {
 
                         const res = await axios({
                             method: "post",
-                            url: URL_BD_MR + "62", params
+                            url: URL_BD_MR + "62",
+                            params,
                         });
 
                         if (res.data.listaritemcarrito.length > 0) {
-                            console.log("LEER : ", res.data)
+                            console.log("LEER : ", res.data);
                         } else {
                             grabarItemCarrito();
                             //console.log("error")
@@ -411,7 +416,8 @@ const SearchResultScreen = () => {
 
                     const res = await axios({
                         method: "post",
-                        url: URL_BD_MR + "58", params
+                        url: URL_BD_MR + "58",
+                        params,
                     });
 
                     if (res.data.type == 1) {
@@ -430,14 +436,10 @@ const SearchResultScreen = () => {
                             });
 
                             if (rest.data.type == 1) {
-                                console.log(
-                                    "OK item  add carrito de compra"
-                                );
+                                console.log("OK item  add carrito de compra");
                             } else {
-                                console.log(
-                                    "Error item add carrito de compra"
-                                );
-                            };
+                                console.log("Error item add carrito de compra");
+                            }
                         };
                         grabarItemCarritoHistorial();
 
@@ -465,8 +467,7 @@ const SearchResultScreen = () => {
                                         res.data.listaritemcarrito[0]
                                             .titulonombre,
                                     cantidad:
-                                        res.data.listaritemcarrito[0]
-                                            .cantidad,
+                                        res.data.listaritemcarrito[0].cantidad,
                                 };
 
                                 dispatch(getAddEdToCart(item));
@@ -486,7 +487,7 @@ const SearchResultScreen = () => {
                                 console.log(
                                     "Error leyendo items carrito de compra"
                                 );
-                            };
+                            }
                         };
                         leeItemAgregadoCarrito();
 
@@ -504,22 +505,18 @@ const SearchResultScreen = () => {
                             if (results.data.type == 1) {
                                 dispatch(
                                     getDataShoppingCart(
-                                        res.data.listarcarritocompra
-                                            .length
+                                        res.data.listarcarritocompra.length
                                     )
                                 );
                             } else {
                                 console.log(
                                     "Error leyendo items carrito de compra"
                                 );
-                            };
+                            }
                         };
                         leerItemsCarrito();
-
                     } else {
-                        console.log(
-                            "Error leyendo items carrito de compra"
-                        );
+                        console.log("Error leyendo items carrito de compra");
                     }
                 }
             };
@@ -544,6 +541,11 @@ const SearchResultScreen = () => {
             setAddcartImagen(data?.nombreimagen1);
             setAddcartTitulo(data?.titulonombre);
             setAddcartCantidad(data?.cantidad);
+        }
+
+        if (addedtocart == 9001) {
+            setAddcartIdLogin(0);
+            setAddcartId(0);
         }
     }, [addedtocart]);
 
@@ -608,14 +610,12 @@ const SearchResultScreen = () => {
         // Lee numero de items de la consulta //
         const leebdprd = async () => {
             if (dataProd.length == 0) {
-                
                 const res = await axios({
                     method: "post",
                     url: URL_BD_MR + "43",
                 });
 
                 if (res.data.type == 1) {
-
                     let datos = res.data.cantidadprdciudad;
 
                     baseCiudad = datos;
@@ -682,7 +682,9 @@ const SearchResultScreen = () => {
                             }
                         });
 
-                    const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+                    const activafiltrociudad = JSON.parse(
+                        localStorage.getItem("activafiltrociudad")
+                    );
 
                     if (!activafiltrociudad) {
                         setPrdCiudadUno(prdciudaduno);
@@ -696,8 +698,7 @@ const SearchResultScreen = () => {
                         setPrdCiudadUnoAll(prdciudaduno);
                         setPrdCiudadDosAll(prdciudaddos);
                     }
-
-                };
+                }
                 setOk(false);
             }
         };
@@ -706,7 +707,6 @@ const SearchResultScreen = () => {
 
     useEffect(() => {
         if (clearFiltroCity && filtroCond == 0) {
-
             dispatch(getOpenCloseCity(0));
             let arrayciud = [];
             let prdciudaduno = [];
@@ -775,7 +775,9 @@ const SearchResultScreen = () => {
 
             if (arrayciud.length > 0) arrayciud.sort(compare);
 
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
 
             if (arrayciud.length > 0 && !activafiltrociudad) {
                 setPrdCiudadUno(prdciudaduno);
@@ -838,7 +840,6 @@ const SearchResultScreen = () => {
 
             itemciud &&
                 itemciud.map((row, index) => {
-
                     let contador = 0;
                     let ciudad = 0;
                     allprdciud &&
@@ -888,7 +889,9 @@ const SearchResultScreen = () => {
 
             if (arrayciud.length > 0) arrayciud.sort(compare);
 
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
 
             if (arrayciud.length > 0 && !activafiltrociudad) {
                 //AQUI
@@ -899,7 +902,6 @@ const SearchResultScreen = () => {
             }
             setActCiy(false);
         } else if (citySelected.length > 0 && filtroCond > 0) {
-
             let dataalter = dataProd;
             dataProd = [];
 
@@ -915,9 +917,7 @@ const SearchResultScreen = () => {
                             }
                         });
                 });
-
         } else if (itemciud.length > 0 && filtroCond > 0) {
-
             allprdciud = [];
             itemciud = [];
 
@@ -982,7 +982,9 @@ const SearchResultScreen = () => {
 
             if (arrayciud.length > 0) arrayciud.sort(compare);
 
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
 
             if (arrayciud.length > 0 && !activafiltrociudad) {
                 setPrdCiudadUno(prdciudaduno);
@@ -992,7 +994,6 @@ const SearchResultScreen = () => {
             }
             setActCiy(false);
         } else if (citySelected.length > 0 && filtroCond == 0) {
-
             let contador = 0;
             allprdciud = [];
             itemciud = [];
@@ -1050,7 +1051,9 @@ const SearchResultScreen = () => {
                     arrayciud.push(ciud);
                 });
 
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
 
             if (arrayciud.length > 0 && !activafiltrociudad) {
                 setPrdCiudadUno(prdciudaduno);
@@ -1060,7 +1063,6 @@ const SearchResultScreen = () => {
             }
         }
         setActCiy(false);
-
     }, [itemsProduct, actCity, citySelected, filtroCond]);
 
     useEffect(() => {
@@ -1176,12 +1178,12 @@ const SearchResultScreen = () => {
         let subcategorias = JSON.parse(localStorage.getItem("subcategorias"));
 
         if (posicionprd) {
-            let name = subcategorias.find(p => p.codigoposicion == posicionprd)?.nombre;
+            let name = subcategorias.find(
+                (p) => p.codigoposicion == posicionprd
+            )?.nombre;
             //console.log("XXXXX : ", name);
 
-            let keyword = JSON.parse(
-                localStorage.getItem("keyword")
-            );
+            let keyword = JSON.parse(localStorage.getItem("keyword"));
             if (keyword) {
                 //console.log("KEYWORD : ", keyword[0]?.word)
                 setDataHolder(name);
@@ -1191,22 +1193,44 @@ const SearchResultScreen = () => {
             }
         }
 
-        let selectvehgarage = JSON.parse(localStorage.getItem("selectvehgarage"));
+        let selectvehgarage = JSON.parse(
+            localStorage.getItem("selectvehgarage")
+        );
 
         if (selectvehgarage) {
             //console.log("KEYWORD : ", selectvehgarage)
-            let transmision = selectvehgarage?.transmision ? selectvehgarage?.transmision : "";
-            let cilindraje = selectvehgarage?.cilinder ? selectvehgarage?.cilinder : "";
+            let transmision = selectvehgarage?.transmision
+                ? selectvehgarage?.transmision
+                : "";
+            let cilindraje = selectvehgarage?.cilinder
+                ? selectvehgarage?.cilinder
+                : "";
             let anno = selectvehgarage?.year ? selectvehgarage?.year : "";
-            let combustible = selectvehgarage?.fuel ? selectvehgarage?.fuel : "";
-            let traccion = selectvehgarage?.traction ? selectvehgarage?.traction : "";
+            let combustible = selectvehgarage?.fuel
+                ? selectvehgarage?.fuel
+                : "";
+            let traccion = selectvehgarage?.traction
+                ? selectvehgarage?.traction
+                : "";
 
-            let name = selectvehgarage?.body + " " + selectvehgarage?.brand + " "
-                + selectvehgarage?.model + " " + transmision + " " + cilindraje + " " + anno + " "
-                + traccion + " " + combustible;
+            let name =
+                selectvehgarage?.body +
+                " " +
+                selectvehgarage?.brand +
+                " " +
+                selectvehgarage?.model +
+                " " +
+                transmision +
+                " " +
+                cilindraje +
+                " " +
+                anno +
+                " " +
+                traccion +
+                " " +
+                combustible;
             setDataHolder(name);
         }
-
     }, [keyword, wordCambia, selectGrid]);
 
     let products = null;
@@ -1351,10 +1375,14 @@ const SearchResultScreen = () => {
         let prdfiltrocondicion = [];
         let categfiltrocondicion = [];
 
-        const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+        const activafiltrociudad = JSON.parse(
+            localStorage.getItem("activafiltrociudad")
+        );
 
         if (activafiltrociudad) {
-            const filtrociudadprd = JSON.parse(localStorage.getItem("filtrociudadprd"));
+            const filtrociudadprd = JSON.parse(
+                localStorage.getItem("filtrociudadprd")
+            );
             filtrociudad = filtrociudadprd;
 
             filtrociudad &&
@@ -1376,7 +1404,6 @@ const SearchResultScreen = () => {
                             }
                         });
                 });
-
         } else {
             productos0 = productos;
             productoscategoria0 = productoscategoria;
@@ -1435,8 +1462,7 @@ const SearchResultScreen = () => {
                     });
             });
 
-        if (!activafiltrociudad)
-            filtrarciud = ciudsel;
+        if (!activafiltrociudad) filtrarciud = ciudsel;
 
         if (!dataPayload && categfiltrocondicion.length > 0)
             mostrarGategorias = true;
@@ -1447,12 +1473,12 @@ const SearchResultScreen = () => {
 
         prdfiltrocondicion &&
             prdfiltrocondicion.map((row, index) => {
-                allprd2.push(row)
+                allprd2.push(row);
             });
 
         categfiltrocondicion &&
             categfiltrocondicion.map((row, index) => {
-                allprd2.push(row)
+                allprd2.push(row);
             });
 
         allprd2 &&
@@ -1489,14 +1515,12 @@ const SearchResultScreen = () => {
         let rangomenor = 0;
         if (allprd2.length > 0) allprd2.sort(compareAsc);
 
-        if (allprd2?.length > 0)
-            rangomenor = allprd2[0]?.price;
+        if (allprd2?.length > 0) rangomenor = allprd2[0]?.price;
 
         let rangomayor = 0;
         if (allprd2.length > 0) allprd2.sort(compareDesc);
 
-        if (allprd2?.length > 0)
-            rangomayor = allprd2[0]?.price;
+        if (allprd2?.length > 0) rangomayor = allprd2[0]?.price;
 
         if (!allprd2?.length || allprd2?.length == 0) {
             let rangoprecios = JSON.parse(localStorage.getItem("rangoprecios"));
@@ -1512,10 +1536,7 @@ const SearchResultScreen = () => {
         //console.log("RANGREXACAS : ", rangpre);
 
         if (rangomenor != 1 && rangomayor != 10000000) {
-            localStorage.setItem(
-                "filtroprecioprd",
-                JSON.stringify(rangpre)
-            );
+            localStorage.setItem("filtroprecioprd", JSON.stringify(rangpre));
         }
 
         localStorage.setItem("rangoprecios", JSON.stringify(rangpre));
@@ -1537,7 +1558,7 @@ const SearchResultScreen = () => {
                                 nombreciu: row.nombreciudad,
                                 nombre_ciu: row.nombreciudad,
                                 productosciudad: contador,
-                            }
+                            };
                         }
                     });
                 allprdciud2.push(dat);
@@ -1558,22 +1579,16 @@ const SearchResultScreen = () => {
         if (prdfiltrocondicion?.length > 0) {
             prdfiltrocondicion &&
                 prdfiltrocondicion.map((row, index) => {
-
                     productosUno.push(row);
                     contar = parseInt(contar) + parseInt(1);
-
                 });
         }
 
         if (categfiltrocondicion?.length > 0) {
             categfiltrocondicion &&
                 categfiltrocondicion.map((row, index) => {
-
-
                     productosDos.push(row);
                     contar = parseInt(contar) + parseInt(1);
-
-
                 });
         }
 
@@ -1594,32 +1609,53 @@ const SearchResultScreen = () => {
 
         const productosPagina = arrayUnido.slice(inicio, fin);
 
-        const productosNormales = productosPagina.filter(p => p.productogenerico == 'No');
-        const productosRecomendados = productosPagina.filter(p => p.productogenerico == 'Si');
+        const productosNormales = productosPagina.filter(
+            (p) => p.productogenerico == "No"
+        );
+        const productosRecomendados = productosPagina.filter(
+            (p) => p.productogenerico == "Si"
+        );
 
         //console.log("productosnormales", productosNormales)
         //console.log("productosrecomendados", productosRecomendados)
 
-        const esUltimoProductoNormal = (inicio + productosNormales.length - 1) >= productosUno.length - 1;
+        const esUltimoProductoNormal =
+            inicio + productosNormales.length - 1 >= productosUno.length - 1;
 
         if (selectGrid == 1) {
             if (esUltimoProductoNormal && productosRecomendados.length > 0) {
-                productcategory = withGridDos(productosRecomendados, loading, 4);
+                productcategory = withGridDos(
+                    productosRecomendados,
+                    loading,
+                    4
+                );
             }
             products = withGridDos(productosNormales, loading, 4);
         } else if (selectGrid == 2) {
             if (esUltimoProductoNormal && productosRecomendados.length > 0) {
-                productcategory = withListMaximize(productosRecomendados, loading, 4);
+                productcategory = withListMaximize(
+                    productosRecomendados,
+                    loading,
+                    4
+                );
             }
             products = withListMaximize(productosNormales, loading, 4);
         } else if (selectGrid == 3) {
             if (esUltimoProductoNormal && productosRecomendados.length > 0) {
-                productcategory = withListView(productosRecomendados, loading, 4);
+                productcategory = withListView(
+                    productosRecomendados,
+                    loading,
+                    4
+                );
             }
             products = withListView(productosNormales, loading, 4);
         } else {
             if (esUltimoProductoNormal && productosRecomendados.length > 0) {
-                productcategory = withGridDos(productosRecomendados, loading, 4);
+                productcategory = withGridDos(
+                    productosRecomendados,
+                    loading,
+                    4
+                );
             }
             products = withGridDos(productosNormales, loading, 4);
         }
@@ -1631,15 +1667,20 @@ const SearchResultScreen = () => {
         if (filtrarciud?.length > 0 && cantidadPrdCiudad?.length == 0) {
             setCantidadPrdCiudad(filtrarciud);
         }
-    }, [filtrarciud])
+    }, [filtrarciud]);
 
     useEffect(() => {
         if (openclosecity == 1) {
-
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
             if (activafiltrociudad) {
-                const filtrociudadprd = JSON.parse(localStorage.getItem("filtrociudadprd"));
-                const dataciudadprd = JSON.parse(localStorage.getItem("filtrarciud"));
+                const filtrociudadprd = JSON.parse(
+                    localStorage.getItem("filtrociudadprd")
+                );
+                const dataciudadprd = JSON.parse(
+                    localStorage.getItem("filtrarciud")
+                );
 
                 if (filtrociudadprd.length > 0) {
                     filtrarciud = filtrociudadprd;
@@ -1699,7 +1740,6 @@ const SearchResultScreen = () => {
                     setPrdCiudadUno(prdciudaduno);
                     setPrdCiudadDos(prdciudaddos);
                     setAllCity(allcity);
-
                 } else {
                     setPrdCiudadUno([]);
                     setPrdCiudadDos([]);
@@ -1707,7 +1747,9 @@ const SearchResultScreen = () => {
                 }
             }
         } else {
-            const activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+            const activafiltrociudad = JSON.parse(
+                localStorage.getItem("activafiltrociudad")
+            );
 
             if (!activafiltrociudad && itemsProduct?.length > 0) {
                 let allprdciud2 = [];
@@ -1738,25 +1780,34 @@ const SearchResultScreen = () => {
                                         nombreciu: row.nombreciudad,
                                         nombre_ciu: row.nombreciudad,
                                         productosciudad: contador,
-                                    }
+                                    };
                                 }
                             });
-                        allprdciud2.push(dat)
+                        allprdciud2.push(dat);
                     });
 
                 //const filtrociudadprd = allprdciud2;
                 //const dataciudadprd = allprdciud2;
 
-                if (filtrocondprd == 0 && (openclosecity == 0 || openclosecity == 2 || !changesearchprice)) {
+                if (
+                    filtrocondprd == 0 &&
+                    (openclosecity == 0 ||
+                        openclosecity == 2 ||
+                        !changesearchprice)
+                ) {
                     setPrdCiudadUno(PrdCiudadUnoAll);
                     setPrdCiudadDos(PrdCiudadDosAll);
                     setCantidadPrdCiudad(cantidadPrdCiudadAll);
-                }
-                else
-                    setCantidadPrdCiudad(allprdciud2);
+                } else setCantidadPrdCiudad(allprdciud2);
 
-                localStorage.setItem("filtrociudadprd", JSON.stringify(citySelected));
-                localStorage.setItem("dataciudadprd", JSON.stringify(citySelected));
+                localStorage.setItem(
+                    "filtrociudadprd",
+                    JSON.stringify(citySelected)
+                );
+                localStorage.setItem(
+                    "dataciudadprd",
+                    JSON.stringify(citySelected)
+                );
 
                 let datos = allprdciud2;
 
@@ -1825,22 +1876,24 @@ const SearchResultScreen = () => {
                 }
 
                 if (datos?.length > 0) {
-                    if (filtrocondprd == 0 && (openclosecity == 0 || openclosecity == 2 || !changesearchprice)) {
+                    if (
+                        filtrocondprd == 0 &&
+                        (openclosecity == 0 ||
+                            openclosecity == 2 ||
+                            !changesearchprice)
+                    ) {
                         setPrdCiudadUno(PrdCiudadUnoAll);
                         setPrdCiudadDos(PrdCiudadDosAll);
                         setCantidadPrdCiudad(cantidadPrdCiudadAll);
-                    } else
-                        setCantidadPrdCiudad(datos);
+                    } else setCantidadPrdCiudad(datos);
                 }
-
             }
         }
-    }, [openclosecity])
+    }, [openclosecity]);
 
     useEffect(() => {
         setOk(true);
     }, [itemsPaginas]);
-
 
     useEffect(() => {
         if (selectGrid == 1) {
@@ -1860,7 +1913,6 @@ const SearchResultScreen = () => {
         }
     }, [selectGrid, isMdDown]);
 
-
     const cerrarCity = (dato) => {
         let ciudades = citySelected;
         let citysel = [];
@@ -1871,24 +1923,35 @@ const SearchResultScreen = () => {
                     citysel.push(item);
                 } else setEraseCitySel(dato);
             });
+
         setCitySelected(citysel);
     };
 
+    //console.log("CITYSE444444 : ", citySelected);
+
     useEffect(() => {
         let filtrociudadprd = [];
-        filtrociudadprd = JSON.parse(
-            localStorage.getItem("filtrociudadprd")
-        );
+        filtrociudadprd = JSON.parse(localStorage.getItem("filtrociudadprd"));
         if (filtrociudadprd.length == 0) {
             setCitySelected([]);
         }
         let row = [];
 
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        if (ira == 15) {
+            let filtrociudadlogin = JSON.parse(
+                localStorage.getItem("filtrociudadlogin")
+            );
+
+            if (filtrociudadlogin?.length > 0) {
+                setCitySelected(filtrociudadlogin);
+                filtrociudadprd = filtrociudadlogin;
+            }
+        }
+
         row.push([]);
-        dispatch(
-            getAddLogin(row)
-        );
-    }, [])
+        dispatch(getAddLogin(row));
+    }, []);
 
     const cerrarFiltros = () => {
         setPrecioFiltroMinimo(1);
@@ -1996,7 +2059,8 @@ const SearchResultScreen = () => {
         }
 
         if (itemsProduct) {
-            if (itemsProduct?.length != dataProd.length) dataProd = itemsProduct;
+            if (itemsProduct?.length != dataProd.length)
+                dataProd = itemsProduct;
         }
     }, [itemsProduct]);
 
@@ -2095,10 +2159,10 @@ const SearchResultScreen = () => {
 
     const handleChange = (event, value) => {
         setPagina(value);
-        sessionStorage.setItem('paginaActualGeneral', value);
+        sessionStorage.setItem("paginaActualGeneral", value);
         dispatch(getLongPage(value));
 
-        // Verifica si el contenedor existe y realiza scroll suave 
+        // Verifica si el contenedor existe y realiza scroll suave
         setTimeout(() => {
             containerProduRef2.current.scrollIntoView({
                 behavior: "smooth",
@@ -2108,23 +2172,29 @@ const SearchResultScreen = () => {
     };
 
     useEffect(() => {
-        const url = sessionStorage.getItem('urlProduct');
-        const cameFromProductPage2 = localStorage.getItem('cameFromProductPage2');
+        const url = sessionStorage.getItem("urlProduct");
+        const cameFromProductPage2 = localStorage.getItem(
+            "cameFromProductPage2"
+        );
 
-        if (cameFromProductPage2 == 'true' && url && url.includes('/product/')) {
-
+        if (
+            cameFromProductPage2 == "true" &&
+            url &&
+            url.includes("/product/")
+        ) {
             // Si la URL contiene '/product/', significa que venimos de la vista de detalle
-            const paginaGuardada = sessionStorage.getItem('paginaActualGeneral');
+            const paginaGuardada = sessionStorage.getItem(
+                "paginaActualGeneral"
+            );
             if (paginaGuardada) {
                 setPagina(Number(paginaGuardada)); // Recuperamos la página guardada
             }
-            localStorage.removeItem('cameFromProductPage2');
+            localStorage.removeItem("cameFromProductPage2");
         } else {
-            sessionStorage.removeItem('paginaActualGeneral');
+            sessionStorage.removeItem("paginaActualGeneral");
             // Si no venimos de la vista de detalle, establecemos la página en 1
             setPagina(1);
         }
-
     }, []);
 
     return (
@@ -2152,9 +2222,7 @@ const SearchResultScreen = () => {
                         {agregarCarrito ? (
                             <AddShoppingCart data={dataCart} />
                         ) : null}
-                        {
-                            console.log("IMGPRD : ", carImagen)
-                        }
+                        {console.log("IMGPRD : ", carImagen)}
                         {addcartId > 0 ? (
                             <div className="productoagregarcarrito">
                                 <ViewAddShoppingCart
@@ -2166,9 +2234,21 @@ const SearchResultScreen = () => {
                         ) : addcartIdLogin > 0 ? (
                             <div className="productoagregarcarrito">
                                 <ViewAddShoppingCart
-                                    idproducto={addcartIdLogin ? addcartIdLogin : carPrdId}
-                                    nombreimagen1={addcartImagen ? addcartImagen : carImagen}
-                                    titulonombre={addcartTitulo ? addcartTitulo : carTitulo}
+                                    idproducto={
+                                        addcartIdLogin
+                                            ? addcartIdLogin
+                                            : carPrdId
+                                    }
+                                    nombreimagen1={
+                                        addcartImagen
+                                            ? addcartImagen
+                                            : carImagen
+                                    }
+                                    titulonombre={
+                                        addcartTitulo
+                                            ? addcartTitulo
+                                            : carTitulo
+                                    }
                                 />
                             </div>
                         ) : null}
@@ -2211,11 +2291,11 @@ const SearchResultScreen = () => {
                                     )}
                                 </a>
                             ) : resultFind == "" ||
-                                !resultFind ||
-                                !keyword ||
-                                activaCiudad ||
-                                !activaCiudad ||
-                                actCity ? (
+                              !resultFind ||
+                              !keyword ||
+                              activaCiudad ||
+                              !activaCiudad ||
+                              actCity ? (
                                 <a className="textoresultprod mlmenos51 ps-page__heading">
                                     {nombreres?.length > 70 ? (
                                         <Grid container spacing={1}>
@@ -2250,9 +2330,9 @@ const SearchResultScreen = () => {
                                     )}
                                 </a>
                             ) : keyword != resultFind ||
-                                activaCiudad ||
-                                !activaCiudad ||
-                                actCity ? (
+                              activaCiudad ||
+                              !activaCiudad ||
+                              actCity ? (
                                 <a className="textoresultprod mlmenos51 ps-page__heading">
                                     {resultFind?.length > 70 ? (
                                         <Grid container spacing={1}>
@@ -2270,7 +2350,10 @@ const SearchResultScreen = () => {
                                             </Grid>
                                             <Grid item xs={12} md={12} lg={12}>
                                                 <p className="textoresultprodtres">
-                                                    {resultFind?.substr(175, 88)}
+                                                    {resultFind?.substr(
+                                                        175,
+                                                        88
+                                                    )}
                                                 </p>
                                             </Grid>
                                         </Grid>
@@ -2332,7 +2415,9 @@ const SearchResultScreen = () => {
                                                 <p className="textoresultproduno">
                                                     ({longprd}) Resultado de la
                                                     búsqueda:{" "}
-                                                    {dataHolder.substr(0, 86)} {dataHolder.substr(87, 88)} {dataHolder.substr(175, 88)}
+                                                    {dataHolder.substr(0, 86)}{" "}
+                                                    {dataHolder.substr(87, 88)}{" "}
+                                                    {dataHolder.substr(175, 88)}
                                                 </p>
                                             </Grid>
                                         </Grid>
@@ -2349,11 +2434,11 @@ const SearchResultScreen = () => {
                                     )}
                                 </a>
                             ) : resultFind == "" ||
-                                !resultFind ||
-                                !keyword ||
-                                activaCiudad ||
-                                !activaCiudad ||
-                                actCity ? (
+                              !resultFind ||
+                              !keyword ||
+                              activaCiudad ||
+                              !activaCiudad ||
+                              actCity ? (
                                 <a className="textoresultprod mlmenos51 ps-page__heading">
                                     {nombreres?.length > 70 ? (
                                         <Grid container spacing={1}>
@@ -2361,7 +2446,9 @@ const SearchResultScreen = () => {
                                                 <p className="textoresultproduno">
                                                     ({longprd}) Resultado de la
                                                     búsqueda:{" "}
-                                                    {nombreres?.substr(0, 86)} {nombreres?.substr(87, 88)} {nombreres?.substr(175, 88)}
+                                                    {nombreres?.substr(0, 86)}{" "}
+                                                    {nombreres?.substr(87, 88)}{" "}
+                                                    {nombreres?.substr(175, 88)}
                                                 </p>
                                             </Grid>
                                         </Grid>
@@ -2378,9 +2465,9 @@ const SearchResultScreen = () => {
                                     )}
                                 </a>
                             ) : keyword != resultFind ||
-                                activaCiudad ||
-                                !activaCiudad ||
-                                actCity ? (
+                              activaCiudad ||
+                              !activaCiudad ||
+                              actCity ? (
                                 <a className="textoresultprod mlmenos51 ps-page__heading">
                                     {resultFind?.length > 70 ? (
                                         <Grid container spacing={1}>
@@ -2388,7 +2475,12 @@ const SearchResultScreen = () => {
                                                 <p className="textoresultproduno">
                                                     ({longprd}) Resultado de la
                                                     búsqueda:{" "}
-                                                    {resultFind?.substr(0, 86)} {resultFind.substr(87, 88)} {resultFind?.substr(175, 88)}
+                                                    {resultFind?.substr(0, 86)}{" "}
+                                                    {resultFind.substr(87, 88)}{" "}
+                                                    {resultFind?.substr(
+                                                        175,
+                                                        88
+                                                    )}
                                                 </p>
                                             </Grid>
                                         </Grid>
@@ -2412,7 +2504,9 @@ const SearchResultScreen = () => {
                                                 <p className="textoresultproduno">
                                                     ({longprd}) Resultado de la
                                                     búsqueda:{" "}
-                                                    {keyword.substr(0, 86)} {keyword.substr(87, 88)} {keyword.substr(175, 88)}
+                                                    {keyword.substr(0, 86)}{" "}
+                                                    {keyword.substr(87, 88)}{" "}
+                                                    {keyword.substr(175, 88)}
                                                 </p>
                                             </Grid>
                                         </Grid>
@@ -2430,12 +2524,16 @@ const SearchResultScreen = () => {
                                 </a>
                             )}
                         </div>
-
                     </div>
 
                     <div className="mtmenos95">
                         <Grid container alignItems="center" spacing={1}>
-                            <Grid item xs={2} md={2} lg={2} className="none1200px">
+                            <Grid
+                                item
+                                xs={2}
+                                md={2}
+                                lg={2}
+                                className="none1200px">
                                 {filtroCond > 0 ? (
                                     <div className="mlmenos11 mt-60">
                                         {filtroCond == 1 ? (
@@ -2511,89 +2609,260 @@ const SearchResultScreen = () => {
 
                             <div className="contenedor-ciudades">
                                 <Grid container spacing={1} columns={12}>
-
                                     {/* Condición (Nuevo / Usado) */}
                                     {filtroCond > 0 && (
                                         <Grid item xs={6} sm={4} md={2.4}>
                                             <div className="contSelectedItemResultsMobile">
-                                                <p>{filtroCond === 1 ? "Nuevo" : "Usado"}</p>
-                                                <IoClose onClick={() => SelectCondition(filtroCond)} />
+                                                <p>
+                                                    {filtroCond === 1
+                                                        ? "Nuevo"
+                                                        : "Usado"}
+                                                </p>
+                                                <IoClose
+                                                    onClick={() =>
+                                                        SelectCondition(
+                                                            filtroCond
+                                                        )
+                                                    }
+                                                />
                                             </div>
                                         </Grid>
                                     )}
 
                                     {/* Ciudades seleccionadas */}
                                     {citySelected?.length === 1 ? (
-                                        <Grid item xs={6} sm={4} md={2.4} key={citySelected[0]?.idciu}>
+                                        <Grid
+                                            item
+                                            xs={6}
+                                            sm={4}
+                                            md={2.4}
+                                            key={citySelected[0]?.idciu}>
                                             <div className="contSelectedItemResultsMobile">
-                                                <p>{citySelected[0]?.nombreciu}</p>
-                                                <IoClose onClick={limpiarFiltro} />
+                                                <p>
+                                                    {citySelected[0]?.nombreciu}
+                                                </p>
+                                                <IoClose
+                                                    onClick={limpiarFiltro}
+                                                />
                                             </div>
                                         </Grid>
                                     ) : citySelected?.length === 2 ? (
                                         <>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[0]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[0]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[0]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[0]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[0]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[0]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[1]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[1]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[1]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[1]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[1]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[1]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
-                                            </Grid> </>
+                                            </Grid>{" "}
+                                        </>
                                     ) : citySelected?.length === 3 ? (
                                         <>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[0]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[0]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[0]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[0]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[0]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[0]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[1]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[1]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[1]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[1]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[1]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[1]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[2]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[2]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[2]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[2]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[2]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[2]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
                                         </>
                                     ) : citySelected?.length === 4 ? (
                                         <>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[0]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[0]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[0]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[0]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[0]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[0]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[1]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[1]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[1]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[1]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[1]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[1]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[2]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[2]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[2]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[2]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[2]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[2]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={4} md={2.4} key={citySelected[3]?.idciu}>
+                                            <Grid
+                                                item
+                                                xs={6}
+                                                sm={4}
+                                                md={2.4}
+                                                key={citySelected[3]?.idciu}>
                                                 <div className="contSelectedItemResultsMobile">
-                                                    <p>{citySelected[3]?.nombreciu}</p>
-                                                    <IoClose onClick={() => cerrarCity(citySelected[3]?.idciu)} />
+                                                    <p>
+                                                        {
+                                                            citySelected[3]
+                                                                ?.nombreciu
+                                                        }
+                                                    </p>
+                                                    <IoClose
+                                                        onClick={() =>
+                                                            cerrarCity(
+                                                                citySelected[3]
+                                                                    ?.idciu
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </Grid>
                                         </>
                                     ) : null}
-
                                 </Grid>
                             </div>
 
@@ -2907,7 +3176,7 @@ const SearchResultScreen = () => {
                                     setOrdenarPor={setOrdenarPor}
                                     textoOrdenar={textoOrdenar}
                                     setTextoOrdenar={setTextoOrdenar}
-                                    // 
+                                    //
                                     filtrarciud={filtrarciud}
                                     prdfiltrados={prdfiltrados}
                                     setCantidadPrdCiudad={setCantidadPrdCiudad}
@@ -2963,7 +3232,10 @@ const SearchResultScreen = () => {
                                 />
                                 <div ref={containerProduRef2}>
                                     <div className="mtmenos25 pb-3">
-                                        <Grid container spacing={0} className="none1310px">
+                                        <Grid
+                                            container
+                                            spacing={0}
+                                            className="none1310px">
                                             <Grid item xs={12} md={12} lg={12}>
                                                 <a className="textoclicaqui">
                                                     Si no encuentras lo que
@@ -2985,7 +3257,7 @@ const SearchResultScreen = () => {
                                             spacing={0}>
                                             <Grid item xs={6} md={6} lg={6}>
                                                 {productos.length == 0 &&
-                                                    !isLoading ? (
+                                                !isLoading ? (
                                                     <h2 className="ml-1 mtmenos5 tamañotextotoken">
                                                         Producto no encontrado
                                                     </h2>
@@ -2994,10 +3266,15 @@ const SearchResultScreen = () => {
                                         </Grid>
                                         <div className="topInfoResulados">
                                             {productos.length == 0 &&
-                                                !isLoading ? (
+                                            !isLoading ? (
                                                 <h5>Producto no encontrado</h5>
                                             ) : null}
-                                            <p>Si no encuentras lo que buscas, <a onClick={() => encontrar()}>haz clic aquí</a></p>
+                                            <p>
+                                                Si no encuentras lo que buscas,{" "}
+                                                <a onClick={() => encontrar()}>
+                                                    haz clic aquí
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
                                     <br />
@@ -3038,7 +3315,10 @@ const SearchResultScreen = () => {
                                 </div>
 
                                 <div className="ps-shop__footer">
-                                    <Stack spacing={2} alignItems="center" className="mt-[20px]">
+                                    <Stack
+                                        spacing={2}
+                                        alignItems="center"
+                                        className="mt-[20px]">
                                         <StyledPagination
                                             count={totalPaginas}
                                             page={pagina}
@@ -3061,62 +3341,61 @@ const SearchResultScreen = () => {
 };
 
 const StyledPagination = muiStyled(Pagination)(({ theme }) => ({
-    '& .MuiPaginationItem-root': {
+    "& .MuiPaginationItem-root": {
         border: "none",
-        backgroundColor: 'transparent', // Sin fondo por defecto
-        color: '#2D2E83', // Color azul para los números no seleccionados
-        borderRadius: '0', // Sin borde redondeado para los números no seleccionados
-        width: '32px',
-        height: '32px',
-        minWidth: '32px',
-        fontSize: '1.2rem',
-        fontWeight: 'bold',
-        '&.Mui-selected': {
-            backgroundColor: '#2D2E83', // Fondo azul para el número seleccionado
-            color: 'white', // Texto blanco en el número seleccionado
-            borderRadius: '50%', // Bordes redondeados en la página seleccionada
-            fontWeight: 'bold', // Hacerlo más destacado
+        backgroundColor: "transparent", // Sin fondo por defecto
+        color: "#2D2E83", // Color azul para los números no seleccionados
+        borderRadius: "0", // Sin borde redondeado para los números no seleccionados
+        width: "32px",
+        height: "32px",
+        minWidth: "32px",
+        fontSize: "1.2rem",
+        fontWeight: "bold",
+        "&.Mui-selected": {
+            backgroundColor: "#2D2E83", // Fondo azul para el número seleccionado
+            color: "white", // Texto blanco en el número seleccionado
+            borderRadius: "50%", // Bordes redondeados en la página seleccionada
+            fontWeight: "bold", // Hacerlo más destacado
         },
-        [theme.breakpoints.down('sm')]: {
-            width: '26px',
-            height: '26px',
-            minWidth: '26px',
-            fontSize: '1rem',
+        [theme.breakpoints.down("sm")]: {
+            width: "26px",
+            height: "26px",
+            minWidth: "26px",
+            fontSize: "1rem",
         },
     },
-    '& .MuiPaginationItem-ellipsis': {
-        backgroundColor: 'transparent', // Sin fondo en elipsis
-        color: '#2D2E83', // Color azul para elipsis
-        borderRadius: '50%',
-        width: '32px',
-        height: '32px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        [theme.breakpoints.down('sm')]: {
-            width: '26px',
-            height: '26px',
-            fontSize: '0.75rem',
+    "& .MuiPaginationItem-ellipsis": {
+        backgroundColor: "transparent", // Sin fondo en elipsis
+        color: "#2D2E83", // Color azul para elipsis
+        borderRadius: "50%",
+        width: "32px",
+        height: "32px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: "bold",
+        [theme.breakpoints.down("sm")]: {
+            width: "26px",
+            height: "26px",
+            fontSize: "0.75rem",
         },
     },
     // Estilos para los botones "previous" y "next"
-    '& .MuiPaginationItem-previousNext': {
-        backgroundColor: 'transparent',
-        color: '#2D2E83', // azul
-        borderRadius: '0', // sin círculos
-        fontSize: '1.7rem', // tamaño más grande
-        minWidth: 'auto',
-        width: 'auto',
-        height: 'auto',
-        '&:hover': {
-            backgroundColor: 'transparent',
+    "& .MuiPaginationItem-previousNext": {
+        backgroundColor: "transparent",
+        color: "#2D2E83", // azul
+        borderRadius: "0", // sin círculos
+        fontSize: "1.7rem", // tamaño más grande
+        minWidth: "auto",
+        width: "auto",
+        height: "auto",
+        "&:hover": {
+            backgroundColor: "transparent",
         },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '1.4rem',
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "1.4rem",
         },
     },
 }));
-
 
 export default SearchResultScreen;

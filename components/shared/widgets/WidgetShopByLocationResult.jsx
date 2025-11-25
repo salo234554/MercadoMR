@@ -120,9 +120,9 @@ const WidgetShopByLocationResult = (props) => {
             setctrCity(true);
             limpiarFiltro();
         }
-    }, [citySelected])
+    }, [citySelected]);
 
-    console.log("citySelected : ", citySelected)
+    console.log("citySelected : ", citySelected);
 
     useEffect(() => {
         let long = cantidadPrdCiudad?.length;
@@ -191,8 +191,12 @@ const WidgetShopByLocationResult = (props) => {
     }, [ciudadesAlt.length]);
 
     useEffect(() => {
-        const filtrociudadprd = JSON.parse(localStorage.getItem("filtrociudadprd"));
-        let activafiltrociudad = JSON.parse(localStorage.getItem("activafiltrociudad"));
+        const filtrociudadprd = JSON.parse(
+            localStorage.getItem("filtrociudadprd")
+        );
+        let activafiltrociudad = JSON.parse(
+            localStorage.getItem("activafiltrociudad")
+        );
 
         if (filtrociudadprd?.length > 0) {
             activafiltrociudad = true;
@@ -222,12 +226,28 @@ const WidgetShopByLocationResult = (props) => {
                 let array = [];
                 filtrociudadprd &&
                     filtrociudadprd.map((row, index) => {
-                        array.push(row.idciu)
+                        array.push(row.idciu);
                     });
                 setCiudades(array);
             }
         }
-    }, [])
+
+        let ira = JSON.parse(localStorage.getItem("ira"));
+        if (ira == 15) {
+            let filtrociudadlogin = JSON.parse(
+                localStorage.getItem("filtrociudadlogin")
+            );
+
+            if (filtrociudadlogin?.length > 0) {
+                let array = [];
+                filtrociudadlogin &&
+                    filtrociudadlogin.map((row, index) => {
+                        array.push(row.idciu);
+                    });
+                setCiudades(array);
+            }
+        }
+    }, []);
 
     const filtrar = () => {
         localStorage.setItem("activafiltrociudad", JSON.stringify(true));
@@ -309,9 +329,7 @@ const WidgetShopByLocationResult = (props) => {
         setctrCity(false);
         //console.log("CIUDAD044444 : ", item, ciudad, nombreciu, productosciudad );
         if (ciudades.includes(ciudad)) {
-     
         } else {
-            
             setitemSel(item);
             setmarcaSelected("subrayartexto");
             //setActivaCiudad(!activaCiudad);
@@ -326,7 +344,7 @@ const WidgetShopByLocationResult = (props) => {
                 idciu: ciudad,
                 nombreciu: nombreciu,
                 nombre_ciu: nombreciu,
-                productosciudad: productosciudad
+                productosciudad: productosciudad,
             };
             ciudadesselAlt.push(row);
             //setCitySelected(ciudadesselAlt);
@@ -335,7 +353,11 @@ const WidgetShopByLocationResult = (props) => {
     };
 
     const hayCiudadesSeleccionadas = ciudades?.length > 0;
-    console.log("¿Hay ciudades seleccionadas?:", hayCiudadesSeleccionadas, ciudades);
+    console.log(
+        "¿Hay ciudades seleccionadas?:",
+        hayCiudadesSeleccionadas,
+        ciudades
+    );
 
     //console.log("CIUDADES : ", cantidadPrdCiudad, ciudades);
     return (
@@ -399,7 +421,9 @@ const WidgetShopByLocationResult = (props) => {
                                                     )
                                                 }>
                                                 {cambia || !cambia ? (
-                                                    ciudades.includes(item?.idciu) ? (
+                                                    ciudades.includes(
+                                                        item?.idciu
+                                                    ) ? (
                                                         <Row className="mtmenos25">
                                                             <Col
                                                                 item
@@ -427,7 +451,13 @@ const WidgetShopByLocationResult = (props) => {
                                                                 md={1}
                                                                 lg={1}>
                                                                 <div className="tamañoletra11">
-                                                                    <p className="tamañoletra11Nuevo">({item?.productosciudad})</p>
+                                                                    <p className="tamañoletra11Nuevo">
+                                                                        (
+                                                                        {
+                                                                            item?.productosciudad
+                                                                        }
+                                                                        )
+                                                                    </p>
                                                                 </div>
                                                             </Col>
                                                         </Row>
@@ -459,7 +489,13 @@ const WidgetShopByLocationResult = (props) => {
                                                                 md={1}
                                                                 lg={1}>
                                                                 <div className="tamañoletra11">
-                                                                    <p className="tamañoletra11Nuevo">({item?.productosciudad})</p>
+                                                                    <p className="tamañoletra11Nuevo">
+                                                                        (
+                                                                        {
+                                                                            item?.productosciudad
+                                                                        }
+                                                                        )
+                                                                    </p>
                                                                 </div>
                                                             </Col>
                                                         </Row>
@@ -471,23 +507,22 @@ const WidgetShopByLocationResult = (props) => {
                                 );
                             })}
                         <div className="mtmenos5">
-                            {
-                                filtrarciud?.length > 4 &&
-                                    !activoFiltroCiud &&
-                                    (PrdCiudadUno?.length > 0 ||
-                                        PrdCiudadDos?.length > 0) ?
-                                    <div
-                                        className="textomostrarmas"
-                                        onClick={() => activarAyuda()}>
-                                        Mostrar más
-                                    </div>
-                                    :
-                                    <div
-                                        className="textomostrarmas disabledButton"
-                                        onClick={() => activarAyuda()}>
-                                        Mostrar más
-                                    </div>
-                            }
+                            {filtrarciud?.length > 4 &&
+                            !activoFiltroCiud &&
+                            (PrdCiudadUno?.length > 0 ||
+                                PrdCiudadDos?.length > 0) ? (
+                                <div
+                                    className="textomostrarmas"
+                                    onClick={() => activarAyuda()}>
+                                    Mostrar más
+                                </div>
+                            ) : (
+                                <div
+                                    className="textomostrarmas disabledButton"
+                                    onClick={() => activarAyuda()}>
+                                    Mostrar más
+                                </div>
+                            )}
 
                             <Row>
                                 <Col xs={5} sm={5} md={5} lg={5}>
@@ -503,8 +538,7 @@ const WidgetShopByLocationResult = (props) => {
                                         variant="outline-light"
                                         onClick={() => filtrar()}
                                         className="confirmarcity"
-                                        disabled={!hayCiudadesSeleccionadas}
-                                    >
+                                        disabled={!hayCiudadesSeleccionadas}>
                                         Aceptar
                                     </Button>
                                 </Col>
@@ -530,7 +564,9 @@ const WidgetShopByLocationResult = (props) => {
                                                     )
                                                 }>
                                                 {cambia || !cambia ? (
-                                                    ciudades.includes(item?.idciu) ? (
+                                                    ciudades.includes(
+                                                        item?.idciu
+                                                    ) ? (
                                                         <Row className="mtmenos25">
                                                             <Col
                                                                 item
@@ -558,7 +594,13 @@ const WidgetShopByLocationResult = (props) => {
                                                                 md={1}
                                                                 lg={1}>
                                                                 <div className="tamañoletra11">
-                                                                    <p className="tamañoletra11Nuevo">({item?.productosciudad})</p>
+                                                                    <p className="tamañoletra11Nuevo">
+                                                                        (
+                                                                        {
+                                                                            item?.productosciudad
+                                                                        }
+                                                                        )
+                                                                    </p>
                                                                 </div>
                                                             </Col>
                                                         </Row>
@@ -590,7 +632,13 @@ const WidgetShopByLocationResult = (props) => {
                                                                 md={1}
                                                                 lg={1}>
                                                                 <div className="tamañoletra11">
-                                                                    <p className="tamañoletra11Nuevo">({item?.productosciudad})</p>
+                                                                    <p className="tamañoletra11Nuevo">
+                                                                        (
+                                                                        {
+                                                                            item?.productosciudad
+                                                                        }
+                                                                        )
+                                                                    </p>
                                                                 </div>
                                                             </Col>
                                                         </Row>
@@ -602,25 +650,23 @@ const WidgetShopByLocationResult = (props) => {
                                 );
                             })}
                         <div className="mtmenos5">
-
-                            {
-                                filtrarciud?.length > 4 &&
-                                    !activoFiltroCiud &&
-                                    (PrdCiudadUno?.length > 0 ||
-                                        PrdCiudadDos?.length > 0) ?
-                                    <div
-                                        className="textomostrarmas"
-                                        onClick={() => activarAyuda()}>
-                                        Mostrar más
-                                    </div>
-                                    :
-                                    <div
-                                        className="textomostrarmas disabledButton"
-                                        onClick={() => activarAyuda()}>
-                                        Mostrar más
-                                    </div>
-                            }
-                            < Row >
+                            {filtrarciud?.length > 4 &&
+                            !activoFiltroCiud &&
+                            (PrdCiudadUno?.length > 0 ||
+                                PrdCiudadDos?.length > 0) ? (
+                                <div
+                                    className="textomostrarmas"
+                                    onClick={() => activarAyuda()}>
+                                    Mostrar más
+                                </div>
+                            ) : (
+                                <div
+                                    className="textomostrarmas disabledButton"
+                                    onClick={() => activarAyuda()}>
+                                    Mostrar más
+                                </div>
+                            )}
+                            <Row>
                                 <Col xs={5} sm={5} md={5} lg={5}>
                                     <Button
                                         variant="outline-light"
@@ -634,8 +680,7 @@ const WidgetShopByLocationResult = (props) => {
                                         variant="outline-light"
                                         onClick={() => filtrar()}
                                         className="confirmarcity"
-                                        disabled={!hayCiudadesSeleccionadas}
-                                    >
+                                        disabled={!hayCiudadesSeleccionadas}>
                                         Aceptar
                                     </Button>
                                 </Col>
@@ -644,7 +689,7 @@ const WidgetShopByLocationResult = (props) => {
                     </div>
                 )}
             </div>
-        </aside >
+        </aside>
     );
 };
 

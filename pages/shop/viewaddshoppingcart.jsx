@@ -10,6 +10,8 @@ import { getDataShoppingCart } from "../../store/datashoppingcart/action";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { getAddEdToCart } from "~/store/addedtocart/action";
 
 const breadcrumb = [
     {
@@ -57,10 +59,17 @@ const ViewAddShoppingCart = (props) => {
     const [direccionesUsuarios, setDireccionesUsuarios] = useState([]);
     const [nameImage, setNameImage] = useState(null);
     const [tituloPublicacion, setTituloPublicacion] = useState(null);
+    const [open, setOpen] = useState(true);
 
     // Asignamos Datos al arreglo de Usuarios desde el state
     const datosusuarios = useSelector((state) => state.userlogged.userlogged);
     const viewaddcart = useSelector((state) => state.viewaddcart.viewaddcart);
+
+    const handleClickAway = () => {
+        localStorage.setItem("ira", JSON.stringify(null));
+        dispatch(getAddEdToCart(9001));
+        setOpen(false);
+    };
 
     useEffect(() => {
         if (nombreimagen1) {
@@ -234,69 +243,77 @@ const ViewAddShoppingCart = (props) => {
             <div className="container none1200px">
                 <div className="ps-page__header !pb-0">
                     <div>
-                        <Grid container alignItems="center" spacing={1}>
-                            <Grid item xs={2} md={2} lg={2}>
-                                <img
-                                    className="imageaddshoppingcart"
-                                    onClick={() => verProduct(idproducto)}
-                                    src={URL_IMAGES_RESULTS + nombreimagen1}
-                                    alt="First slide"
-                                />
-                                <div className="mtmenos20 ml-65">
-                                    <i
-                                        className="checkaddshoppingcart fa fa-check-circle"
-                                        aria-hidden="true"></i>
-                                </div>
-                            </Grid>
-                            <Grid item xs={6.5} md={6.5} lg={6.5}>
-                                <div className="mlmenos110">
+                        <ClickAwayListener onClickAway={handleClickAway}>
+                            <Grid container alignItems="center" spacing={1}>
+                                <Grid item xs={2} md={2} lg={2}>
+                                    <img
+                                        className="imageaddshoppingcart"
+                                        onClick={() => verProduct(idproducto)}
+                                        src={URL_IMAGES_RESULTS + nombreimagen1}
+                                        alt="First slide"
+                                    />
+                                    <div className="mtmenos20 ml-65">
+                                        <i
+                                            className="checkaddshoppingcart fa fa-check-circle"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={6.5} md={6.5} lg={6.5}>
+                                    <div className="mlmenos110">
+                                        <Grid
+                                            container
+                                            alignItems="center"
+                                            spacing={1}>
+                                            <Grid item xs={12} md={9} lg={9}>
+                                                <div className="tituloaddhsoppingcart">
+                                                    Producto agregado a tu
+                                                    carrito!
+                                                </div>
+                                            </Grid>
+
+                                            <Grid item xs={12} md={9} lg={9}>
+                                                <div
+                                                    className="textoaddhsoppingcart"
+                                                    onClick={() =>
+                                                        verProduct(idproducto)
+                                                    }>
+                                                    {titulonombre}
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={2} md={2} lg={2}>
                                     <Grid
                                         container
                                         alignItems="center"
                                         spacing={1}>
-                                        <Grid item xs={12} md={9} lg={9}>
-                                            <div className="tituloaddhsoppingcart">
-                                                Producto agregado a tu carrito!
-                                            </div>
+                                        <Grid item xs={8.5} md={8.5} lg={8.5}>
+                                            <Link href="/shop/shopping-cart">
+                                                <div className="btnvercarrito">
+                                                    Ver tu carrito
+                                                </div>
+                                            </Link>
                                         </Grid>
-
-                                        <Grid item xs={12} md={9} lg={9}>
+                                        <Grid item xs={3} md={3} lg={3}>
                                             <div
-                                                className="textoaddhsoppingcart"
+                                                className="btncomprarcarrito"
                                                 onClick={() =>
-                                                    verProduct(idproducto)
+                                                    continuarCompra()
                                                 }>
-                                                {titulonombre}
+                                                Comprar carrito
                                             </div>
                                         </Grid>
-                                    </Grid>
-                                </div>
-                            </Grid>
-                            <Grid item xs={2} md={2} lg={2}>
-                                <Grid container alignItems="center" spacing={1}>
-                                    <Grid item xs={8.5} md={8.5} lg={8.5}>
-                                        <Link href="/shop/shopping-cart">
-                                            <div className="btnvercarrito">
-                                                Ver tu carrito
-                                            </div>
-                                        </Link>
-                                    </Grid>
-                                    <Grid item xs={3} md={3} lg={3}>
-                                        <div
-                                            className="btncomprarcarrito"
-                                            onClick={() => continuarCompra()}>
-                                            Comprar carrito
-                                        </div>
                                     </Grid>
                                 </Grid>
+                                <Grid item xs={0.5} md={0.5} lg={0.5}>
+                                    <FaRegWindowClose
+                                        onClick={() => closeViewAddCart()}
+                                        className="posicioniconcart"
+                                    />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={0.5} md={0.5} lg={0.5}>
-                                <FaRegWindowClose
-                                    onClick={() => closeViewAddCart()}
-                                    className="posicioniconcart"
-                                />
-                            </Grid>
-                        </Grid>
+                        </ClickAwayListener>
                     </div>
                 </div>
             </div>

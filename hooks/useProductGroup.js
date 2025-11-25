@@ -99,9 +99,17 @@ export default function useProductGroup() {
         }
     }, [page]);
 
+    const viewPrdSingle = () => {
+   
+        localStorage.setItem("ira", JSON.stringify(18));
 
-
-
+        let datax = JSON.parse(localStorage.getItem("keyword"));
+        let datay = "";
+        if (datax) {
+            datay = datax[0]?.word;
+        }
+        localStorage.setItem("urlviewprd", JSON.stringify("/search?keyword=" + datay));
+    }
 
     return {
         withCarousel: (source, loading, setting) => {
@@ -179,7 +187,9 @@ export default function useProductGroup() {
                     view = (
                         <div
                             className="ps-layout--grid ps-shop-items"
-                            data-columns={columns}>
+                            data-columns={columns}
+                            onClick={viewPrdSingle}
+                        >
                             {items}
                         </div>
                     );
@@ -287,7 +297,9 @@ export default function useProductGroup() {
                         </div>
                     ));
                     view = (
-                        <div className="ps-layout--list ps-shop-items">
+                        <div className="ps-layout--list ps-shop-items"
+                            onClick={viewPrdSingle}
+                        >
                             {items}
                         </div>
                     );

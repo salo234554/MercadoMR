@@ -240,7 +240,16 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
 
             let leeira = JSON.parse(localStorage.getItem("ira"));
 
-            if (leeira != 16) localStorage.setItem("ira", JSON.stringify(15));
+            if (leeira != 16 || leeira == 15) {
+                let filtrociudadprd = JSON.parse(
+                    localStorage.getItem("filtrociudadprd")
+                );
+                localStorage.setItem(
+                    "filtrociudadlogin",
+                    JSON.stringify(filtrociudadprd)
+                );
+                localStorage.setItem("ira", JSON.stringify(15));
+            }
 
             setShowModalMensajesShoppingCart(true);
             setTituloMensajesShoppingCart("Lista de deseos");
@@ -647,6 +656,12 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     const controlNumPrdCar = (data) => {
+        const urlorigen = window.location.pathname;
+
+        if (urlorigen.includes("/product")) {
+            localStorage.setItem("ira", JSON.stringify(16));
+        }
+
         if (datosusuarios.activo == 30) {
             setShowModalControlAcceso(true);
             setTituloControlAcceso("Comprar productos");
@@ -883,9 +898,8 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             /* Guarda datos del producto que se debe agregar al localstorage */
             let itemshoppingcartadd;
 
-            //Utilizamos el 15 tanto para agregar al carrito como a la lista de deseos
+            //Utilizamos el 1, 15 y 16 tanto para agregar al carrito como a la lista de deseos
             if (leeira == 14 || leeira == 16) {
-             
                 if (leeira == 14) {
                     dispatch(getLeeIra(leeira));
                 } else {

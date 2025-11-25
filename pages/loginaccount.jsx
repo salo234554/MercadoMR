@@ -984,7 +984,7 @@ const LoginAccount = () => {
                                         ira == 15 ||
                                         ira == 16
                                     ) {
-                                        alert("15-----111111");
+                                        
                                         let datitem = JSON.parse(
                                             localStorage.getItem(
                                                 "itemswishlistadd"
@@ -2124,7 +2124,7 @@ const LoginAccount = () => {
                                             ira == 15 ||
                                             ira == 16
                                         ) {
-                                            alert("15-----22222");
+                                           
                                             let datitem = JSON.parse(
                                                 localStorage.getItem(
                                                     "itemswishlistadd"
