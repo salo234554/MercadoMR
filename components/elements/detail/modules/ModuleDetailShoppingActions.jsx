@@ -19,7 +19,6 @@ import { getAddLogin } from "../../../../store/addlogin/action";
 import { getSelectedAddress } from "../../../../store/selectedaddress/action";
 import { getUserMenuPrimary } from "../../../../store/usermenuprimary/action";
 import { getFiltroPrd } from "../../../../store/filtroprd/action";
-import { useNavigationType } from "react-router-dom";
 
 import { useRouter } from "next/router";
 import Moment from "moment";
@@ -30,7 +29,6 @@ import { getFiltroCondicionPrd } from "../../../../store/filtrocondicionprd/acti
 
 const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     //console.log("PRD XXX 291 : ", product)
-    const navType = useNavigationType();
     const dispatch = useDispatch();
     const router = useRouter();
     const [quantity, setQuantity] = useState(1);
@@ -993,6 +991,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         }
     };
 
+    /*
     useEffect(() => {
         let ira17 = JSON.parse(localStorage.getItem("ira"));
         if (navType === "POP" && ira17 === 17) {
@@ -1000,6 +999,16 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             localStorage.setItem("ira", JSON.stringify(null));
         }
     }, [navType]);
+    */
+
+    //useEffect(() => {
+    const handleBack = () => {
+        alert("Back button presionado");
+    };
+
+    window?.addEventListener("popstate", handleBack);
+    return () => window?.removeEventListener("popstate", handleBack);
+    //}, []);
 
     const agregarCarritoCompra = (data) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
