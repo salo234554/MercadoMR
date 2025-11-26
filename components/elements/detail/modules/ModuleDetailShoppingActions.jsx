@@ -19,6 +19,7 @@ import { getAddLogin } from "../../../../store/addlogin/action";
 import { getSelectedAddress } from "../../../../store/selectedaddress/action";
 import { getUserMenuPrimary } from "../../../../store/usermenuprimary/action";
 import { getFiltroPrd } from "../../../../store/filtroprd/action";
+import { useNavigationType } from "react-router-dom";
 
 import { useRouter } from "next/router";
 import Moment from "moment";
@@ -29,6 +30,7 @@ import { getFiltroCondicionPrd } from "../../../../store/filtrocondicionprd/acti
 
 const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     //console.log("PRD XXX 291 : ", product)
+    const navType = useNavigationType();
     const dispatch = useDispatch();
     const router = useRouter();
     const [quantity, setQuantity] = useState(1);
@@ -992,17 +994,12 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     useEffect(() => {
-        const handleBackButton = (event) => {
-            console.log("El usuario presionó la flecha de retroceso");
-            // Aquí puedes ejecutar lo que necesites
-        };
-
-        window.onpopstate = handleBackButton;
-
-        return () => {
-            window.onpopstate = null;
-        };
-    }, []);
+        let ira17 = JSON.parse(localStorage.getItem("ira"));
+        if (navType === "POP" && ira17 === 17) {
+            console.log("Flecha atrás detectada");
+            localStorage.setItem("ira", JSON.stringify(null));
+        }
+    }, [navType]);
 
     const agregarCarritoCompra = (data) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
