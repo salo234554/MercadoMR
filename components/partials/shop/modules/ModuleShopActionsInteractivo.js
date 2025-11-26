@@ -195,7 +195,7 @@ const ModuleShopActionsInteractivo = (props) => {
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("rutaira", JSON.stringify(null));
-
+        
         //localStorage.setItem("openviewprdsearch", JSON.stringify(true));
         dispatch(getViewAddCart(1));
         dispatch(getViewVehPrd(0));

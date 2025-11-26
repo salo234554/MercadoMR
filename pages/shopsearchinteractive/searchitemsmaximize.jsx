@@ -219,6 +219,8 @@ const SearchItemsMaximize = (props) => {
     const { withListMaximize } = useProductGroupSearch();
     let ubicacion;
 
+    let addedtocart = useSelector((state) => state.addedtocart.addedtocart);
+
     useEffect(() => {
         dispatch(getValFltrCiudad(1));
         ubicacion = JSON.parse(localStorage.getItem("ubicacionproducto"));
@@ -229,12 +231,14 @@ const SearchItemsMaximize = (props) => {
         setIdPrdAddcart(iraprd14?.idprd);
         setNamePrdAddcart(iraprd14?.name);
 
-        if (iraprd14) {
+        if (!addedtocart?.idproducto || addedtocart?.idproducto == "0") {
+            setViewaddcart(false);
+        } else if (iraprd14) {
             setViewaddcart(true);
         } else {
             setViewaddcart(false);
         }
-    }, []);
+    }, [addedtocart]);
 
     useEffect(() => {
         const queries = {

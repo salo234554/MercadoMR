@@ -14,7 +14,9 @@ function ModalMensajesSoyNuevo(props) {
         props;
     // Asignamos Datos al arreglo de Usuarios desde el state
     const leeira = useSelector((state) => state.leeira.ira);
+    const datosusuarios = useSelector((state) => state.userlogged.userlogged);
 
+    //console.log("DATUSERXX : ", datosusuarios);
     const creaTuCuenta = () => {
         dispatch(getBlockScreen(0));
 
@@ -41,7 +43,7 @@ function ModalMensajesSoyNuevo(props) {
             if (ira != 15) dispatch(getBlockScreen(0));
         }
     }, [shown]);
-    
+
     const tengocuenta = () => {
         let item = {
             login: true,
@@ -95,10 +97,21 @@ function ModalMensajesSoyNuevo(props) {
                         <div className="ml-20 titulolistadeseos">{titulo}</div>
                     </Grid>
                 </Grid>
+               
                 <div className="btnsResponsive">
-                    <div className="btnsoynuevo" onClick={() => creaTuCuenta()}>
-                        Soy nuevo
-                    </div>
+                    {!datosusuarios?.uid || datosusuarios == "0" ? (
+                        <div
+                            className="btnsoynuevo deshabilitar"
+                            onClick={() => creaTuCuenta()}>
+                            Soy nuevo
+                        </div>
+                    ) : (
+                        <div
+                            className="btnsoynuevo"
+                            onClick={() => creaTuCuenta()}>
+                            Soy nuevo
+                        </div>
+                    )}
 
                     <div
                         className="btncreacuenta"

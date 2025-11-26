@@ -59,7 +59,6 @@ const ShopInteractivoHeader = (props) => {
     let selectviewprd = useSelector((state) => state.selectviewprd.selectviewprd);
     let viewSearch = useSelector((state) => state.viewsearch.viewsearch);
 
-    //console.log("selectviewprd : ",selectviewprd, " - ", viewSearch)
     // Condición para redirigir View de Productos Buscador Especial
     useEffect(() => {
         if (selectviewprd > 0 && viewSearch) {
@@ -115,6 +114,7 @@ const ShopInteractivoHeader = (props) => {
     };
 
     const maximizar = () => {
+        localStorage.setItem("ira", JSON.stringify(null));
         const url = window.location.pathname;
         localStorage.setItem("urlviewprd", JSON.stringify(url));
         dispatch(getViewVehPrd(0));
@@ -156,7 +156,7 @@ const ShopInteractivoHeader = (props) => {
         let ira = JSON.parse(localStorage.getItem("ira"));
         let itemswishlistadd = JSON.parse(localStorage.getItem("itemswishlistadd"));
 
-        if (ira == 17) {
+        if (ira == 17 || ira == 19) {
             setMaximizarOption(0);
             setOptionSelect(1);
             setRegistrosPorPagina(9);
@@ -198,10 +198,10 @@ const ShopInteractivoHeader = (props) => {
             menorprecio: 1,
             mayorprecio: 100000000,
         };
-
         // Coloca los datos en state arreglo de años de los vehiculos
         dispatch(getViewAddCart(0));
         dispatch(getRangosPrecio(item));
+        localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("orderbyprd", JSON.stringify(0));
         localStorage.setItem("rangoprecios", JSON.stringify(item));
         localStorage.setItem("activerangeprice", JSON.stringify(false));

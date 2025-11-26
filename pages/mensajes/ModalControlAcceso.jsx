@@ -14,8 +14,7 @@ function ModalControlAcceso(props) {
     const cerrar = () => {
         close(false);
         //router.push(`/search?keyword=${""}`);
-        
-        router.push("/");
+        //router.push("/");
     };
 
     return shown ? (

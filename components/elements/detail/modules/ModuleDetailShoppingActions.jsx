@@ -659,7 +659,9 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         const urlorigen = window.location.pathname;
 
         if (urlorigen.includes("/product")) {
-            localStorage.setItem("ira", JSON.stringify(16));
+            const datauser = JSON.parse(localStorage.getItem("datauser"));
+            if (datauser?.uid) localStorage.setItem("ira", JSON.stringify(19));
+            else localStorage.setItem("ira", JSON.stringify(16));
         }
 
         if (datosusuarios.activo == 30) {
@@ -733,7 +735,9 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                 setShowModalMensajes(true);
                                 setTituloMensajes("Carrito de compra");
                                 let texto =
-                                    "No tenemos unidades disponibles en inventario";
+                                    "Cantidad solicitada: (" +
+                                    unidades +
+                                    ") No tenemos disponibles en inventario";
                                 setTextoMensajes(texto);
                                 return;
                             }
@@ -845,6 +849,43 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                             })
                                                 .then((res) => {
                                                     //console.log("DAT WISH LIST: ", res.data?.listaritemdeseos.length);
+                                                    let leeira = JSON.parse(
+                                                        localStorage.getItem(
+                                                            "ira"
+                                                        )
+                                                    );
+                                                    let rutaira = JSON.parse(
+                                                        localStorage.getItem(
+                                                            "rutaira"
+                                                        )
+                                                    );
+
+                                                    let urlviewprd = JSON.parse(
+                                                        localStorage.getItem(
+                                                            "urlviewprd"
+                                                        )
+                                                    );
+
+                                                    if (
+                                                        leeira == 19 ||
+                                                        leeira == 14
+                                                    ) {
+                                                        rutaira = urlviewprd;
+                                                        localStorage.setItem(
+                                                            "aadditemcar",
+                                                            JSON.stringify(true)
+                                                        );
+                                                    } else if (leeira == 6) {
+                                                        rutaira = rutaira;
+                                                        localStorage.setItem(
+                                                            "aadditemcar",
+                                                            JSON.stringify(true)
+                                                        );
+                                                    } else {
+                                                        rutaira =
+                                                            "/search?keyword=1";
+                                                    }
+
                                                     dispatch(
                                                         getDataShoppingCart(
                                                             res.data
@@ -852,6 +893,50 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                                                 .length
                                                         )
                                                     );
+
+                                                    let row = [];
+                                                    let temp = {
+                                                        idproducto: product?.id,
+                                                        nombreimagen1:
+                                                            product?.thumbnail
+                                                                .name,
+                                                        titulonombre:
+                                                            product?.name,
+                                                        cantidad: 1,
+                                                        compatible:
+                                                            product?.compatible,
+                                                    };
+
+                                                    let iraprd14 = {
+                                                        name: product?.name,
+                                                        idprd: product?.id,
+                                                        imagen: product?.nombreImagen,
+                                                    };
+
+                                                    localStorage.setItem(
+                                                        "iraprd14",
+                                                        JSON.stringify(iraprd14)
+                                                    );
+                                                    //console.log("DAT WISH LIST: ", temp);
+                                                    row.push(temp);
+                                                    dispatch(getAddLogin(row));
+                                                    let ruta = rutaira;
+
+                                                    if (
+                                                        router.pathname === ruta
+                                                    ) {
+                                                        if (leeira == 14) {
+                                                            router.push(
+                                                                urlviewprd
+                                                            );
+                                                            router.refresh();
+                                                        } else {
+                                                            router.push(ruta);
+                                                            router.refresh();
+                                                        }
+                                                    } else {
+                                                        router.push(ruta); // 👉 Navegar si es distinta
+                                                    }
                                                 })
                                                 .catch(function (error) {
                                                     console.log(
@@ -867,8 +952,11 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                         );
                                     });
                             };
+
                             actualizarItemCarrito();
-                        } else agregarCarritoCompra(data);
+                        } else {
+                            agregarCarritoCompra(data);
+                        }
                     })
                     .catch(function (error) {
                         setShowModalMensajes(true);
@@ -887,7 +975,11 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
         let rutaira = JSON.parse(localStorage.getItem("rutaira"));
 
-        if (leeira == 6) {
+        if (leeira == 19 || leeira == 14) {
+            let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
+            rutaira = urlviewprd;
+            localStorage.setItem("aadditemcar", JSON.stringify(true));
+        } else if (leeira == 6) {
             rutaira = rutaira;
             localStorage.setItem("aadditemcar", JSON.stringify(true));
         } else {
