@@ -41,6 +41,7 @@ import GetWordBase from "~/repositories/getWordBase";
 import ModalDenegarAcceso from "./mensajes/ModalDenegarAcceso";
 import { getControlAcceso } from "../store/controlacceso/action";
 import ModalMensajes from "./mensajes/ModalMensajes";
+import { getIraLoginUser } from "~/store/iraloginuser/action";
 
 //Firebase
 import firebase from "../utilities/firebase";
@@ -178,6 +179,7 @@ function App({ Component, pageProps }) {
 
         //localStorage.setItem("canceladdveh", JSON.stringify(null));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
+        dispatch(getIraLoginUser(false));
         sessionStorage.setItem("findbyvehicle", JSON.stringify(false));
         localStorage.setItem("tipovehiculo", JSON.stringify(null));
         localStorage.setItem("custommarca", JSON.stringify(null));

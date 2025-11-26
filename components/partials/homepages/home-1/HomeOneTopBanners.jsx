@@ -15,6 +15,7 @@ import { RiMotorbikeFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import { getIraLoginUser } from "~/store/iraloginuser/action";
 
 const HomeOneTopBanners = () => {
     const router = useRouter();
@@ -110,6 +111,7 @@ const HomeOneTopBanners = () => {
 
     const selectTipoVeh = (selectedOptions) => {
         localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        dispatch(getIraLoginUser(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("rutaira", JSON.stringify(null));
@@ -252,6 +254,7 @@ const HomeOneTopBanners = () => {
 
     const resetFindVeh = () => {
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
+        dispatch(getIraLoginUser(false));
         sessionStorage.setItem("findbyvehicle", JSON.stringify(false));
     };
 

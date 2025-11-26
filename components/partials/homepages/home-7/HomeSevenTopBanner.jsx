@@ -21,6 +21,7 @@ import { BsBusFrontFill } from "react-icons/bs"; //camion
 import { RiMotorbikeFill } from "react-icons/ri";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import { getIraLoginUser } from "~/store/iraloginuser/action";
 
 const HomeSevenTopBanner = (props) => {
     const router = useRouter();
@@ -109,6 +110,7 @@ const HomeSevenTopBanner = (props) => {
 
     const selectTipoVeh = (selectedOptions) => {
         localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        dispatch(getIraLoginUser(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("rutaira", JSON.stringify(null));

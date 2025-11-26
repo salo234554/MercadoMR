@@ -70,6 +70,9 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     // Asignamos Datos al arreglo de Usuarios desde el state
     const datosusuarios = useSelector((state) => state.userlogged.userlogged);
     const filtroprd = useSelector((state) => state.filtroprd.filtroprd);
+    const iraloginuser = useSelector(
+        (state) => state.iraloginuser.iraloginuser
+    );
     const filtrocondicionprd = useSelector(
         (state) => state.filtrocondicionprd.filtrocondicionprd
     );
@@ -224,9 +227,8 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         leerItem();
     };
 
-    const agregarListaDeseo = () => {
-        if (!datosusuarios.uid || datosusuarios.uid == 0) {
-            dispatch(getLeeIra(4));
+    useEffect(() => {
+        if (iraloginuser) {
             let itemswishlistadd = {
                 ruta: "product/",
                 idproducto: product?.id,
@@ -237,6 +239,24 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                 "itemswishlistadd",
                 JSON.stringify(itemswishlistadd)
             );
+        }
+    }, [iraloginuser]);
+
+    const agregarListaDeseo = () => {
+        if (!datosusuarios.uid || datosusuarios.uid == 0) {
+            dispatch(getLeeIra(4));
+            /*
+            let itemswishlistadd = {
+                ruta: "product/",
+                idproducto: product?.id,
+                compatible: product?.compatible,
+                cantidad: unidadesSelect,
+            };
+            localStorage.setItem(
+                "itemswishlistadd",
+                JSON.stringify(itemswishlistadd)
+            );
+            */
 
             let leeira = JSON.parse(localStorage.getItem("ira"));
 

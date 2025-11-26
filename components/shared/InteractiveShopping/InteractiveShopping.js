@@ -12,6 +12,7 @@ import { getViewSearch } from "../../../store/viewsearch/action";
 import { getEditEngine } from "../../../store/editengine/action";
 import { getActivarViewPrd } from "../../../store/activarviewprd/action";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
+import { getIraLoginUser } from "~/store/iraloginuser/action";
 
 function InteractiveShopping(props) {
     const router = useRouter();
@@ -33,6 +34,7 @@ function InteractiveShopping(props) {
 
     const enviadatoslocalstorage = () => {
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
+        dispatch(getIraLoginUser(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("urlviewprd", JSON.stringify(null));

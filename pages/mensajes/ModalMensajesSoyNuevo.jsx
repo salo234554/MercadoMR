@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlockScreen } from "../../store/blockscreen/action";
 import { Grid } from "@mui/material";
+import { getIraLoginUser } from "../../store/iraloginuser/action";
 
 function ModalMensajesSoyNuevo(props) {
     const dispatch = useDispatch();
@@ -50,7 +51,8 @@ function ModalMensajesSoyNuevo(props) {
         };
 
         localStorage.setItem("loginvender", JSON.stringify(item));
-
+        dispatch(getIraLoginUser(true));
+        
         if (router.pathname == "/loginaccount") {
             location.reload();
         } else {
@@ -97,7 +99,7 @@ function ModalMensajesSoyNuevo(props) {
                         <div className="ml-20 titulolistadeseos">{titulo}</div>
                     </Grid>
                 </Grid>
-               
+
                 <div className="btnsResponsive">
                     {!datosusuarios?.uid || datosusuarios == "0" ? (
                         <div

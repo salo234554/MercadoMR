@@ -41,6 +41,7 @@ import { getPageSelect } from "@/store/pageselect/action";
 import { getUserMenuPrimary } from "../../../../store/usermenuprimary/action";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
+import { getIraLoginUser } from "~/store/iraloginuser/action";
 
 const cortarTexto = (texto, maxLength) => {
     if (!texto) return "";
@@ -375,6 +376,7 @@ const Searcher = React.forwardRef<HTMLButtonElement, Props>(
             localStorage.setItem("selectpage", JSON?.stringify(0));
             localStorage.setItem("itemshoppingcartadd", JSON?.stringify(null));
             localStorage.setItem("itemswishlistadd", JSON?.stringify(null));
+            dispatch(getIraLoginUser(false));
             dispatch(getLeeIra(0));
             dispatch(getAddLogin([]));
             localStorage.setItem("ira", JSON?.stringify(0));
