@@ -991,6 +991,19 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         }
     };
 
+    useEffect(() => {
+        const handleBackButton = (event) => {
+            console.log("El usuario presionó la flecha de retroceso");
+            // Aquí puedes ejecutar lo que necesites
+        };
+
+        window.onpopstate = handleBackButton;
+
+        return () => {
+            window.onpopstate = null;
+        };
+    }, []);
+
     const agregarCarritoCompra = (data) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
         let rutaira = JSON.parse(localStorage.getItem("rutaira"));
