@@ -114,6 +114,8 @@ const ShopInteractivoHeader = (props) => {
     };
 
     const maximizar = () => {
+        localStorage.setItem("iraprd14", JSON.stringify(null));
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         const url = window.location.pathname;
         localStorage.setItem("urlviewprd", JSON.stringify(url));
@@ -157,6 +159,7 @@ const ShopInteractivoHeader = (props) => {
         let itemswishlistadd = JSON.parse(localStorage.getItem("itemswishlistadd"));
 
         if (ira == 17 || ira == 19) {
+           
             setMaximizarOption(0);
             setOptionSelect(1);
             setRegistrosPorPagina(9);
@@ -167,6 +170,7 @@ const ShopInteractivoHeader = (props) => {
             dispatch(getAddEdToCart(null));
         } else
             if (ira == 16 && itemswishlistadd) {
+              
                 setMaximizarOption(0);
                 setOptionSelect(1);
                 setRegistrosPorPagina(9);
@@ -176,16 +180,19 @@ const ShopInteractivoHeader = (props) => {
                 setTextoMensajesWishList(texto);
             } else
                 if (activargrilla == 1) {
+                    
                     setMaximizarOption(1);
                     setOptionSelect(1);
                     setRegistrosPorPagina(9);
                 } else
                     if (activargrilla == 2) {
+                       
                         setMaximizarOption(2);
                         setOptionSelect(2);
                         setRegistrosPorPagina(6);
                     } else
                         if (activargrilla == 3) {
+                          
                             setMaximizarOption(3);
                             setOptionSelect(3);
                             setRegistrosPorPagina(6);
@@ -199,6 +206,8 @@ const ShopInteractivoHeader = (props) => {
             mayorprecio: 100000000,
         };
         // Coloca los datos en state arreglo de años de los vehiculos
+        localStorage.setItem("iraprd14", JSON.stringify(null));
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         dispatch(getViewAddCart(0));
         dispatch(getRangosPrecio(item));
         localStorage.setItem("ira", JSON.stringify(null));

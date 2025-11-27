@@ -240,6 +240,8 @@ const SearchItemsMaximize = (props) => {
         }
     }, [addedtocart]);
 
+    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart)
+
     useEffect(() => {
         const queries = {
             name_contains: "mazda",

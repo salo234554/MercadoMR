@@ -137,6 +137,7 @@ const ModuleShopActionsInteractivo = (props) => {
 
     //console.log("OPTION : ", 'ITEM: ', showItem, 'FOTO: ', showPhoto, 'ITEMFOTO: ', showItemPhoto)
     const MostrarItems = (seleccion) => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         dispatch(getOptionSelect(1));
         showItem = "fa fa-bars griponeselect";
         showPhoto = "fa fa-th-large griptwo";
@@ -149,6 +150,7 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const MostrarFotos = (seleccion) => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getOptionSelect(2));
@@ -163,6 +165,7 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const MostrarFotosItems = (seleccion) => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getViewAddCart(1));
@@ -192,10 +195,11 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const minimizar = () => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("rutaira", JSON.stringify(null));
-        
+
         //localStorage.setItem("openviewprdsearch", JSON.stringify(true));
         dispatch(getViewAddCart(1));
         dispatch(getViewVehPrd(0));

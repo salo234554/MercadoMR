@@ -104,6 +104,7 @@ function AppMenuUser(props) {
 
     const Salir = () => {
         const auth = getAuth(firebase);
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("datauser", JSON.stringify(null));
         localStorage.setItem("datauser", JSON.stringify(null));
         localStorage.setItem("inputdata", JSON.stringify(null));

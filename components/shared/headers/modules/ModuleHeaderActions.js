@@ -103,6 +103,7 @@ const ModuleHeaderActions = ({ ecomerce, search = false }) => {
     }, [datosusuarios]);
 
     const Salir = () => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         const auth = getAuth(firebase);
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -185,6 +186,7 @@ const ModuleHeaderActions = ({ ecomerce, search = false }) => {
     }
 
     const reiniciarCtr = () => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         setOpenClose(false);
         dispatch(getUserMenu(false));
         localStorage.setItem(

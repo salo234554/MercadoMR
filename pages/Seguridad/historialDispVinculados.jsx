@@ -243,6 +243,7 @@ export default function historialDispVinculados() {
     }, [UidUser]); //Función para obtener el UID del Usuario que nos sirve para mapear sus historial
 
     const Salir = () => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         const auth = getAuth(firebase);
         signOut(auth)
             .then(() => {

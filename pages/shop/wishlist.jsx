@@ -753,7 +753,6 @@ const WishlistScreen = ({ ecomerce }) => {
     
     useEffect(() => {
        if(!addedtocart){
-        alert("VALIDAR CAR")
         setAddcartId(null);
         setAddcartIdLogin(null);
        }

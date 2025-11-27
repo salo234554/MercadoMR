@@ -991,8 +991,6 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         }
     };
 
-
-
     const agregarCarritoCompra = (data) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
         let rutaira = JSON.parse(localStorage.getItem("rutaira"));
@@ -1018,7 +1016,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                     dispatch(getLeeIra(leeira));
                 } else {
                     // 99 es temporal al usuario opimir tenga una cuenta, se asigna el codigo 17 a IRA
-                    dispatch(getLeeIra(99)); 
+                    dispatch(getLeeIra(99));
                     localStorage.setItem("ira", JSON.stringify(99));
                 }
 
@@ -1219,11 +1217,25 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                     cantidad: 1,
                                     compatible: product?.compatible,
                                 };
+
+                                let iraprd14 = {
+                                    name: product?.name,
+                                    idprd: product?.id,
+                                    imagen: product?.nombreImagen,
+                                };
+
+                                localStorage.setItem(
+                                    "iraprd14",
+                                    JSON.stringify(iraprd14)
+                                );
                                 //console.log("DAT WISH LIST: ", temp);
                                 row.push(temp);
                                 dispatch(getAddLogin(row));
                                 let ruta = rutaira;
-                                router.push(ruta);
+                                router.push(
+                                    "/searchinteractive/searchinteractive/"
+                                );
+                                router.refresh();
                             })
                             .catch(function (error) {
                                 console.log(

@@ -239,6 +239,7 @@ const LeftBarMobile = ({ close, activeView, setActiveView }) => {
     };
 
     const Salir = () => {
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         const auth = getAuth(firebase);
         localStorage.setItem("datauser", JSON.stringify(null));
         localStorage.setItem("idvehgarage", JSON.stringify(-1));

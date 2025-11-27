@@ -34,6 +34,7 @@ const HomeSevenTopBanner = (props) => {
 
     const vender = () => {
         //console.log("DATOS USUARIO : ", userlogged)
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         let item = {
             login: true,
         };
@@ -86,6 +87,7 @@ const HomeSevenTopBanner = (props) => {
         let item = {
             login: false,
         };
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("loginvender", JSON.stringify(item));
         localStorage.setItem("placeholdersearch", JSON.stringify(""));
         setSelectedForm("login");
@@ -110,6 +112,7 @@ const HomeSevenTopBanner = (props) => {
 
     const selectTipoVeh = (selectedOptions) => {
         localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         dispatch(getIraLoginUser(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
