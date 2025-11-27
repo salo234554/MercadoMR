@@ -62,7 +62,6 @@ const ModuleHeaderActions = ({ ecomerce, search = false }) => {
     const [tituloMensajes, setTituloMensajes] = useState(false);
     const [textoMensajes, setTextoMensajes] = useState(false);
 
-
     let datosusuarios = null;
     datosusuarios = useSelector((state) => state.userlogged.userlogged);
     //console.log("DATOS USUARIO STATE : ", datosusuarios);
@@ -92,7 +91,6 @@ const ModuleHeaderActions = ({ ecomerce, search = false }) => {
     }, [openOption]);
 
     useEffect(() => {
-
         if (datosusuarios.uid > 0) {
             //alert("ENTRE")
             //console.log("DATOS USUARIO STATE : ", datosusuarios);
@@ -187,6 +185,7 @@ const ModuleHeaderActions = ({ ecomerce, search = false }) => {
 
     const reiniciarCtr = () => {
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
         setOpenClose(false);
         dispatch(getUserMenu(false));
         localStorage.setItem(

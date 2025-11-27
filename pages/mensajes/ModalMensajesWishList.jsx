@@ -13,6 +13,7 @@ function ModalMensajesWishList(props) {
         close(false);
         dispatch(getBlockScreen(0));
         localStorage.setItem("ira", JSON.stringify(null));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
     };
 
     useEffect(() => {

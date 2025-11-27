@@ -766,6 +766,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                             //return
 
                             const actualizarItemCarrito = async () => {
+                               
                                 let params = {
                                     id: res.data?.listaritemcarrito[0]?.id,
                                     idproducto:
@@ -946,16 +947,22 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                                         router.pathname === ruta
                                                     ) {
                                                         if (leeira == 14) {
+                                                           
                                                             router.push(
-                                                                urlviewprd
+                                                                "/searchinteractive/searchinteractive/"
                                                             );
                                                             router.refresh();
                                                         } else {
+                                                          
                                                             router.push(ruta);
                                                             router.refresh();
                                                         }
                                                     } else {
-                                                        router.push(ruta); // 👉 Navegar si es distinta
+                                                       
+                                                        router.push(
+                                                            "/searchinteractive/searchinteractive/"
+                                                        ); // 👉 Navegar si es distinta
+                                                        router.refresh();
                                                     }
                                                 })
                                                 .catch(function (error) {
@@ -1081,6 +1088,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         }
 
         const grabarItemCarrito = async () => {
+           
             let params = {
                 idproducto: product?.id,
                 compatible: product?.compatible,
@@ -1223,7 +1231,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                     idprd: product?.id,
                                     imagen: product?.nombreImagen,
                                 };
-
+                              
                                 localStorage.setItem(
                                     "iraprd14",
                                     JSON.stringify(iraprd14)

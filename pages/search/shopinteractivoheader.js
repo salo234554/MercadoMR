@@ -159,7 +159,7 @@ const ShopInteractivoHeader = (props) => {
         let itemswishlistadd = JSON.parse(localStorage.getItem("itemswishlistadd"));
 
         if (ira == 17 || ira == 19) {
-           
+       
             setMaximizarOption(0);
             setOptionSelect(1);
             setRegistrosPorPagina(9);
@@ -180,13 +180,13 @@ const ShopInteractivoHeader = (props) => {
                 setTextoMensajesWishList(texto);
             } else
                 if (activargrilla == 1) {
-                    
+               
                     setMaximizarOption(1);
                     setOptionSelect(1);
                     setRegistrosPorPagina(9);
                 } else
                     if (activargrilla == 2) {
-                       
+                      
                         setMaximizarOption(2);
                         setOptionSelect(2);
                         setRegistrosPorPagina(6);

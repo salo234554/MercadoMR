@@ -34,6 +34,7 @@ function ModalMensajesSoyNuevo(props) {
         close(false);
         //close(false);
         dispatch(getBlockScreen(0));
+        localStorage.setItem("iraprd14", JSON.stringify(null));
     };
 
     useEffect(() => {
