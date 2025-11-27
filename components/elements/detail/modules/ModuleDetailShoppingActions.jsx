@@ -991,24 +991,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
         }
     };
 
-    /*
-    useEffect(() => {
-        let ira17 = JSON.parse(localStorage.getItem("ira"));
-        if (navType === "POP" && ira17 === 17) {
-            console.log("Flecha atrás detectada");
-            localStorage.setItem("ira", JSON.stringify(null));
-        }
-    }, [navType]);
-    */
 
-    //useEffect(() => {
-    const handleBack = () => {
-        alert("Back button presionado");
-    };
-
-    window?.addEventListener("popstate", handleBack);
-    return () => window?.removeEventListener("popstate", handleBack);
-    //}, []);
 
     const agregarCarritoCompra = (data) => {
         let leeira = JSON.parse(localStorage.getItem("ira"));
@@ -1034,8 +1017,9 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                 if (leeira == 14) {
                     dispatch(getLeeIra(leeira));
                 } else {
-                    dispatch(getLeeIra(17));
-                    localStorage.setItem("ira", JSON.stringify(17));
+                    // 99 es temporal al usuario opimir tenga una cuenta, se asigna el codigo 17 a IRA
+                    dispatch(getLeeIra(99)); 
+                    localStorage.setItem("ira", JSON.stringify(99));
                 }
 
                 let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));

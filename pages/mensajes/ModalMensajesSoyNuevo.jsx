@@ -52,7 +52,13 @@ function ModalMensajesSoyNuevo(props) {
 
         localStorage.setItem("loginvender", JSON.stringify(item));
         dispatch(getIraLoginUser(true));
-        
+
+        let ira = JSON.parse(localStorage.getItem("ira"));
+
+        if (ira === 99) {
+            localStorage.setItem("ira", JSON.stringify(17));
+        }
+
         if (router.pathname == "/loginaccount") {
             location.reload();
         } else {
