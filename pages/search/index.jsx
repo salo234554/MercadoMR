@@ -285,6 +285,7 @@ const SearchResultScreen = () => {
     }, [gripselect, longprd]);
 
     useEffect(() => {
+        //alert("ENTRE");
         //console.log("ITEMPRD 291:", itemsProduct)
         dispatch(getUserMenu(false));
         dispatch(getUserMenuPrimary(false));
@@ -296,14 +297,18 @@ const SearchResultScreen = () => {
         let ira = JSON.parse(localStorage.getItem("ira"));
 
         //console.log("291 ", addlogin);
-        if (ira == 17) {
+        if (ira == 17 || ira == 19) {
+            //alert("11111");
             let iraprd14 = JSON.parse(localStorage.getItem("iraprd14"));
             setAddcartId(1);
             setAddcartIdLogin(iraprd14?.idprd);
             setAddcartImagen(iraprd14?.imagen);
             setAddcartTitulo(iraprd14?.name);
             setAddcartCantidad(1);
-        } else if (addlogin.length > 0) {
+        } else if (addlogin?.length > 0) {
+            //alert("22222");
+            console.log("ADDLOGIN : ", addlogin, " - ", addedtocart);
+            //alert(addedtocart);
             setAddcartId(0);
             localStorage.setItem("itemshoppingcartadd", JSON.stringify(null));
             setAddcartIdLogin(addlogin[0]?.idproducto);
@@ -311,6 +316,7 @@ const SearchResultScreen = () => {
             setAddcartTitulo(addlogin[0]?.titulonombre);
             setAddcartCantidad(addlogin[0]?.cantidad);
         } else if (contrview == 0) {
+            //alert("3333");
             let item = {
                 idproducto: 0,
                 nombreimagen1: "",
@@ -335,6 +341,7 @@ const SearchResultScreen = () => {
             let texto = "Producto agregado a lista de deseo";
             setTextoMensajes(texto);
         }
+    //}, []);
     }, [itemsProduct]);
 
     useEffect(() => {
@@ -2223,6 +2230,7 @@ const SearchResultScreen = () => {
                             <AddShoppingCart data={dataCart} />
                         ) : null}
                         {console.log("IMGPRD : ", carImagen)}
+
                         {addcartId > 0 ? (
                             <div className="productoagregarcarrito">
                                 <ViewAddShoppingCart
