@@ -238,6 +238,10 @@ const ViewAddShoppingCart = (props) => {
         dispatch(getViewAddCart(1));
     };
 
+    const verTuCarrito =() => {
+         localStorage.setItem("ira", JSON.stringify(20));
+    }
+
     return (
         <div>
             <div className="container none1200px">
@@ -290,7 +294,11 @@ const ViewAddShoppingCart = (props) => {
                                         spacing={1}>
                                         <Grid item xs={8.5} md={8.5} lg={8.5}>
                                             <Link href="/shop/shopping-cart">
-                                                <div className="btnvercarrito">
+                                                <div
+                                                    className="btnvercarrito"
+                                                    onClick={() =>
+                                                        verTuCarrito()
+                                                    }>
                                                     Ver tu carrito
                                                 </div>
                                             </Link>
@@ -336,7 +344,9 @@ const ViewAddShoppingCart = (props) => {
 
                     <div className="modalAddToCartLeftRight">
                         <Link href="/shop/shopping-cart">
-                            <div className="verCarritoResults">
+                            <div
+                                className="verCarritoResults"
+                                onClick={() => verTuCarrito()}>
                                 Ver tu carrito
                             </div>
                         </Link>

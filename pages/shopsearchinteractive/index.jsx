@@ -13,6 +13,7 @@ import { getFilterSearchInteractive } from "~/store/filtersearchinteractive/acti
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import CustomPaginationSearch from "../../components/elements/basic/CustomPaginationSearch";
+
 import {
     Box,
     Grid,
@@ -127,8 +128,8 @@ const ShopScreen = (props) => {
 
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
 
-    //console.log("PRODUGEN00000 : ", maximizarOption);
-    //console.log("PRODUGEN00000 : ",resetdatasearch," - ",filtersearch," - ",arrayPrd," - ",changepartveh," - ",deleteitemfind," - ",paginaselect," - ",datosBuscar);
+    //console.log("PRODUGEN00000 : ",  ",resetdatasearch," - ",filtersearch," - ",arrayPrd," - ",changepartveh," - ",deleteitemfind," - ",paginaselect," - ",datosBuscar);
+    console.log("DAT00XXXXXXXX : ", filtersearch);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -543,8 +544,27 @@ const ShopScreen = (props) => {
                     else viewData(dataPrdtItems);
                 }
             } else {
+                /*
                 console.log("DAT00DDDDDDD : ", newData);
-                viewData(newData);
+                viewData(newData); /AQUI SE CAMBIO Nov. 27 09:46 PM
+*/
+                //Se cambio newData por dataPrdtItems, revisar si funciona OK. o presenta error.
+
+                let parteTrenSel = JSON.parse(
+                    localStorage.getItem("partetrensel")
+                );
+                let newarray = [];
+                parteTrenSel &&
+                    parteTrenSel.map((row) => {
+                        dataPrdtItems &&
+                            dataPrdtItems.map((item) => {
+                                if (row.sistemasel == item.posicionproducto) {
+                                    newarray.push(item);
+                                }
+                            });
+                    });
+                console.log("DAT00DDDDDDD : ", newarray);
+                viewData(newarray);
             }
         };
 

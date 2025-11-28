@@ -1666,12 +1666,11 @@ function SearchInteractive() {
         localStorage.setItem("editdata", JSON.stringify(false));
         localStorage.setItem("activargrilla", JSON.stringify(0));
         dispatch(getValFltrCiudad(0));
-
         if (viewvehprd == 1) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
             router.push(urlviewprd);
         }
-        else
+        else {
             if (carroceriaVehiculo == 24) {
                 router.push("/searchinteractive/sedan/searchsedan#searchmr");
             } else
@@ -1786,7 +1785,7 @@ function SearchInteractive() {
                                                                                                                                                         router.push("/searchinteractive/motos/touring/searchtouring#searchmr");
                                                                                                                                                     }
 
-
+        }
     };
 
     let combustible = [
@@ -2470,7 +2469,7 @@ function SearchInteractive() {
 
     // Control maximo de caracteres en marcas
     useEffect(() => {
-       if (nombreMarcaVeh != "Marca") {
+        if (nombreMarcaVeh != "Marca") {
             let longtexto = 11; //nombreMarcaVeh.length;
             if (longtexto > 13)
                 longtexto = 13;
