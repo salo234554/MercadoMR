@@ -1500,7 +1500,7 @@ function SearchInteractive() {
             selectcarroceria: nombreCarroceriaVeh,
             selectmarca: selmarcaveh,
             selectanno: anoVehSel,
-            selectmodelo: nombreModeloVeh,
+            selectmodelo: nombreModeloBase,
             selectcilindraje: nombreCilindrajeVeh,
             selectcombustible: nombreCombustibleVeh,
             selecttransmision: nombreTransmisionVeh,
@@ -1518,7 +1518,7 @@ function SearchInteractive() {
             nombrecarroceria: nombreCarroceriaVeh,
             nombremarca: selmarcaveh,
             nombreanno: anosel,
-            nombremodelo: nombreModeloVeh,
+            nombremodelo: nombreModeloBase,
             nombrecilindraje: nombreCilindrajeVeh,
             nombretipocombustible: nombreCombustibleVeh,
             nombretransmision: nombreTransmisionVeh,
@@ -2461,7 +2461,7 @@ function SearchInteractive() {
                 modelo = numero + "...";
             else
                 modelo = numero;
-
+         
             setLongitudModelo(longtexto);
             setNombreModeloVeh(modelo);
         }
