@@ -155,6 +155,7 @@ function HistoryVehSpecialSearch({ marcarItem, setMarcarItem, setSelVehHistory }
                         }
                         return 0;
                     };
+                    
                     if (res.data.listhistoryvehsearchspecial.length > 0)
                         res.data.listhistoryvehsearchspecial.sort(compare);
 
@@ -565,8 +566,8 @@ function HistoryVehSpecialSearch({ marcarItem, setMarcarItem, setSelVehHistory }
 
                                                         <Row className="m-0">
                                                             <Col className="p-0"
-                                                                xs={10} sm={11}>
-                                                                <div className=" historyvehsearchspecial flex justify-between items-center">
+                                                                xs={10} sm={11} lg={11}>
+                                                                <div className="historyvehsearchspecial flex justify-between items-center">
                                                                     <div className="textElipsis" >
                                                                         {
                                                                             item.idvehiculo == 1 ?
