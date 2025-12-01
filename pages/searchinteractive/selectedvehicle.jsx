@@ -80,7 +80,7 @@ const selectedvehicle = (props) => {
         if (zoomdatasearch != "0" && zoomdatasearch != 0) {
             setClassBotonera("ubicarbotonera");
         } else {
-            setClassBotonera("");
+            setClassBotonera("vehselectedsearch");
         }
     }, [zoomdatasearch]);
 
@@ -365,16 +365,13 @@ const selectedvehicle = (props) => {
         localStorage.setItem("expandirdata", JSON.stringify(false));
     }, [filtersearch, deleteitemfind]);
 
+    console.log("BOTONXX : ", classBotonera, " - ",classTextoSel)
+
     return (
         <div className={classBotonera}>
             <div className="newTopInteractSearch">
                 <div className="textnewTopInteractSearch">
-                    {console.log(
-                        "DATXXX : ",
-                        datSelSearch.nombremarca,
-                        " - ",
-                        datasearchinteractive?.nombremarca
-                    )}
+                   
                     <div className={classTextoSel}>
                         <p>
                             {datSelSearch.nombretipovehiculo

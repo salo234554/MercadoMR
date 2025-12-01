@@ -3077,9 +3077,10 @@ const SearchInteractiveMotorElectrico = (props) => {
                             ) : null}
 
                             <div className=" ">
-                                <div>
-                                    <SelectedVehicle />
-                                </div>
+                               {
+                                //<SelectedVehicle />
+                               }
+                                <a>TEXTO PRUEBA VEHICULO SELECCIONADO</a>
                                 <BotoneraUbicacion
                                     onClickBoton1={seleccionaUbicarPrdLaton}
                                     infoBoton1={mostrarComentariolatoneria}
@@ -3099,6 +3100,7 @@ const SearchInteractiveMotorElectrico = (props) => {
                                     Elige en que sistema del tren motriz está
                                     ubicado tu repuesto
                                 </h3>
+                                
                                 <div className={classBotonera}>
                                     <div className="row rowImagensBusc">
                                         <div className="NewButtonsBuscInt posicionuno">

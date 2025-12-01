@@ -293,7 +293,10 @@ const SearchInteractiveCincoPuertasLatoneria = (props) => {
                             ) : null}
 
                             <div className=" ">
-                                <SelectedVehicle />
+                                {
+                                    //<SelectedVehicle />
+                                }
+                                 <a>TEXTO PRUEBA VEHICULO SELECCIONADO</a>
                                 <Row className="topSearchIntButtons">
                                     <div className="contSearchIntButtons">
                                         <div>

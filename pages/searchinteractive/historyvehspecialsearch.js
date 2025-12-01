@@ -447,6 +447,8 @@ function HistoryVehSpecialSearch({ marcarItem, setMarcarItem, setSelVehHistory }
     }, [continuarEliminar, showModalMensajesEliminar]);
 
     const deleteItemHistory = () => {
+        alert("DELETE")
+        return
         marcarItem &&
             marcarItem.map((row, index) => {
                 let params = {

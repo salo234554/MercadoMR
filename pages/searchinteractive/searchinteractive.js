@@ -1060,6 +1060,7 @@ function SearchInteractive() {
                             };
 
                             const borrarItem = async () => {
+                       
                                 await axios({
                                     method: "post",
                                     url: URL_BD_MR + "101",
@@ -1439,6 +1440,7 @@ function SearchInteractive() {
                         };
 
                         const borrarItem = async () => {
+            
                             await axios({
                                 method: "post",
                                 url: URL_BD_MR + "101",
@@ -1451,7 +1453,7 @@ function SearchInteractive() {
                                     console.log("Error borrar historial");
                                 });
                         };
-                        borrarItem();
+                        //borrarItem();
                     } else {
                         let datahistoryveh = JSON.parse(localStorage.getItem("datahistoryveh"));
                         let itemdos = [];
