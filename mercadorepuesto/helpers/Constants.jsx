@@ -1,0 +1,21 @@
+/*
+export const URL_IMAGES_RESULTS = "https://gimcloud.com.co/files/mercadorepuesto/"
+export const URL_IMAGES_RESULTSSMS = "https://gimcloud.com.co/files/imagenesmensajes/"
+export const URL_BD_MR = "https://gimcloud.com.co/mrp/api/"
+export const URL_API_MR = "https://gimcloud.com.co/api/"
+export const URL_IMAGES_MARCAS = "https://gimcloud.com.co/files/mercadorepuesto/marcas/"
+export const URL_CONSOLA_MR = "https://consolaadmonmr.vercel.app/"
+export const URL_MK_MR = "https://marketplacemrepuesto.vercel.app/"
+*/
+//export const URL_MK_MR = "http://localhost:3000/"
+//export const URL_CONSOLA_MR = "http://localhost:3000/"
+
+export const URL_IMAGES_RESULTS = "https://mercadorepuesto.gimcloud.com/files/mercadorepuesto/"
+export const URL_IMAGES_RESULTSSMS = "https://mercadorepuesto.gimcloud.com/files/imagenesmensajes/"
+export const URL_BD_MR = "https://mercadorepuesto.gimcloud.com/mrp/api/"
+export const URL_API_MR = "https://mercadorepuesto.gimcloud.com/api/"
+export const URL_IMAGES_MARCAS = "https://mercadorepuesto.gimcloud.com/files/mercadorepuesto/marcas/"
+export const URL_CONSOLA_MR = "https://consolaadmonmr.vercel.app/"
+export const URL_MK_MR = "https://mercadorepuesto-psi.vercel.app/"
+//export const URL_MK_MR = "http://localhost:3000/"
+//export const URL_CONSOLA_MR = "http://localhost:3000/"

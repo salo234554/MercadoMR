@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/:all*(svg|ico|css|jsx||js|woff2|woff|eot|ttf)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
