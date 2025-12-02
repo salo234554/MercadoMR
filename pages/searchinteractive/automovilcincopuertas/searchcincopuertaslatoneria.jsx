@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Container from "~/components/layouts/Container";
 import { Row, Col, Modal, Button, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import VideoPlayer from "react-video-js-player";
 import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -293,10 +292,7 @@ const SearchInteractiveCincoPuertasLatoneria = (props) => {
                             ) : null}
 
                             <div className=" ">
-                                {
-                                    //<SelectedVehicle />
-                                }
-                                 <a>TEXTO PRUEBA VEHICULO SELECCIONADO</a>
+                                <SelectedVehicle />
                                 <Row className="topSearchIntButtons">
                                     <div className="contSearchIntButtons">
                                         <div>

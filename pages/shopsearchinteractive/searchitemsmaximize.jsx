@@ -240,7 +240,7 @@ const SearchItemsMaximize = (props) => {
         }
     }, [addedtocart]);
 
-    //console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart)
+    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart)
 
     useEffect(() => {
         const queries = {

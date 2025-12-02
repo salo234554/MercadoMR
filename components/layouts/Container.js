@@ -25,7 +25,7 @@ const Container = ({
     // Lee datos generales del sistema del state
 
     return (
-        <div className="ubicarposicionveh ps-root">
+        <div className="ps-root">
             <Head>
                 <title>{titleView}</title>
             </Head>

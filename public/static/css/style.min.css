@@ -6497,7 +6497,7 @@ body::after {
 
 .espaciobordemotorelectrico {
     position: relative;
-    left: 28px !important;
+    left: 23px !important;
     top: 15px !important;
 }
 
@@ -6505,7 +6505,7 @@ body::after {
     position: relative !important;
     display: flex;
     justify-content: space-between;
-    width: 98%;
+    width: 100%;
 }
 
 @media (max-width: 570px) {
@@ -6727,31 +6727,27 @@ body::after {
 }
 
 .textoselectedvehicledos {
+    margin-left: 0px;
     font-size: 14px !important;
     color: #2D2E83 !important;
-    width: 100%;
-    max-width: 530px;
+    width: 570px !important;
     text-align: center;
     padding-left: 5px !important;
     padding-right: 5px !important;
     padding-top: 3px !important;
-    position: relative;
-    left: 25px;
 }
 
 .textoselectedvehicle {
     border: 1px solid white;
+    margin-left: 0px;
     background-color: #d5d6e6;
     width: 100%;
-    max-width: 530px;
     min-height: 48px;
     border-radius: 10px;
     overflow: hidden;
     padding-left: 35px;
     padding-right: 35px;
     padding-top: 3px;
-    position: relative;
-    left: 25px;
 }
 
 /* Cuando sea 1100px o menos, cambia padding a 15px */
@@ -9304,9 +9300,6 @@ body::after {
 
 .rowMobileMotriz {
     display: flex;
-    position: relative;
-    left: 20px !important;
-    max-width: 1340px !important;
 }
 
 @media (max-width: 1200px) {
@@ -9316,14 +9309,6 @@ body::after {
     }
 }
 
-.ubicarposicionveh{
-    max-width: 1355px !important;
-}
-
-.vehselectedsearch{
-    position: relative;
-    left: 0px;
-}
 
 .cajacoupeimagenlatoneria {
     margin-left: 20px !important;
@@ -32859,7 +32844,7 @@ label {
     position: relative;
     left: 118px;
     width: 100%;
-    max-width: 1045px !important;
+    max-width: 990px !important;
 }
 
 @media (max-width: 1350px) {
@@ -32908,7 +32893,7 @@ label {
 
 .positionfilterinteractive2{
     position: relative;
-    left: 72px;
+    left: 92px;
     top: 100px;
 }
 
@@ -34594,13 +34579,13 @@ label {
 .fijardatosvehiculo {
     position: relative !important;
     top: 420px !important;
-    left: 195px !important;
+    left: 230px !important;
     padding-top: 40px !important;
     padding-left: 60px !important;
     width: 800px !important;
     border-radius: 30px !important;
     background-color: #F0F2F5 !important;
-    height: 720px !important;
+    height: 810px !important;
     z-index: 3;
     /*pointer-events: none !important;*/
 }
@@ -35229,11 +35214,11 @@ label {
 .tamañocontainerserach-mobile {
     display: flex;
     background-color: white;
-    width: 100%;
+    width: 95%;
     margin-top: 6px;
     justify-content: space-between;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 8px;
 }
 
 .searcherContent {
@@ -55362,7 +55347,7 @@ input[type="radio"]:checked {
 
 .actionsinteractivo{
     width: 100%;
-    max-width: 1050px;
+    max-width: 970px;
 }
 
 .ubicacionsearchinteractive{

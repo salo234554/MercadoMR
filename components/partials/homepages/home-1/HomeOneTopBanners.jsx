@@ -110,13 +110,13 @@ const HomeOneTopBanners = () => {
     }, []);
 
     const selectTipoVeh = (selectedOptions) => {
-        localStorage.setItem("itemswishlistadd",JSON.stringify(null));
+        localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         dispatch(getIraLoginUser(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("rutaira", JSON.stringify(null));
         localStorage.setItem("carroceriaselect", JSON.stringify(null));
-        
+
         setNombreCarroceriaVeh("Carrocería");
         setNombreMarcaVeh("Marca");
         setTipoVehiculo(selectedOptions);
@@ -124,7 +124,7 @@ const HomeOneTopBanners = () => {
         setDisabledMarca(true);
         setClassBtnSearchHome("botonsearchhome disableoption disableicon");
         localStorage.setItem("tipovehiculo", JSON?.stringify(selectedOptions));
-
+        /*
         if (tipoVehiculo == selectedOptions) {
             setDisabledMotos("iconsearchhome");
             setDisabledAutos("iconsearchhome");
@@ -132,7 +132,9 @@ const HomeOneTopBanners = () => {
             setDisabledElectricos("iconsearchhome");
             setDisabledBuses("iconsearchhome");
             setDisabledCarroceria(true);
-        } else if (selectedOptions == 1) {
+        } else 
+            */
+        if (selectedOptions == 1) {
             setDisabledMotos("iconsearchhome");
             setDisabledAutos("iconsearchhome disableicon");
             setDisabledCamiones("iconsearchhome disableicon");
