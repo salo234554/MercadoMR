@@ -4,6 +4,7 @@ import { Button, Row, Col, Modal, Form } from "react-bootstrap";
 import InfoIcon from "@material-ui/icons/Info";
 import { useDispatch, useSelector } from "react-redux";
 import { getCitySelect } from "../../store/cityselect/action";
+import { getClearLocation } from "../../store/clearlocation/action";
 import { getDataCityPrd } from "../../store/datacityprd/action";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -72,7 +73,7 @@ function ModalLocationSearchInteractive(props) {
                 ciudadesAlt = [];
                 ciudadesselAlt = [];
                 dispatch(getDataCityPrd(ciudadesselAlt));
-                //ciudades = [];
+                dispatch(getClearLocation(1));
                 close(false);
             }
             setActivar("habilitar");
