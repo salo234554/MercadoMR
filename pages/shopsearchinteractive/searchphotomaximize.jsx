@@ -117,9 +117,8 @@ const SearchPhotoMaximize = (props) => {
     );
 
     let paginaselect = useSelector((state) => state.pageselect.pageselect);
-
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
-
+   
     let itemsIni = 0;
     let itemsFin = registrosPorPagina;
     //console.log("VIEW SEARCHYYY : ", viewSearch);
@@ -551,7 +550,7 @@ const SearchPhotoMaximize = (props) => {
                 dispatch(getNumberPages([1]));
             } else dispatch(getNumberPages(arraypg));
         }
-    }, [allprd2, dataPrdItem]);
+   }, [allprd2, dataPrdItem, viewvehprd]);
 
     //console.log("datosBuscar : ", datosBuscar);
     useEffect(() => {

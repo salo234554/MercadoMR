@@ -15,8 +15,6 @@ function WidgetUpdateLocation(props) {
         setDataCitySelect(dataciudad)
     }, [dataciudad]);
 
-
-    console.log("CUDADKKKXX : ", dataciudad)
     return (
         <div>
 

@@ -147,6 +147,16 @@ const SearchInteractiveTresPuertasHabitaculo = (props) => {
     };
 
     const seleccionaParteConsola = () => {
+         let dato = [];
+        let item = {
+            sistemadieciseis: 21,
+            imagen: "",
+            sistemasel: 21,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getPosicionHabitaculo(1));
         dispatch(getFilterSearchInteractive(21));
         localStorage.setItem(
@@ -174,6 +184,16 @@ const SearchInteractiveTresPuertasHabitaculo = (props) => {
     };
 
     const seleccionaParteAsientosGeneral = () => {
+          let dato = [];
+        let item = {
+            sistemadieciseis: 22,
+            imagen: "",
+            sistemasel: 22,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getPosicionHabitaculo(2));
         dispatch(getFilterSearchInteractive(22));
         localStorage.setItem(
@@ -197,6 +217,16 @@ const SearchInteractiveTresPuertasHabitaculo = (props) => {
     };
 
     const seleccionaParteTecho = () => {
+           let dato = [];
+        let item = {
+            sistemadieciseis: 23,
+            imagen: "",
+            sistemasel: 23,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        
         dispatch(getPosicionHabitaculo(3));
         dispatch(getFilterSearchInteractive(23));
         localStorage.setItem(

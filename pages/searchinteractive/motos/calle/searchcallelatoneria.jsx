@@ -88,9 +88,9 @@ const SearchInteractiveBusLatoneria = (props) => {
     const [controlFijar, setControlFijar] = useState("");
     const [closeWindow, setCloseWindow] = useState(false);
 
-      const zoomdatasearch = useSelector(
-            (state) => state.zoomdatasearch.zoomdatasearch
-        );
+    const zoomdatasearch = useSelector(
+        (state) => state.zoomdatasearch.zoomdatasearch
+    );
 
     const mostrarComentariolatoneria = () => {
         setShowModalComentariosLatoneria(true);
@@ -142,6 +142,17 @@ const SearchInteractiveBusLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        //dispatch(getChangePartVeh(true));
+
         dispatch(getFilterSearchInteractive(12));
         localStorage.setItem(
             "ubicacionproducto",
@@ -187,7 +198,7 @@ const SearchInteractiveBusLatoneria = (props) => {
         router.push("/searchinteractive/motos/calle/searchcallemotorelectrico");
     };
 
-     let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
+    let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
 
     useEffect(() => {
         let bloquear = "";
@@ -269,19 +280,19 @@ const SearchInteractiveBusLatoneria = (props) => {
                             </div>
                             <div className="textImgBottomBuscadorInt">
                                 {!zoomdatasearch || zoomdatasearch == "0" ? (
-                                     <>
-                                                                            <h1 className="txtButtonP">
-                                                                                ** Las imágenes a continuación son
-                                                                                con fines ilustrativos, por ello
-                                                                                pueden no corresponder exactamente
-                                                                                con tu vehículo.
-                                                                            </h1>
-                                                                            <img
-                                                                                className="logobuscadormrBuscInt"
-                                                                                src={logo.src}
-                                                                                alt="First slide"
-                                                                            />
-                                                                        </>
+                                    <>
+                                        <h1 className="txtButtonP">
+                                            ** Las imágenes a continuación son
+                                            con fines ilustrativos, por ello
+                                            pueden no corresponder exactamente
+                                            con tu vehículo.
+                                        </h1>
+                                        <img
+                                            className="logobuscadormrBuscInt"
+                                            src={logo.src}
+                                            alt="First slide"
+                                        />
+                                    </>
                                 ) : null}
                             </div>
                         </div>

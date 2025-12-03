@@ -89,7 +89,7 @@ const ShopInteractivoHeader = (props) => {
         setOptionSelect(1);
         setRegistrosPorPagina(9);
         setSelectItem("botonheaderinteractivoderechaselect");
-    }, []);
+    }, [optionSelect]);
 
     const MostrarItems = () => {
         setOptionSelect(1);
@@ -101,6 +101,8 @@ const ShopInteractivoHeader = (props) => {
             setMaximizarOption(1);
         }
     };
+
+    console.log("OPTIONSELE : ", optionSelect)
 
     const MostrarFotos = () => {
         setOptionSelect(2);
@@ -228,7 +230,7 @@ const ShopInteractivoHeader = (props) => {
 
         if (maximizarOption != 0) {
             setMaximizarOption(0);
-            setSelectPhoto("botonheaderinteractivoderecha  ");
+            setSelectPhoto("botonheaderinteractivoderecha");
             setSelectItem("botonheaderinteractivoderecha");
             setSelectMaximizar("botonheaderinteractivoderecha  ")
             //setZoom(false);

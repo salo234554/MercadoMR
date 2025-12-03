@@ -33,9 +33,12 @@ const SearchInteractiveScooterLatoneria = (props) => {
     const [optionSelect, setOptionSelect] = useState(0);
     const [maximizarOption, setMaximizarOption] = useState(0);
 
-    const [textoTituloInformacion, setTextoTituloInformacion] = useState("Motos Deportivas");
-    const [textoUnoModalInformacion, setTextoUnoModalInformacion] = useState("");
-    const [textoDosModalInformacion, setTextoDosModalInformacion] = useState("");
+    const [textoTituloInformacion, setTextoTituloInformacion] =
+        useState("Motos Deportivas");
+    const [textoUnoModalInformacion, setTextoUnoModalInformacion] =
+        useState("");
+    const [textoDosModalInformacion, setTextoDosModalInformacion] =
+        useState("");
 
     // Definicion Latoneria
     const [showModalComentariosLatoneria, setShowModalComentariosLatoneria] =
@@ -85,31 +88,41 @@ const SearchInteractiveScooterLatoneria = (props) => {
     const [controlFijar, setControlFijar] = useState("");
     const [closeWindow, setCloseWindow] = useState(false);
 
-        const zoomdatasearch = useSelector(
-                (state) => state.zoomdatasearch.zoomdatasearch
-            )
-    
+    const zoomdatasearch = useSelector(
+        (state) => state.zoomdatasearch.zoomdatasearch
+    );
 
     const mostrarComentariolatoneria = () => {
         setShowModalComentariosLatoneria(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos en la parte exterior del vehículo");
-        setTextoDosModalInformacion("Aquí encuentras productos relacionados con Latonería, Pintura, Farolas, Parachoques, Guardabarros, Luces, Depósitos de combustible, Espejos, Cubiertas de motor, Maletero entre otras.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos en la parte exterior del vehículo"
+        );
+        setTextoDosModalInformacion(
+            "Aquí encuentras productos relacionados con Latonería, Pintura, Farolas, Parachoques, Guardabarros, Luces, Depósitos de combustible, Espejos, Cubiertas de motor, Maletero entre otras."
+        );
     };
 
     const mostrarComentariohabitaculo = () => {
         setShowModalComentariosHabitaculo(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Este tipo de vehículo no incluye otras opciones");
-        setTextoDosModalInformacion("Por las características del vehículo no hay otras opciones disponibles.");
+        setTextoUnoModalInformacion(
+            "Este tipo de vehículo no incluye otras opciones"
+        );
+        setTextoDosModalInformacion(
+            "Por las características del vehículo no hay otras opciones disponibles."
+        );
     };
 
     const mostrarComentariomotor = () => {
         setShowModalComentariosMotor(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos del tren motriz de la motocicleta.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos del tren motriz de la motocicleta."
+        );
         setTextoDosModalInformacion(
-            "Es el sistema que transmite la potencia del motor a las ruedas, permitiendo que el vehículo se desplace. Componentes principales: Motor, Transmisión, Ejes, Ruedas, entre otros");
+            "Es el sistema que transmite la potencia del motor a las ruedas, permitiendo que el vehículo se desplace. Componentes principales: Motor, Transmisión, Ejes, Ruedas, entre otros"
+        );
     };
 
     const seleccionaUbicarProductoLatoneriaIzquierda = () => {
@@ -130,6 +143,17 @@ const SearchInteractiveScooterLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        //dispatch(getChangePartVeh(true));
+
         dispatch(getFilterSearchInteractive(12));
         localStorage.setItem(
             "ubicacionproducto",
@@ -165,9 +189,7 @@ const SearchInteractiveScooterLatoneria = (props) => {
 
     const seleccionaUbicarProductoLatoneria = () => {
         dispatch(getFilterSearchInteractive(1));
-        router.push(
-            "/searchinteractive/motos/scooter/searchscooterlatoneria"
-        );
+        router.push("/searchinteractive/motos/scooter/searchscooterlatoneria");
     };
 
     const seleccionaUbicarProductoHabitaculo = () => {
@@ -181,7 +203,7 @@ const SearchInteractiveScooterLatoneria = (props) => {
         );
     };
 
-     let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
+    let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
 
     useEffect(() => {
         let bloquear = "";
@@ -227,7 +249,7 @@ const SearchInteractiveScooterLatoneria = (props) => {
                     {!closeWindow ? (
                         <div className={controlFijar}>
                             {maximizarOption != 0 ? (
-                               <ExpandAndCloseSearch
+                                <ExpandAndCloseSearch
                                     maximizarOption={maximizarOption}
                                     setMaximizarOption={setMaximizarOption}
                                     setCloseWindow={setCloseWindow}
@@ -237,15 +259,21 @@ const SearchInteractiveScooterLatoneria = (props) => {
                             <div className=" ">
                                 <SelectedVehicle />
                                 <BotoneraMotos
-                                    onClickBoton1={seleccionaUbicarProductoLatoneria}
+                                    onClickBoton1={
+                                        seleccionaUbicarProductoLatoneria
+                                    }
                                     infoBoton1={mostrarComentariolatoneria}
                                     labelBoton1="Exterior"
-                                    onClickBoton2={seleccionaUbicarProductoMotorElectrico}
+                                    onClickBoton2={
+                                        seleccionaUbicarProductoMotorElectrico
+                                    }
                                     infoBoton2={mostrarComentariomotor}
                                     labelBoton2="Tren Motriz"
                                     seleccionadoono={1}
                                     tercerboton={1}
-                                    onClickBoton3={seleccionaUbicarProductoLatoneriaCentro}
+                                    onClickBoton3={
+                                        seleccionaUbicarProductoLatoneriaCentro
+                                    }
                                     infoBoton3={mostrarComentariohabitaculo}
                                     labelBoton3="Unica Seleción"
                                 />
@@ -257,19 +285,19 @@ const SearchInteractiveScooterLatoneria = (props) => {
                             </div>
                             <div className="textImgBottomBuscadorInt">
                                 {!zoomdatasearch || zoomdatasearch == "0" ? (
-                                     <>
-                                                                            <h1 className="txtButtonP">
-                                                                                ** Las imágenes a continuación son
-                                                                                con fines ilustrativos, por ello
-                                                                                pueden no corresponder exactamente
-                                                                                con tu vehículo.
-                                                                            </h1>
-                                                                            <img
-                                                                                className="logobuscadormrBuscInt"
-                                                                                src={logo.src}
-                                                                                alt="First slide"
-                                                                            />
-                                                                        </>
+                                    <>
+                                        <h1 className="txtButtonP">
+                                            ** Las imágenes a continuación son
+                                            con fines ilustrativos, por ello
+                                            pueden no corresponder exactamente
+                                            con tu vehículo.
+                                        </h1>
+                                        <img
+                                            className="logobuscadormrBuscInt"
+                                            src={logo.src}
+                                            alt="First slide"
+                                        />
+                                    </>
                                 ) : null}
                             </div>
                         </div>

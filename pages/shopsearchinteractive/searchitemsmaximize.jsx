@@ -138,7 +138,7 @@ const SearchItemsMaximize = (props) => {
 
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
 
-    console.log("paginaselect : ", paginaselect, " - ", numeroPaginas);
+    //console.log("paginaselect : ", paginaselect, " - ", numeroPaginas);
 
     let itemsIni = 0;
     let itemsFin = registrosPorPagina;
@@ -598,9 +598,7 @@ const SearchItemsMaximize = (props) => {
     }, [selectviewprd]);
 
     useEffect(() => {
-        //alert("BBBBBBBB")
         let ctlrCount = JSON.parse(localStorage.getItem("ctlrCount"));
-
         if (count < 2 || ctlrCount) {
             let numprd = allprd2?.length;
             setCount(count + 1);
@@ -633,9 +631,9 @@ const SearchItemsMaximize = (props) => {
                 dispatch(getNumberPages([1]));
             } else dispatch(getNumberPages(arraypg));
         }
-    }, [allprd2, dataPrdItem]);
+    }, [allprd2, dataPrdItem, viewvehprd]);
 
-    console.log("dataPrdItem : ", dataPrdItem);
+    //console.log("dataPrdItem : ", dataPrdItem);
 
     useEffect(() => {
         if (!viewSearch) {

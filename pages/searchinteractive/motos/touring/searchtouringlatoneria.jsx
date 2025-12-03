@@ -19,6 +19,7 @@ import ModalInformacionSearh from "../../../mensajes/ModalInformacionSearch";
 import { getFilterSearchInteractive } from "../../../../store/filtersearchinteractive/action";
 import BotoneraMotos from "~/components/interactivesearchcomponets/BotoneraMotos";
 import ExpandAndCloseSearch from "../../expandandclose/ExpandAndCloseSearch";
+import { getChangePartVeh } from "../../../../store/changepartveh/action";
 
 const SearchInteractiveBusLatoneria = (props) => {
     const router = useRouter();
@@ -88,10 +89,9 @@ const SearchInteractiveBusLatoneria = (props) => {
     const [controlFijar, setControlFijar] = useState("");
     const [closeWindow, setCloseWindow] = useState(false);
 
-        const zoomdatasearch = useSelector(
-                (state) => state.zoomdatasearch.zoomdatasearch
-            )
-    
+    const zoomdatasearch = useSelector(
+        (state) => state.zoomdatasearch.zoomdatasearch
+    );
 
     const mostrarComentariolatoneria = () => {
         setShowModalComentariosLatoneria(true);
@@ -126,6 +126,17 @@ const SearchInteractiveBusLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaIzquierda = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        dispatch(getChangePartVeh(true));
+
         dispatch(getFilterSearchInteractive(11));
         localStorage.setItem(
             "ubicacionproducto",
@@ -143,6 +154,17 @@ const SearchInteractiveBusLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        //dispatch(getChangePartVeh(true));
+
         dispatch(getFilterSearchInteractive(12));
         localStorage.setItem(
             "ubicacionproducto",
@@ -160,6 +182,17 @@ const SearchInteractiveBusLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaDerecha = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 13,
+            imagen: "",
+            sistemasel: 13,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+        dispatch(getChangePartVeh(true));
+
         dispatch(getFilterSearchInteractive(13));
         localStorage.setItem(
             "ubicacionproducto",
@@ -178,9 +211,7 @@ const SearchInteractiveBusLatoneria = (props) => {
 
     const seleccionaUbicarProductoLatoneria = () => {
         dispatch(getFilterSearchInteractive(1));
-        router.push(
-            "/searchinteractive/motos/touring/searchtouringlatoneria"
-        );
+        router.push("/searchinteractive/motos/touring/searchtouringlatoneria");
     };
 
     const seleccionaUbicarProductoHabitaculo = () => {};
@@ -192,7 +223,7 @@ const SearchInteractiveBusLatoneria = (props) => {
         );
     };
 
-     let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
+    let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
 
     useEffect(() => {
         let bloquear = "";
@@ -264,7 +295,7 @@ const SearchInteractiveBusLatoneria = (props) => {
                             </div>
                             <div className="textImgBottomBuscadorInt">
                                 {!zoomdatasearch || zoomdatasearch == "0" ? (
-                                   <>
+                                    <>
                                         <h1 className="txtButtonP">
                                             ** Las imágenes a continuación son
                                             con fines ilustrativos, por ello
@@ -276,7 +307,7 @@ const SearchInteractiveBusLatoneria = (props) => {
                                             src={logo.src}
                                             alt="First slide"
                                         />
-                                   </>
+                                    </>
                                 ) : null}
                             </div>
                         </div>

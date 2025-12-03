@@ -229,6 +229,7 @@ const selectedvehicle = (props) => {
     };
 
     const regresarAlBuscador = () => {
+        localStorage.setItem("partetrensel", JSON.stringify(null));
         sessionStorage.setItem("dataExpandirBase", JSON.stringify([]));
         dispatch(getViewVehPrd(0));
         dispatch(getViewAddCart(0));

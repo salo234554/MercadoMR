@@ -32,9 +32,12 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
     const [optionSelect, setOptionSelect] = useState(0);
     const [maximizarOption, setMaximizarOption] = useState(0);
 
-    const [textoTituloInformacion, setTextoTituloInformacion] = useState("Vehículos Coupe");
-    const [textoUnoModalInformacion, setTextoUnoModalInformacion] = useState("");
-    const [textoDosModalInformacion, setTextoDosModalInformacion] = useState("");
+    const [textoTituloInformacion, setTextoTituloInformacion] =
+        useState("Vehículos Coupe");
+    const [textoUnoModalInformacion, setTextoUnoModalInformacion] =
+        useState("");
+    const [textoDosModalInformacion, setTextoDosModalInformacion] =
+        useState("");
 
     // Definicion Latoneria
     const [marcaBotonIzquierdo, setMarcaBotonIzquierdo] = useState(
@@ -74,7 +77,6 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
         (state) => state.datasearchinteractive.datasearchinteractive
     );
 
-
     // Asignamos Datos seleccionado en el exterior vehículo
     const datoseleccinoexterior = useSelector(
         (state) => state.dataselectedexternal.dataselectedexternal
@@ -82,9 +84,9 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
     const [controlFijar, setControlFijar] = useState("");
     const [closeWindow, setCloseWindow] = useState(false);
 
-      const zoomdatasearch = useSelector(
-            (state) => state.zoomdatasearch.zoomdatasearch
-        );
+    const zoomdatasearch = useSelector(
+        (state) => state.zoomdatasearch.zoomdatasearch
+    );
 
     useEffect(() => {
         setMarcaBotonCentro("botoncarroceriasedanseleccionadados");
@@ -96,71 +98,90 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
         setInformacionMarcaBotonIzquierdo("informacionbotoncarroceriaexterior");
 
         setMarcaBotonDerecho("botoncarroceriaexteriordos");
-        setInformacionMarcaBotonDerecho("informacionbotoncarroceriaexteriordos");
+        setInformacionMarcaBotonDerecho(
+            "informacionbotoncarroceriaexteriordos"
+        );
     }, []);
 
     const mostrarComentariolatoneria = () => {
         setShowModalComentariosLatoneria(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos en la parte exterior del vehículo");
-        setTextoDosModalInformacion("Aquí encuentras productos relacionados con Latonería, Pintura, Farolas, Parachoques, Guardabarros, Luces, Depósitos de combustible, Espejos, Cubiertas de motor, Maletero entre otras.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos en la parte exterior del vehículo"
+        );
+        setTextoDosModalInformacion(
+            "Aquí encuentras productos relacionados con Latonería, Pintura, Farolas, Parachoques, Guardabarros, Luces, Depósitos de combustible, Espejos, Cubiertas de motor, Maletero entre otras."
+        );
     };
     const mostrarComentariohabitaculo = () => {
         setShowModalComentariosHabitaculo(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("El Interior es la parte del vehículo, donde se ubican los pasajeros.");
-        setTextoDosModalInformacion("Los componentes del Interior son: Asientos, Volante, Tablero, Pedales, Puertas, Consola central, Elevavidrios,  Sensores e interruptores.");
+        setTextoUnoModalInformacion(
+            "El Interior es la parte del vehículo, donde se ubican los pasajeros."
+        );
+        setTextoDosModalInformacion(
+            "Los componentes del Interior son: Asientos, Volante, Tablero, Pedales, Puertas, Consola central, Elevavidrios,  Sensores e interruptores."
+        );
     };
 
     const mostrarComentariomotor = () => {
         setShowModalComentariosMotor(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos del tren motriz de la vehículo.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos del tren motriz de la vehículo."
+        );
         setTextoDosModalInformacion(
-            "Es el sistema que transmite la potencia del motor a las ruedas, permitiendo que el vehículo se desplace. Componentes principales: Motor, Transmisión, Ejes, Ruedas, entre otros");
+            "Es el sistema que transmite la potencia del motor a las ruedas, permitiendo que el vehículo se desplace. Componentes principales: Motor, Transmisión, Ejes, Ruedas, entre otros"
+        );
     };
 
     const mostrarComentariolatoneriaIzquierda = () => {
         setShowModalComentariosLatoneria(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos en la parte exterior, izquierda del vehículo");
-        setTextoDosModalInformacion("La carrocería izquierda es la estructura externa que encierra y salvaguarda los componentes internos del mismo, como el motor, el chasis y el habitáculo, al ser la parte visible, proporciona forma, aerodinámica y protección contra impactos.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos en la parte exterior, izquierda del vehículo"
+        );
+        setTextoDosModalInformacion(
+            "La carrocería izquierda es la estructura externa que encierra y salvaguarda los componentes internos del mismo, como el motor, el chasis y el habitáculo, al ser la parte visible, proporciona forma, aerodinámica y protección contra impactos."
+        );
     };
 
     const mostrarComentariolatoneriaCentro = () => {
         setShowModalComentariosLatoneria(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos en la parte exterior, centro del vehículo");
-        setTextoDosModalInformacion("La carrocería es el armazón o estructura externa de un vehículo, formada por planchas de metal unidas entre sí. Esta estructura protege el espacio donde se sitúan el conductor, los pasajeros y la carga.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos en la parte exterior, centro del vehículo"
+        );
+        setTextoDosModalInformacion(
+            "La carrocería es el armazón o estructura externa de un vehículo, formada por planchas de metal unidas entre sí. Esta estructura protege el espacio donde se sitúan el conductor, los pasajeros y la carga."
+        );
     };
 
     const mostrarComentariolatoneriaDerecha = () => {
         setShowModalComentariosLatoneria(true);
         setShowModalComentariosLatoneria(true);
-        setTextoUnoModalInformacion("Aquí están ubicados los productos en la parte exterior, derecha del vehículo");
-        setTextoDosModalInformacion("La carrocería derecha es la estructura externa que encierra, y salvaguarda los componentes en la parte derecha, como el motor, el chasis y el habitáculo, al ser la parte visible, proporciona forma, aerodinámica y protección contra impactos.");
+        setTextoUnoModalInformacion(
+            "Aquí están ubicados los productos en la parte exterior, derecha del vehículo"
+        );
+        setTextoDosModalInformacion(
+            "La carrocería derecha es la estructura externa que encierra, y salvaguarda los componentes en la parte derecha, como el motor, el chasis y el habitáculo, al ser la parte visible, proporciona forma, aerodinámica y protección contra impactos."
+        );
     };
 
     const seleccionaUbicarProductoLatoneria = () => {
         dispatch(getFilterSearchInteractive(1));
-        router.push(
-            "/searchinteractive/coupe/searchcoupelatoneria"
-        );
+        router.push("/searchinteractive/coupe/searchcoupelatoneria");
     };
 
     const seleccionaUbicarProductoHabitaculo = () => {
         dispatch(getFilterSearchInteractive(2));
-        router.push(
-            "/searchinteractive/coupe/searchcoupehabitaculo"
-        );
+        router.push("/searchinteractive/coupe/searchcoupehabitaculo");
     };
 
     const seleccionaUbicarProductoMotorElectrico = () => {
         dispatch(getFilterSearchInteractive(3));
         if (tipovehsel != 4) {
-            router.push(
-                "/searchinteractive/coupe/searchcoupemotorelectrico"
-            );
+            router.push("/searchinteractive/coupe/searchcoupemotorelectrico");
         } else {
             router.push(
                 "/searchinteractive/automoviltrespuertas/searchtrespuertassistemasvehelectrico"
@@ -173,27 +194,51 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
     }, []);
 
     const irLatoneriaIzquierda = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(11));
-        router.push(
-            "/searchinteractive/coupe/searchcoupelatoneriaizquierda"
-        );
+        router.push("/searchinteractive/coupe/searchcoupelatoneriaizquierda");
     };
 
     const irLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(12));
-        router.push(
-            "/searchinteractive/coupe/searchcoupelatoneriacentro"
-        );
+        router.push("/searchinteractive/coupe/searchcoupelatoneriacentro");
     };
 
     const irLatoneriaDerecha = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 13,
+            imagen: "",
+            sistemasel: 13,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(13));
-        router.push(
-            "/searchinteractive/coupe/searchcoupelatoneriaderecha"
-        );
+        router.push("/searchinteractive/coupe/searchcoupelatoneriaderecha");
     };
 
-     let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
+    let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
 
     useEffect(() => {
         let bloquear = "";
@@ -238,7 +283,7 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
                     {!closeWindow ? (
                         <div className={controlFijar}>
                             {maximizarOption != 0 ? (
-                               <ExpandAndCloseSearch
+                                <ExpandAndCloseSearch
                                     maximizarOption={maximizarOption}
                                     setMaximizarOption={setMaximizarOption}
                                     setCloseWindow={setCloseWindow}
@@ -249,13 +294,19 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
                                 <SelectedVehicle />
                             </div>
                             <BotoneraUbicacion
-                                onClickBoton1={seleccionaUbicarProductoLatoneria}
+                                onClickBoton1={
+                                    seleccionaUbicarProductoLatoneria
+                                }
                                 infoBoton1={mostrarComentariolatoneria}
                                 labelBoton1="Exterior"
-                                onClickBoton2={seleccionaUbicarProductoHabitaculo}
+                                onClickBoton2={
+                                    seleccionaUbicarProductoHabitaculo
+                                }
                                 infoBoton2={mostrarComentariohabitaculo}
                                 labelBoton2="Interior"
-                                onClickBoton3={seleccionaUbicarProductoMotorElectrico}
+                                onClickBoton3={
+                                    seleccionaUbicarProductoMotorElectrico
+                                }
                                 infoBoton3={mostrarComentariomotor}
                                 labelBoton3="Tren Motriz"
                                 seleccionado={1}
@@ -281,13 +332,11 @@ const SearchInteractiveCoupeLatoneriaCentro = (props) => {
                             <div>
                                 <Row>
                                     <div className="cajacincopuertasimagenlatoneriaCarrusel auth__box-logo ">
-                                        <CoupeLatoneria
-                                            ubicacion={"centro"}
-                                        />
+                                        <CoupeLatoneria ubicacion={"centro"} />
                                     </div>
                                 </Row>
                             </div>
-                           <div className="textImgBottomBuscadorInt">
+                            <div className="textImgBottomBuscadorInt">
                                 {!zoomdatasearch || zoomdatasearch == "0" ? (
                                     <>
                                         <h1 className="txtButtonP">

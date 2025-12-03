@@ -177,6 +177,16 @@ const SearchInteractiveDobleTrompa = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(12));
         localStorage.setItem(
             "ubicacionproducto",
@@ -228,7 +238,7 @@ const SearchInteractiveDobleTrompa = (props) => {
         );
     };
 
-     let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
+    let blockscreen = useSelector((state) => state.blockscreen.blockscreen);
 
     useEffect(() => {
         let bloquear = "";

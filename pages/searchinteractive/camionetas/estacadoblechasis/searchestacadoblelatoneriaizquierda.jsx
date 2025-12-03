@@ -165,6 +165,16 @@ const EstacaDobleLatoneriaIzquierda = (props) => {
     };
 
     const irLatoneriaIzquierda = () => {
+         let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(11));
         router.push(
             "/searchinteractive/camionetas/estacadoblechasis/searchestacadoblelatoneriaizquierda"

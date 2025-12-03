@@ -194,12 +194,32 @@ const DobleTroqueLatoneriaCentro = (props) => {
 
     const irLatoneriaIzquierda = () => {
         dispatch(getFilterSearchInteractive(11));
+        let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         router.push(
             "/searchinteractive/camionessintrompa/dobletroquesintrompa/searchdobletroquelatoneriaizquierda"
         );
     };
 
     const irLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(12));
         router.push(
             "/searchinteractive/camionessintrompa/dobletroquesintrompa/searchdobletroquelatoneriacentro"
@@ -207,6 +227,16 @@ const DobleTroqueLatoneriaCentro = (props) => {
     };
 
     const irLatoneriaDerecha = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 13,
+            imagen: "",
+            sistemasel: 13,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(13));
         router.push(
             "/searchinteractive/camionessintrompa/dobletroquesintrompa/searchdobletroquelatoneriaderecha"

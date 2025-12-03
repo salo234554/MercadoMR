@@ -135,6 +135,16 @@ const SearchInteractiveEstacaDobleLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaIzquierda = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(11));
         localStorage.setItem(
             "ubicacionproducto",

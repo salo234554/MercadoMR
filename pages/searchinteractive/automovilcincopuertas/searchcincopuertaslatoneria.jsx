@@ -160,6 +160,16 @@ const SearchInteractiveCincoPuertasLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaIzquierda = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(11));
         localStorage.setItem(
             "ubicacionproducto",
@@ -177,6 +187,16 @@ const SearchInteractiveCincoPuertasLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(12));
         localStorage.setItem(
             "ubicacionproducto",
@@ -194,6 +214,16 @@ const SearchInteractiveCincoPuertasLatoneria = (props) => {
     };
 
     const seleccionaUbicarProductoLatoneriaDerecha = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 13,
+            imagen: "",
+            sistemasel: 13,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(13));
         localStorage.setItem(
             "ubicacionproducto",

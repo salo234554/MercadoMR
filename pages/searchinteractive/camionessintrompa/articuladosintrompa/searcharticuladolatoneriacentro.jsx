@@ -19,6 +19,7 @@ import ExpandAndCloseSearch from "../../expandandclose/ExpandAndCloseSearch";
 
 const ArticuladoLatoneriaCentro = (props) => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const [productoBuscar, setProductoBuscar] = useState("BMW");
 
     //Definie variables para zoom de tipos de vehículos y busqueda de productos
@@ -167,6 +168,16 @@ const ArticuladoLatoneriaCentro = (props) => {
     };
 
     const irLatoneriaIzquierda = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 11,
+            imagen: "",
+            sistemasel: 11,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(11));
         router.push(
             "/searchinteractive/camionessintrompa/articuladosintrompa/searcharticuladolatoneriaizquierda"
@@ -174,6 +185,16 @@ const ArticuladoLatoneriaCentro = (props) => {
     };
 
     const irLatoneriaCentro = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 12,
+            imagen: "",
+            sistemasel: 12,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(12));
         router.push(
             "/searchinteractive/camionessintrompa/articuladosintrompa/searcharticuladolatoneriacentro"
@@ -181,6 +202,16 @@ const ArticuladoLatoneriaCentro = (props) => {
     };
 
     const irLatoneriaDerecha = () => {
+        let dato = [];
+        let item = {
+            sistemadieciseis: 13,
+            imagen: "",
+            sistemasel: 13,
+        };
+
+        dato.push(item);
+        localStorage.setItem("partetrensel", JSON.stringify(dato));
+
         dispatch(getFilterSearchInteractive(13));
         router.push(
             "/searchinteractive/camionessintrompa/articuladosintrompa/searcharticuladolatoneriaderecha"

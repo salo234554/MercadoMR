@@ -55,10 +55,13 @@ function ModalLocationSearchInteractive(props) {
             return;
         } else {
             if (ciudadesAlt.length > 0) {
+                localStorage.setItem("ctlrCount", JSON.stringify(true));
+
                 localStorage.setItem(
                     "activafiltrociudad",
                     JSON.stringify(true)
                 );
+
                 dispatch(getCitySelect(ciudadesselAlt));
                 localStorage.setItem("cityselect", JSON.stringify(ciudadesSel));
                 //console.log("SELASASAS : ", ciudadesSel)
@@ -142,7 +145,7 @@ function ModalLocationSearchInteractive(props) {
         }
     };
 
-    console.log("PrdCiudadUno : ", PrdCiudadUno)
+    console.log("PrdCiudadUno : ", PrdCiudadUno);
     //console.log(" ciudadesAltDDD : ",  ciudadesAlt)
 
     return shown ? (
