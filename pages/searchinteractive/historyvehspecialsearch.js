@@ -563,7 +563,9 @@ function HistoryVehSpecialSearch({ marcarItem, setMarcarItem, setSelVehHistory }
                                             <Row>
                                                 <Col xl={12} lg={12} md={12} xs={12}>
                                                     <div className="ps-form__input">
-
+{
+    console.log("HISTOXXX : ", item)
+}
                                                         <Row className="m-0">
                                                             <Col className="p-0"
                                                                 xs={10} sm={11} lg={11}>

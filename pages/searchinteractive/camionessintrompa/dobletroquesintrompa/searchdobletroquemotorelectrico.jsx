@@ -3011,7 +3011,7 @@ const SearchInteractiveMotorElectrico = (props) => {
         if (array.length == "0") {
             reiniciarSistemas();
             dispatch(getResetDataSearch(true));
-            dispatch(getFilterSearchInteractive(null));
+            dispatch(getFilterSearchInteractive(3));
         }
         setpartesTrenMotrizSeleccionada(array);
         setBorrar(true);

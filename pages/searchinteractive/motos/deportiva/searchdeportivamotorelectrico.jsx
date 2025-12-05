@@ -1177,6 +1177,7 @@ const SearchInteractiveMotorElectrico = (props) => {
     };
 
     const prdCajaMotorBuses = () => {
+        let tipovehiculo = JSON.parse(localStorage.getItem("tipovehiculo"));
         dispatch(getFilterSearchInteractive(310));
         setDatosFaltantes(false);
         let tipotraccion = datosbuscadorinteractivo.nombretraccion;
@@ -1204,7 +1205,7 @@ const SearchInteractiveMotorElectrico = (props) => {
             return;
         }
 
-        if (tipotraccion == "Tracción") {
+        if (tipotraccion == "Tracción" && tipovehiculo != 1) {
             setHabilitaCajaMotor(true);
             let editar = {
                 editarCombustible: false,
@@ -1343,6 +1344,7 @@ const SearchInteractiveMotorElectrico = (props) => {
     };
 
     const prdEnframientoMotorBuses = () => {
+        let tipovehiculo = JSON.parse(localStorage.getItem("tipovehiculo"));
         dispatch(getFilterSearchInteractive(311));
         setDatosFaltantes(false);
         let tipotraccion = datosbuscadorinteractivo.nombretraccion;
@@ -1365,7 +1367,7 @@ const SearchInteractiveMotorElectrico = (props) => {
             return;
         }
 
-        if (tipotraccion == "Tracción") {
+        if (tipotraccion == "Tracción" && tipovehiculo != 1) {
             setHabilitaEnframientoMotor(true);
             let editar = {
                 editarCombustible: false,
@@ -2700,6 +2702,7 @@ const SearchInteractiveMotorElectrico = (props) => {
     };
 
     const prdTrasmisionBuses = () => {
+        let tipovehiculo = JSON.parse(localStorage.getItem("tipovehiculo"));
         dispatch(getFilterSearchInteractive(312));
         setDatosFaltantes(false);
         let tipotraccion = datosbuscadorinteractivo.nombretraccion;
@@ -2722,7 +2725,7 @@ const SearchInteractiveMotorElectrico = (props) => {
             return;
         }
 
-        if (tipotraccion == "Tracción") {
+        if (tipotraccion == "Tracción" && tipovehiculo != 1) {
             setHabilitaTrasmision(true);
             let editar = {
                 editarCombustible: false,
@@ -2968,7 +2971,7 @@ const SearchInteractiveMotorElectrico = (props) => {
         if (array.length == "0") {
             reiniciarSistemas();
             dispatch(getResetDataSearch(true));
-            dispatch(getFilterSearchInteractive(null));
+            dispatch(getFilterSearchInteractive(3));
         }
         setpartesTrenMotrizSeleccionada(array);
         setBorrar(true);

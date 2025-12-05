@@ -454,7 +454,7 @@ function DatosLatoneria(props) {
         dispatch(getDeleteItemFind(part.sistemasel));
         if (array.length == "0") {
             dispatch(getResetDataSearch(true));
-            dispatch(getFilterSearchInteractive(null));
+            dispatch(getFilterSearchInteractive(3));
         }
         setpartesTrenMotrizSeleccionada(array);
         setBorrar(true);

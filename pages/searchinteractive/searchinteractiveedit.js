@@ -1372,8 +1372,8 @@ function SearchInteractiveEdit(props) {
         return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
     };
 
-    console.log("Año vehiculo: ", annoVehiculo)
-    console.log("Nombre año veh: ", nombreAnnoVeh)
+    //console.log("Año vehiculo: ", annoVehiculo)
+    //console.log("Nombre año veh: ", nombreAnnoVeh)
 
     return (
         <div id="general" className="ps-page ps-page--inner">
