@@ -455,6 +455,7 @@ function DatosLatoneria(props) {
         if (array.length == "0") {
             dispatch(getResetDataSearch(true));
             dispatch(getFilterSearchInteractive(3));
+            localStorage.setItem("partetrensel", JSON.stringify(null));
         }
         setpartesTrenMotrizSeleccionada(array);
         setBorrar(true);

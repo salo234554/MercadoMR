@@ -2953,6 +2953,7 @@ const SearchInteractiveMotorElectrico = (props) => {
             reiniciarSistemas();
             dispatch(getResetDataSearch(true));
             dispatch(getFilterSearchInteractive(3));
+             localStorage.setItem("partetrensel", JSON.stringify(null));
         }
         setpartesTrenMotrizSeleccionada(array);
         setBorrar(true);
