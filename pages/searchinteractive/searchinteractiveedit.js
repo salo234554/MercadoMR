@@ -316,7 +316,7 @@ function SearchInteractiveEdit(props) {
     }, [editardatos, datasearchinteractive]);
 
     const colocarDatosState = () => {
-
+       
         if (cambioCilindraje && cambioTransmision) {
             setHabilitarIcono(true);
             setShowModalMensajes(true);
@@ -1127,7 +1127,7 @@ function SearchInteractiveEdit(props) {
     const handleChangeTransmision = (selectedOptions) => {
         setTipoTransmision(selectedOptions);
         setClassTransmision("alinearizquierda dropdownsearchinteractiveUnoIntFull");
-        setCambioTraccion(false);
+        //setCambioTraccion(false);
         setCambioTransmision(false);
         setEditTransmision(true);
 
@@ -1559,12 +1559,6 @@ function SearchInteractiveEdit(props) {
                                         </Grid>
                                     </Grid>
                                 </div>
-
-
-
-
-
-
 
                                 <br />
                                 <div className="barrainputbuscadorinteractivo">

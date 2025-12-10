@@ -260,7 +260,7 @@ function SearchInteractive() {
     useEffect(() => {
 
         if (selectviewprd > 0) {
-      
+
             dispatch(getCloseOpenVehSearch(0));
             dispatch(getValFltrCiudad(0));
             let carroceriaVehiculo = JSON.parse(localStorage.getItem("carroceriaselect"));
@@ -393,7 +393,7 @@ function SearchInteractive() {
         dispatch(getUserMenuPrimary(false));
         let editsearch = JSON.parse(localStorage.getItem("editsearch"));
 
-        if (editardatosbuscador && !editsearch) {
+        if (editardatosbuscador && editsearch) {
             if (editardatosbuscador.editarCilindraje) {
                 setClassCilindraje("alinearizquierda dropdownsearchinteractivecilindrajealert")
                 setCambioCilindraje(true);
@@ -417,6 +417,15 @@ function SearchInteractive() {
                 setCambioTransmision(true);
             } else
                 setClassTransmision("alinearizquierda dropdownsearchinteractiveothers")
+        } else {
+            
+            return
+
+            alert("FALSO - EDITAR")
+            setCambioCilindraje(false);
+            setCambioCombustible(false);
+            setCambioTraccion(false);
+            setCambioTransmision(false);
         }
     }, [editardatosbuscador]);
 
@@ -1668,7 +1677,7 @@ function SearchInteractive() {
     };
 
     const mostrarCarroceria = () => {
-    
+
         localStorage.setItem("aadditemcar", JSON.stringify(false));
         localStorage.setItem("editdata", JSON.stringify(false));
         localStorage.setItem("activargrilla", JSON.stringify(0));
