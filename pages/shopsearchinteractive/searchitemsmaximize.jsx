@@ -240,7 +240,7 @@ const SearchItemsMaximize = (props) => {
         }
     }, [addedtocart]);
 
-    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart)
+    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart);
 
     useEffect(() => {
         const queries = {
@@ -674,6 +674,10 @@ const SearchItemsMaximize = (props) => {
                     </div>
                 ) : !viewSearch ? (
                     <div className="tamañoresultadodatosphotossearchinteractive">
+                        {console.log(
+                            "DATOSBUSCAR : ",
+                            datosbuscadorinteractivo
+                        )}
                         <div className="mb-10">
                             <h1 className="titulocantidadproductossearchlistnREw">
                                 (
@@ -683,11 +687,31 @@ const SearchItemsMaximize = (props) => {
                                 ) Productos resultado de tu busqueda {ubicacion}{" "}
                                 del vehículo
                                 {", "}
-                                {datosbuscadorinteractivo.nombrecarroceria}
+                                {datosbuscadorinteractivo?.nombrecarroceria}
                                 {", "}
-                                {datosbuscadorinteractivo.nombremarca}
+                                {datosbuscadorinteractivo?.nombremarca}
                                 {", "}
-                                {datosbuscadorinteractivo.nombremodelo}
+                                {datosbuscadorinteractivo?.nombremodelo}
+                                {datosbuscadorinteractivo?.nombrecilindraje !=
+                                "Cilindraje" && datosbuscadorinteractivo?.nombrecilindraje !=""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombrecilindraje
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretipocombustible !=
+                                "Combustible" && datosbuscadorinteractivo?.nombretipocombustible !=""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretipocombustible
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretraccion !=
+                                "Tracción" && datosbuscadorinteractivo?.nombretraccion !=""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretraccion
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretransmision !=
+                                "Transmisión" && datosbuscadorinteractivo?.nombretransmision !=""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretransmision
+                                    : null}
                             </h1>
                         </div>
 
