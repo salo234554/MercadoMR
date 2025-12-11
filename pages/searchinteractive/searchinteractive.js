@@ -47,7 +47,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 let dato = [];
 let controltraccion = 0;
-
+let longveh = 0;
 
 const CustomMenu = React.forwardRef(
     ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
@@ -200,6 +200,7 @@ function SearchInteractive() {
     const [textoMensajesAlterno, setTextoMensajesAlterno] = useState(false);
     const [activar, setActivar] = useState(false);
     const [open, setOpen] = useState(false);
+    const [numVehHistorial, setNumVehHistorial] = useState(0);
 
     // Inicializamos el arrego de Tipos de Vehiculos
     const [vehiculos, setVehiculos] = useState([]);
@@ -418,7 +419,7 @@ function SearchInteractive() {
             } else
                 setClassTransmision("alinearizquierda dropdownsearchinteractiveothers")
         } else {
-            
+
             return
 
             alert("FALSO - EDITAR")
@@ -1036,7 +1037,7 @@ function SearchInteractive() {
         let inicia = null;
         localStorage.setItem("placeholdersearch", JSON.stringify(inicia));
 
-        let longveh = 0;
+
         let params;
         setTipoTransmision(0);
 
@@ -1053,8 +1054,8 @@ function SearchInteractive() {
                     params,
                 })
                     .then((res) => {
-
                         longveh = res.data.listhistoryvehsearchspecial.length;
+                        setNumVehHistorial(longveh);
                         historyveh = res.data.listhistoryvehsearchspecial;
                         setDatHistoryVehSearch(res.data.listhistoryvehsearchspecial);
 
@@ -1462,6 +1463,7 @@ function SearchInteractive() {
                                     console.log("Error borrar historial");
                                 });
                         };
+
                         //borrarItem();
                     } else {
                         let datahistoryveh = JSON.parse(localStorage.getItem("datahistoryveh"));

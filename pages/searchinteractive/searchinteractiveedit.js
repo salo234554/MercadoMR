@@ -390,7 +390,7 @@ function SearchInteractiveEdit(props) {
             return;
         }
 
-        if (cambioTransmision) {
+        if (cambioTransmision && tipoVehiculo != 3) {
             setShowModalMensajes(true);
             setTituloMensajes("Información faltante");
             setTextoMensajes(
@@ -400,7 +400,7 @@ function SearchInteractiveEdit(props) {
         }
 
 
-        if (cambioTraccion) {
+        if (cambioTraccion && tipoVehiculo != 1 && tipoVehiculo != 3 && tipoVehiculo != 6) {
             setShowModalMensajes(true);
             setTituloMensajes("Información faltante");
             setTextoMensajes(
