@@ -16,6 +16,7 @@ import { getDataSelectSearch } from "../../store/dataselectsearch/action";
 import { getEditData } from "../../store/editdata/action";
 import { getEditEngine } from "../../store/editengine/action";
 import { Grid } from "@mui/material";
+import { getViewVehPrd } from "~/store/viewvehprd/action";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -316,7 +317,7 @@ function SearchInteractiveEdit(props) {
     }, [editardatos, datasearchinteractive]);
 
     const colocarDatosState = () => {
-       
+
         if (cambioCilindraje && cambioTransmision) {
             setHabilitarIcono(true);
             setShowModalMensajes(true);
@@ -1186,7 +1187,8 @@ function SearchInteractiveEdit(props) {
             editarTransmision: false,
             editarCilindraje: false
         };
-
+        
+        dispatch(getViewVehPrd(0));
         dispatch(getEditDataFind(editar));
         localStorage.setItem("editsearch", JSON.stringify(true));
         localStorage.setItem("editVehHistory", JSON.stringify(true));

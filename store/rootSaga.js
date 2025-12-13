@@ -102,6 +102,7 @@ import OptionSelect from "./optionselect/saga";
 import ValFltrCiudad from "./validarfiltrociudad/saga";
 import ViewAddCart from "./viewaddcart/saga";
 import IraLoginUser from "./iraloginuser/saga";
+import MaxVehAddCart from "./maxvehaddcart/saga";
 
 export default function* rootSaga() {
     yield all([AppSaga(), ShopSaga(), Ecomerce(), Categories(), Homepages(), Typesidentifications(), UserSaga(),
@@ -121,6 +122,6 @@ export default function* rootSaga() {
     PageSelectPublication(), CtlrVehSelected(), CtlrLongCadena(), EditEngine(), DeleteItemFind(), EditDataHistory(),
     ResetDataSearch(), ChangePartVeh(), ViewDataInteractive(), CustomVehicle(), ZoomDataSearch(),
     ActivarViewPrd(), PosicionHabitaculo(), ViewVehPrd(), CloseOpenVehSearch(), OptionSelect(), ValFltrCiudad(),
-    ViewAddCart(), IraLoginUser()
+    ViewAddCart(), IraLoginUser(), MaxVehAddCart()
     ]);
 }

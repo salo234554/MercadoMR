@@ -61,6 +61,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
 
     const [soyNuevo, setSoyNuevo] = useState(false);
     const [TengoCuenta, setTengoCuenta] = useState(false);
+    const [addCarritoCompra, setAddCarritoCompra] = useState(false);
 
     const [login, setLogin] = useState(false);
     const [refresh, setRefresh] = useState(false);
@@ -183,6 +184,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     }, [login]);
 
     const validaPrdListWish = () => {
+        setAddCarritoCompra(true);
         if (datosusuarios.activo == 30) {
             setShowModalControlAcceso(true);
             setTituloControlAcceso("Comprar productos");
@@ -228,7 +230,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     useEffect(() => {
-        if (iraloginuser) {
+        if (iraloginuser && addCarritoCompra) {
             let itemswishlistadd = {
                 ruta: "product/",
                 idproducto: product?.id,
@@ -676,6 +678,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     const controlNumPrdCar = (data) => {
+        setAddCarritoCompra(false);
         const urlorigen = window.location.pathname;
 
         if (urlorigen.includes("/product")) {

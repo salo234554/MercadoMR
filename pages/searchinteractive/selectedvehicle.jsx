@@ -349,6 +349,8 @@ const selectedvehicle = (props) => {
         //console.log("SEACRH XXXX: ", longitud);
     }, [datasearchinteractive, dataselectsearch]);
 
+    console.log("AÑOXXXX: ", anoSelect);
+
     const resetDataFind = () => {
         dispatch(getResetDataSearch(true));
         dispatch(getFilterSearchInteractive(null));

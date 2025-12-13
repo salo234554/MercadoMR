@@ -32,7 +32,7 @@ import { getDataWishList } from "../store/datawishlist/action";
 import { getDataFindProducts } from "../store/datafindproducts/action";
 import { getFiltroPrd } from "../store/filtroprd/action";
 import { getCtlrInput } from "~/store/ctlrinput/action";
-import { getRefreshPage } from "../store/refreshpage/action";
+import { getMaxVehAddCart } from "../store/maxvehaddcart/action";
 import { getFiltroCondicionPrd } from "../store/filtrocondicionprd/action";
 import DataFindProducts from "~/repositories/DataFindProducts";
 import { URL_BD_MR } from "../helpers/Constants";
@@ -178,8 +178,10 @@ function App({ Component, pageProps }) {
         };
 
         //localStorage.setItem("canceladdveh", JSON.stringify(null));
+        localStorage.setItem("maxvehcart", JSON.stringify(false));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         dispatch(getIraLoginUser(false));
+        //dispatch(getMaxVehAddCart(false));
         sessionStorage.setItem("findbyvehicle", JSON.stringify(false));
         localStorage.setItem("tipovehiculo", JSON.stringify(null));
         localStorage.setItem("custommarca", JSON.stringify(null));

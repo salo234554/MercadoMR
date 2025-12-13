@@ -137,7 +137,7 @@ const SearchPhotoItemsMaximize = (props) => {
 
     let paginaselect = useSelector((state) => state.pageselect.pageselect);
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
-   
+
     let itemsIni = 0;
     let itemsFin = registrosPorPagina;
 
@@ -156,7 +156,8 @@ const SearchPhotoItemsMaximize = (props) => {
     );
 
     const viewaddcart = useSelector((state) => state.viewaddcart.viewaddcart);
-
+    const maxvehaddcart = useSelector((state) => state.maxvehaddcart.maxvehaddcart);
+    
     useEffect(() => {
         let openviewprdsearch = JSON.parse(
             localStorage.getItem("openviewprdsearch")
@@ -623,7 +624,7 @@ const SearchPhotoItemsMaximize = (props) => {
     useEffect(() => {
         if (!viewSearch) {
             let urlviewprd = JSON.parse(localStorage.getItem("urlviewprd"));
-            
+
             if (urlviewprd) Router.push(urlviewprd);
         }
     }, [viewSearch]);
@@ -644,11 +645,23 @@ const SearchPhotoItemsMaximize = (props) => {
     };
 
     useEffect(() => {
+        //let maxvehcart = JSON.parse(localStorage.getItem("maxvehcart"));
+
+        if (maxvehaddcart) {
+            setShowMensajesWishList(true);
+            setTituloMensajesWishList("Carrito de compra");
+            let texto =
+                "No puedes agregar productos al carrito de compras, máximo 15 productos";
+            setTextoMensajesWishList(texto);
+        }
+
         if (viewaddcart > 0) {
             setAddcartId(0);
             setAddcartIdLogin(0);
         }
-    }, [viewaddcart]);
+    }, [viewaddcart, maxvehaddcart]);
+
+    console.log("VIEWADDCAR : ", addcartId, " - ", addcartIdLogin, " - ", maxvehaddcart);
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>

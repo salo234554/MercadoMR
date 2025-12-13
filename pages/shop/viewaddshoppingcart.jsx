@@ -235,12 +235,15 @@ const ViewAddShoppingCart = (props) => {
     }, []);
 
     const closeViewAddCart = () => {
-        dispatch(getViewAddCart(1));
+        //dispatch(getViewAddCart(1));
+        localStorage.setItem("ira", JSON.stringify(null));
+        dispatch(getAddEdToCart(9001));
+        setOpen(false);
     };
 
-    const verTuCarrito =() => {
-         localStorage.setItem("ira", JSON.stringify(20));
-    }
+    const verTuCarrito = () => {
+        localStorage.setItem("ira", JSON.stringify(20));
+    };
 
     return (
         <div>

@@ -31,6 +31,7 @@ import ReactTooltip from "react-tooltip";
 import ModalControlAcceso from "../mensajes/ModalControlAcceso";
 import { getViewVehPrd } from "~/store/viewvehprd/action";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -992,6 +993,8 @@ function SearchInteractive() {
     }, [editardatos, datasearchinteractive, datosannos]);
 
     const leerDatosHistorial = () => {
+        localStorage.setItem("maxvehcart", JSON.stringify(false));
+        dispatch(getMaxVehAddCart(false));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
@@ -1294,8 +1297,14 @@ function SearchInteractive() {
         if (longano > 0 && !controlVeh) {
             for (var i = 0; i < annoVehiculo.length; i++) {
                 detNombreAnno.push(annoVehiculo[i].anovehiculo);
-                annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo + "; ";
+
+                if ((i + 1) === annoVehiculo.length)
+                    annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo;
+                else
+                    annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo + ",";
             }
+
+            console.log("AÑOS SELEC: ", annoSeleccionadas)
         } else {
             annoSeleccionadas = 0;
         }
@@ -2284,14 +2293,15 @@ function SearchInteractive() {
     };
 
     const handleChangeAnno = (selectedOptions) => {
-        //console.log("AÑOS SELEC: ",selectedOptions)
+
         setAnnoVehiculo(selectedOptions);
 
         let nombres = [];
         selectedOptions &&
             selectedOptions.map((row, index) => {
-                nombres.push(row.label)
+                nombres.push(row.label);
             });
+
         setNombreAnnoVeh(nombres);
 
         if (selectedOptions.length === 0) {
@@ -2747,7 +2757,7 @@ function SearchInteractive() {
                                                 onChange={handleChangeAnno}
                                                 enableSearch="true"
                                                 className="size-anno-search"
-                                                labelledBy="Año"
+                                                labelledBy=""
                                                 //disabled="true"
                                                 overrideStrings={{
                                                     selectSomeItems: nombreAnnoVeh,

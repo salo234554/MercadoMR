@@ -101,6 +101,7 @@ import optionselect from "./optionselect/reducer";
 import valfltrciudad from "./validarfiltrociudad/reducer";
 import viewaddcart from "./viewaddcart/reducer";
 import iraloginuser from "./iraloginuser/reducer";
+import maxvehaddcart from "./maxvehaddcart/reducer";
 
 const rootReducer = combineReducers({
     app,
@@ -204,7 +205,8 @@ const rootReducer = combineReducers({
     optionselect,
     valfltrciudad,
     viewaddcart,
-    iraloginuser
+    iraloginuser,
+    maxvehaddcart
 });
 
 export default rootReducer;

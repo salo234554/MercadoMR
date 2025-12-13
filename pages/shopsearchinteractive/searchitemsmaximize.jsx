@@ -20,6 +20,7 @@ import { URL_BD_MR } from "../../helpers/Constants";
 import LoadingMotorEectrico from "../../components/elements/Loading/LoadingMotorEectrico";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import ViewAddShoppingCart from "../shop/viewaddshoppingcart";
+import ModalMensajesWishList from "../mensajes/ModalMensajesWishList";
 
 const breadcrumb = [
     {
@@ -110,11 +111,18 @@ const SearchItemsMaximize = (props) => {
     const [idprdAddCart, setIdPrdAddcart] = useState(null);
     const [nameprdAddCart, setNamePrdAddcart] = useState(null);
 
+    const [showMensajesWishList, setShowMensajesWishList] = useState(false);
+    const [tituloMensajesWishList, setTituloMensajesWishList] = useState(false);
+    const [textoMensajesWishList, setTextoMensajesWishList] = useState(false);
+
     const datosbuscadorinteractivo = useSelector(
         (state) => state.datasearchinteractive.datasearchinteractive
     );
 
     let dataCity = useSelector((state) => state.cityselect.cityselect);
+    const maxvehaddcart = useSelector(
+        (state) => state.maxvehaddcart.maxvehaddcart
+    );
 
     viewSearch = useSelector((state) => state.viewsearch.viewsearch);
 
@@ -239,8 +247,6 @@ const SearchItemsMaximize = (props) => {
             setViewaddcart(false);
         }
     }, [addedtocart]);
-
-    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart);
 
     useEffect(() => {
         const queries = {
@@ -665,9 +671,30 @@ const SearchItemsMaximize = (props) => {
         setCount(0);
     };
 
+    useEffect(() => {
+        //let maxvehcart = JSON.parse(localStorage.getItem("maxvehcart"));
+        if (maxvehaddcart) {
+            setShowMensajesWishList(true);
+            setTituloMensajesWishList("Carrito de compra");
+            let texto =
+                "No puedes agregar productos al carrito de compras, máximo 15 productos";
+            setTextoMensajesWishList(texto);
+        }
+    }, [maxvehaddcart]);
+
+    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart, " - ", maxvehaddcart);
+
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <div className="mb-100" ref={irA}>
+                <ModalMensajesWishList
+                    shown={showMensajesWishList}
+                    close={setShowMensajesWishList}
+                    titulo={tituloMensajesWishList}
+                    mensaje={textoMensajesWishList}
+                    tipo="1"
+                />
+
                 {isLoading ? (
                     <div className="posicionespinersearch">
                         <LoadingMotorEectrico />
@@ -692,23 +719,40 @@ const SearchItemsMaximize = (props) => {
                                 {datosbuscadorinteractivo?.nombremarca}
                                 {", "}
                                 {datosbuscadorinteractivo?.nombremodelo}
+                                
                                 {datosbuscadorinteractivo?.nombrecilindraje !=
-                                "Cilindraje" && datosbuscadorinteractivo?.nombrecilindraje !=""
+                                    "Cilindraje" &&
+                                datosbuscadorinteractivo?.nombrecilindraje != ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombrecilindraje
                                     : null}
+
+
+                                {datosbuscadorinteractivo?.annosseleccionado !=
+                                    "Año" &&
+                                datosbuscadorinteractivo?.annosseleccionado != ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.annosseleccionado
+                                    : null}
+
+
                                 {datosbuscadorinteractivo?.nombretipocombustible !=
-                                "Combustible" && datosbuscadorinteractivo?.nombretipocombustible !=""
+                                    "Combustible" &&
+                                datosbuscadorinteractivo?.nombretipocombustible !=
+                                    ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombretipocombustible
                                     : null}
                                 {datosbuscadorinteractivo?.nombretraccion !=
-                                "Tracción" && datosbuscadorinteractivo?.nombretraccion !=""
+                                    "Tracción" &&
+                                datosbuscadorinteractivo?.nombretraccion != ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombretraccion
                                     : null}
                                 {datosbuscadorinteractivo?.nombretransmision !=
-                                "Transmisión" && datosbuscadorinteractivo?.nombretransmision !=""
+                                    "Transmisión" &&
+                                datosbuscadorinteractivo?.nombretransmision !=
+                                    ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombretransmision
                                     : null}

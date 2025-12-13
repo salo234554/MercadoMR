@@ -10,6 +10,7 @@ import ReadUserEmail from "../repositories/ReadUserEmail";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Row, Col, Modal, Form } from "react-bootstrap";
 import { getUserLogged } from "~/store/userlogged/action";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 import { getTokenRegistro } from "../store/tokenregistro/action";
@@ -984,7 +985,6 @@ const LoginAccount = () => {
                                         ira == 15 ||
                                         ira == 16
                                     ) {
-                                        
                                         let datitem = JSON.parse(
                                             localStorage.getItem(
                                                 "itemswishlistadd"
@@ -1212,6 +1212,11 @@ const LoginAccount = () => {
                                                                     15
                                                                 ) {
                                                                     continuar = false;
+                                                                    dispatch(
+                                                                        getMaxVehAddCart(
+                                                                            true
+                                                                        )
+                                                                    );
                                                                     setShowModalMensajes(
                                                                         true
                                                                     );
@@ -1357,6 +1362,11 @@ const LoginAccount = () => {
                                                                     15
                                                                 ) {
                                                                     continuar = false;
+                                                                    dispatch(
+                                                                        getMaxVehAddCart(
+                                                                            true
+                                                                        )
+                                                                    );
                                                                     setShowModalMensajes(
                                                                         true
                                                                     );
@@ -1507,6 +1517,11 @@ const LoginAccount = () => {
                                                                     15
                                                                 ) {
                                                                     continuar = false;
+                                                                    dispatch(
+                                                                        getMaxVehAddCart(
+                                                                            true
+                                                                        )
+                                                                    );
                                                                     setShowModalMensajes(
                                                                         true
                                                                     );
@@ -2124,7 +2139,6 @@ const LoginAccount = () => {
                                             ira == 15 ||
                                             ira == 16
                                         ) {
-                                           
                                             let datitem = JSON.parse(
                                                 localStorage.getItem(
                                                     "itemswishlistadd"
@@ -2425,7 +2439,19 @@ const LoginAccount = () => {
                                                                             .length >=
                                                                         15
                                                                     ) {
+                                                                        dispatch(
+                                                                            getMaxVehAddCart(
+                                                                                true
+                                                                            )
+                                                                        );
                                                                         continuar = false;
+                                                                        localStorage.setItem(
+                                                                            "maxvehcart",
+                                                                            JSON.stringify(
+                                                                                true
+                                                                            )
+                                                                        );
+
                                                                         setShowModalMensajes(
                                                                             true
                                                                         );
@@ -2437,7 +2463,7 @@ const LoginAccount = () => {
                                                                         setTextoMensajes(
                                                                             texto
                                                                         );
-                                                                        return;
+                                                                        //return;
                                                                     } else
                                                                         grabarItemCarrito();
                                                                 } else {
@@ -2594,6 +2620,11 @@ const LoginAccount = () => {
                                                                         15
                                                                     ) {
                                                                         continuar = false;
+                                                                        dispatch(
+                                                                            getMaxVehAddCart(
+                                                                                true
+                                                                            )
+                                                                        );
                                                                         setShowModalMensajes(
                                                                             true
                                                                         );
@@ -2769,6 +2800,11 @@ const LoginAccount = () => {
                                                                         15
                                                                     ) {
                                                                         continuar = false;
+                                                                        dispatch(
+                                                                            getMaxVehAddCart(
+                                                                                true
+                                                                            )
+                                                                        );
                                                                         setShowModalMensajes(
                                                                             true
                                                                         );

@@ -16,6 +16,7 @@ import { getCloseOpenVehSearch } from "~/store/closeopenvehsearch/action";
 import LoadingMotorEectrico from "../../components/elements/Loading/LoadingMotorEectrico";
 import { getValFltrCiudad } from "~/store/validarfiltrociudad/action";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import ModalMensajesWishList from "../mensajes/ModalMensajesWishList";
 
 const breadcrumb = [
     {
@@ -102,6 +103,10 @@ const SearchPhotoMaximize = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const irA = useRef(null);
 
+    const [showMensajesWishList, setShowMensajesWishList] = useState(false);
+    const [tituloMensajesWishList, setTituloMensajesWishList] = useState(false);
+    const [textoMensajesWishList, setTextoMensajesWishList] = useState(false);
+
     const datosbuscadorinteractivo = useSelector(
         (state) => state.datasearchinteractive.datasearchinteractive
     );
@@ -118,7 +123,10 @@ const SearchPhotoMaximize = (props) => {
 
     let paginaselect = useSelector((state) => state.pageselect.pageselect);
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
-   
+    const maxvehaddcart = useSelector(
+        (state) => state.maxvehaddcart.maxvehaddcart
+    );
+
     let itemsIni = 0;
     let itemsFin = registrosPorPagina;
     //console.log("VIEW SEARCHYYY : ", viewSearch);
@@ -550,7 +558,7 @@ const SearchPhotoMaximize = (props) => {
                 dispatch(getNumberPages([1]));
             } else dispatch(getNumberPages(arraypg));
         }
-   }, [allprd2, dataPrdItem, viewvehprd]);
+    }, [allprd2, dataPrdItem, viewvehprd]);
 
     //console.log("datosBuscar : ", datosBuscar);
     useEffect(() => {
@@ -583,9 +591,30 @@ const SearchPhotoMaximize = (props) => {
         setCount(0);
     };
 
+    useEffect(() => {
+        //let maxvehcart = JSON.parse(localStorage.getItem("maxvehcart"));
+        if (maxvehaddcart) {
+            setShowMensajesWishList(true);
+            setTituloMensajesWishList("Carrito de compra");
+            let texto =
+                "No puedes agregar productos al carrito de compras, máximo 15 productos";
+            setTextoMensajesWishList(texto);
+        }
+    }, [maxvehaddcart]);
+
+    console.log("VIEWADDCAR : ", maxvehaddcart);
+
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <div className="mb-100" ref={irA}>
+                <ModalMensajesWishList
+                    shown={showMensajesWishList}
+                    close={setShowMensajesWishList}
+                    titulo={tituloMensajesWishList}
+                    mensaje={textoMensajesWishList}
+                    tipo="1"
+                />
+
                 {isLoading ? (
                     <div className="posicionespinersearch">
                         <LoadingMotorEectrico />
