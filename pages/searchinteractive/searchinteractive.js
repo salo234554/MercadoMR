@@ -1296,15 +1296,24 @@ function SearchInteractive() {
         //!controlVeh
         if (longano > 0 && !controlVeh) {
             for (var i = 0; i < annoVehiculo.length; i++) {
-                detNombreAnno.push(annoVehiculo[i].anovehiculo);
 
-                if ((i + 1) === annoVehiculo.length)
+                console.log("AÑOS SELEC: ", annoVehiculo[i].anovehiculo)
+
+                if (annoVehiculo[i].anovehiculo === "Año") {
+                    alert(annoVehiculo[i].anovehiculo)
+                }
+
+                if (annoVehiculo[i].anovehiculo != "Año")
+                    detNombreAnno.push(annoVehiculo[i].anovehiculo);
+
+                if ((i + 1) === annoVehiculo.length && annoVehiculo[i].anovehiculo != "Año")
                     annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo;
                 else
-                    annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo + ",";
+                    if (annoVehiculo[i].anovehiculo != "Año")
+                        annoSeleccionadas = annoSeleccionadas + annoVehiculo[i].anovehiculo + ",";
             }
 
-            console.log("AÑOS SELEC: ", annoSeleccionadas)
+
         } else {
             annoSeleccionadas = 0;
         }
