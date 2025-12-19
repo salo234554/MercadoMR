@@ -2825,11 +2825,7 @@ function SearchInteractive() {
                                                             }
                                                         </Col>
                                                     </Row>
-                                                    {
-                                                        console.log("EDITDAT1111 : ", nombreModeloVeh, " - ",
-                                                            nombreModeloBase
-                                                        )
-                                                    }
+
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu
                                                     as={CustomMenuModels}
@@ -2943,7 +2939,8 @@ function SearchInteractive() {
                                         <Col xs={12} sm={6} md={6} lg={2} >
                                             <div className="mlmenos30" >
                                                 {
-                                                    tipoVehiculo === "3" || tipoVehiculo === "4" ?
+                                                    tipoVehiculo === "3" || tipoVehiculo === "4"
+                                                        || tipoVehiculo === 3 || tipoVehiculo === 4 ?
                                                         null :
                                                         <Dropdown
                                                             onSelect={handleChangeTransmision}
@@ -2989,8 +2986,10 @@ function SearchInteractive() {
                                         <Col xs={12} sm={6} md={6} lg={2}>
                                             <div className="mlmenos30" >
                                                 {
-                                                    tipoVehiculo === "1" || tipoVehiculo === "3"
-                                                        || tipoVehiculo === "6" || tipoVehiculo === "4" ?
+                                                    tipoVehiculo === "1" || tipoVehiculo === 1 ||
+                                                        tipoVehiculo === "3" || tipoVehiculo === 3
+                                                        || tipoVehiculo === "6" || tipoVehiculo === 6
+                                                        || tipoVehiculo === "4" || tipoVehiculo === 4 ?
                                                         null :
                                                         <Dropdown
                                                             onSelect={handleChangeTraccion}
