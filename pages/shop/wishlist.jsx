@@ -717,13 +717,6 @@ const WishlistScreen = ({ ecomerce }) => {
     }, [arrayItems]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setIsLoading(false);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [isLoading]);
-
-    useEffect(() => {
         irA.current.scrollIntoView({
             behavior: "smooth",
             block: "start",
@@ -750,13 +743,23 @@ const WishlistScreen = ({ ecomerce }) => {
     const endIndex = startIndex + itemsPerPage;
     const paginatedCompras = itemsListWish.slice(startIndex, endIndex);
 
-    
     useEffect(() => {
-       if(!addedtocart){
-        setAddcartId(null);
-        setAddcartIdLogin(null);
-       }
+        if (!addedtocart) {
+            setAddcartId(null);
+            setAddcartIdLogin(null);
+        }
     }, [addedtocart]);
+
+    useEffect(() => {
+        //const interval = setInterval(() => {
+        //    setIsLoading(false);
+        //}, 1000);
+        //return () => clearInterval(interval);
+        //[isLoading]);
+        
+        if (paginatedCompras?.length > 0) setIsLoading(false);
+        else setIsLoading(true);
+    }, [paginatedCompras]);
 
     return (
         <Container title="Wishlist">

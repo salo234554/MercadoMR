@@ -42,6 +42,7 @@ let registrosPorPagina = 15;
 let allprd2 = [];
 let productosUno = [];
 let productosDos = [];
+let isLoading = true;
 
 const SearchPhotoMaximize = (props) => {
     const {
@@ -100,7 +101,6 @@ const SearchPhotoMaximize = (props) => {
 
     const [selCiudad, setSelCiudad] = useState([]);
     const [numeroPaginas, setNumeroPaginas] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
     const irA = useRef(null);
 
     const [showMensajesWishList, setShowMensajesWishList] = useState(false);
@@ -489,13 +489,17 @@ const SearchPhotoMaximize = (props) => {
 
         //console.log("RAN PRECCC : ", prdrangprecio);
 
-        if (prdrangprecio.length > 0)
+        if (prdrangprecio.length > 0) {
+            isLoading = false;
             products = withGrid(productosUno, loading, 6);
+        }
 
         if (prdrangpreciogen.length > 0) {
+            isLoading = false;
             productsgen = withGrid(productosDos, loading, 6);
         }
     } else {
+        isLoading = false;
         products = <p>Producto no encontrado.</p>;
     }
 
@@ -573,12 +577,14 @@ const SearchPhotoMaximize = (props) => {
         dispatch(getCloseOpenVehSearch(1));
     };
 
+    /*
     useEffect(() => {
         const interval = setInterval(() => {
             setIsLoading(false);
         }, 1500);
         return () => clearInterval(interval);
     }, [isLoading]);
+*/
 
     useEffect(() => {
         irA.current.scrollIntoView({
@@ -622,18 +628,52 @@ const SearchPhotoMaximize = (props) => {
                 ) : !viewSearch ? (
                     <div className="tamañoresultadodatosphotossearchinteractive">
                         <div className="mb-10">
-                            <h1 className="titulocantidadproductossearchlistnREw ">
+                            <h1 className="titulocantidadproductossearchlistnREw">
                                 (
                                 {productItems && productItems.length > 0
                                     ? longprd
                                     : 0}
                                 ) Productos resultado de tu busqueda {ubicacion}{" "}
-                                del vehículo{" "}
-                                {datosbuscadorinteractivo.nombrecarroceria}
+                                del vehículo
                                 {", "}
-                                {datosbuscadorinteractivo.nombremarca}
+                                {datosbuscadorinteractivo?.nombrecarroceria}
                                 {", "}
-                                {datosbuscadorinteractivo.nombremodelo}
+                                {datosbuscadorinteractivo?.nombremarca}
+                                {", "}
+                                {datosbuscadorinteractivo?.nombremodelo}
+                                {datosbuscadorinteractivo?.nombrecilindraje !=
+                                    "Cilindraje" &&
+                                datosbuscadorinteractivo?.nombrecilindraje != ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombrecilindraje
+                                    : null}
+                                {datosbuscadorinteractivo?.annosseleccionado !=
+                                    "Año" &&
+                                datosbuscadorinteractivo?.annosseleccionado !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.annosseleccionado
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretipocombustible !=
+                                    "Combustible" &&
+                                datosbuscadorinteractivo?.nombretipocombustible !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretipocombustible
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretraccion !=
+                                    "Tracción" &&
+                                datosbuscadorinteractivo?.nombretraccion != ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretraccion
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretransmision !=
+                                    "Transmisión" &&
+                                datosbuscadorinteractivo?.nombretransmision !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretransmision
+                                    : null}
                             </h1>
                         </div>
                         {selCiudad.length == 0 && filtroCond == 0 ? (
@@ -738,7 +778,6 @@ const SearchPhotoMaximize = (props) => {
                             setMaximizarOption={setMaximizarOption}
                             maximizarOption={maximizarOption}
                             setCloseWindow={setCloseWindow}
-                            setIsLoading={setIsLoading}
                         />
                     </div>
                 )}

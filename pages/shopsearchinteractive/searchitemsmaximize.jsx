@@ -45,6 +45,7 @@ let arrayciud = [];
 let viewSearch = null;
 let registrosPorPagina = 20;
 let allprd2 = [];
+let isLoading = true;
 
 const SearchItemsMaximize = (props) => {
     const {
@@ -103,7 +104,6 @@ const SearchItemsMaximize = (props) => {
 
     const [selCiudad, setSelCiudad] = useState([]);
     const [numeroPaginas, setNumeroPaginas] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
     const irA = useRef(null);
     const [count, setCount] = useState(0);
     const [viewaddcart, setViewaddcart] = useState(false);
@@ -284,8 +284,8 @@ const SearchItemsMaximize = (props) => {
         }
     };
 
-    let products;
-    let productsgen;
+    let products = [];
+    let productsgen = [];
     let filtrarciud = [];
     let longprd = 0;
 
@@ -565,16 +565,21 @@ const SearchItemsMaximize = (props) => {
             //console.log("ORDENADOS : ", productosUno, " - ", productosUno);
         }
 
-        if (prdrangprecio.length > 0)
+        if (prdrangprecio.length > 0) {
+            isLoading = false;
             products = withListMaximize(productosUno, loading, 4);
+        }
 
         if (prdrangpreciogen.length > 0) {
+            isLoading = false;
             localStorage.setItem("viewprdgenericos", JSON.stringify(false));
             productsgen = withListMaximize(productosDos, loading, 4);
         } else {
+            isLoading = false;
             localStorage.setItem("viewprdgenericos", JSON.stringify(false));
         }
     } else {
+        isLoading = false;
         dispatch(getDataCityPrd([]));
         products = <p>Producto no encontrado.</p>;
     }
@@ -653,12 +658,14 @@ const SearchItemsMaximize = (props) => {
         dispatch(getCloseOpenVehSearch(1));
     };
 
+    /*
     useEffect(() => {
         const interval = setInterval(() => {
             setIsLoading(false);
         }, 500);
         return () => clearInterval(interval);
     }, [isLoading]);
+    */
 
     useEffect(() => {
         irA.current.scrollIntoView({
@@ -682,7 +689,14 @@ const SearchItemsMaximize = (props) => {
         }
     }, [maxvehaddcart]);
 
-    console.log("VIEWADDCAR : ", addedtocart, " - ", viewaddcart, " - ", maxvehaddcart);
+    console.log(
+        "VIEWADDCAR : ",
+        addedtocart,
+        " - ",
+        viewaddcart,
+        " - ",
+        maxvehaddcart
+    );
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -719,23 +733,19 @@ const SearchItemsMaximize = (props) => {
                                 {datosbuscadorinteractivo?.nombremarca}
                                 {", "}
                                 {datosbuscadorinteractivo?.nombremodelo}
-                                
                                 {datosbuscadorinteractivo?.nombrecilindraje !=
                                     "Cilindraje" &&
                                 datosbuscadorinteractivo?.nombrecilindraje != ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombrecilindraje
                                     : null}
-
-
                                 {datosbuscadorinteractivo?.annosseleccionado !=
                                     "Año" &&
-                                datosbuscadorinteractivo?.annosseleccionado != ""
+                                datosbuscadorinteractivo?.annosseleccionado !=
+                                    ""
                                     ? ", " +
                                       datosbuscadorinteractivo?.annosseleccionado
                                     : null}
-
-
                                 {datosbuscadorinteractivo?.nombretipocombustible !=
                                     "Combustible" &&
                                 datosbuscadorinteractivo?.nombretipocombustible !=
@@ -862,7 +872,6 @@ const SearchItemsMaximize = (props) => {
                             maximizarOption={maximizarOption}
                             viewSearch={viewSearch}
                             setCloseWindow={setCloseWindow}
-                            setIsLoading={setIsLoading}
                         />
                     </div>
                 )}

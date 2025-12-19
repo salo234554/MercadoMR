@@ -86,7 +86,9 @@ const ShopInteractivoHeader = (props) => {
     }, [selectviewprd, viewSearch])
 
     useEffect(() => {
-        setOptionSelect(1);
+        if (optionSelect === "0" || !optionSelect  || optionSelect === 3)
+            setOptionSelect(1);
+
         setRegistrosPorPagina(9);
         setSelectItem("botonheaderinteractivoderechaselect");
     }, [optionSelect]);
@@ -102,7 +104,7 @@ const ShopInteractivoHeader = (props) => {
         }
     };
 
-    console.log("OPTIONSELE : ", optionSelect)
+    //console.log("OPTIONSELE : ", optionSelect)
 
     const MostrarFotos = () => {
         setOptionSelect(2);
@@ -161,7 +163,7 @@ const ShopInteractivoHeader = (props) => {
         let itemswishlistadd = JSON.parse(localStorage.getItem("itemswishlistadd"));
 
         if (ira == 17 || ira == 19) {
-       
+
             setMaximizarOption(0);
             setOptionSelect(1);
             setRegistrosPorPagina(9);
@@ -172,7 +174,7 @@ const ShopInteractivoHeader = (props) => {
             dispatch(getAddEdToCart(null));
         } else
             if (ira == 16 && itemswishlistadd) {
-              
+
                 setMaximizarOption(0);
                 setOptionSelect(1);
                 setRegistrosPorPagina(9);
@@ -182,19 +184,19 @@ const ShopInteractivoHeader = (props) => {
                 setTextoMensajesWishList(texto);
             } else
                 if (activargrilla == 1) {
-               
+
                     setMaximizarOption(1);
                     setOptionSelect(1);
                     setRegistrosPorPagina(9);
                 } else
                     if (activargrilla == 2) {
-                      
+
                         setMaximizarOption(2);
                         setOptionSelect(2);
                         setRegistrosPorPagina(6);
                     } else
                         if (activargrilla == 3) {
-                          
+
                             setMaximizarOption(3);
                             setOptionSelect(3);
                             setRegistrosPorPagina(6);

@@ -1300,7 +1300,7 @@ function SearchInteractive() {
                 console.log("AÑOS SELEC: ", annoVehiculo[i].anovehiculo)
 
                 if (annoVehiculo[i].anovehiculo === "Año") {
-                    alert(annoVehiculo[i].anovehiculo)
+                    //alert(annoVehiculo[i].anovehiculo)
                 }
 
                 if (annoVehiculo[i].anovehiculo != "Año")

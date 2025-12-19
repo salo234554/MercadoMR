@@ -46,6 +46,7 @@ let registrosPorPagina = 10;
 let allprd2 = [];
 let productosUno = [];
 let productosDos = [];
+let isLoading = true;
 
 const SearchPhotoItemsMaximize = (props) => {
     const {
@@ -104,7 +105,6 @@ const SearchPhotoItemsMaximize = (props) => {
 
     const [selCiudad, setSelCiudad] = useState([]);
     const [numeroPaginas, setNumeroPaginas] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
     const [count, setCount] = useState(0);
 
     let dataCity = useSelector((state) => state.cityselect.cityselect);
@@ -156,8 +156,10 @@ const SearchPhotoItemsMaximize = (props) => {
     );
 
     const viewaddcart = useSelector((state) => state.viewaddcart.viewaddcart);
-    const maxvehaddcart = useSelector((state) => state.maxvehaddcart.maxvehaddcart);
-    
+    const maxvehaddcart = useSelector(
+        (state) => state.maxvehaddcart.maxvehaddcart
+    );
+
     useEffect(() => {
         let openviewprdsearch = JSON.parse(
             localStorage.getItem("openviewprdsearch")
@@ -547,12 +549,18 @@ const SearchPhotoItemsMaximize = (props) => {
         //console.log("NUMPAG111 : ", productosUno);
         //console.log("NUMPAG222 : ", productosDos);
 
-        if (prdrangprecio.length > 0)
+        if (prdrangprecio.length > 0) {
+            isLoading = false;
             products = withList(productosUno, loading, 6);
+        }
 
-        if (prdrangpreciogen.length > 0)
+        if (prdrangpreciogen.length > 0) {
+            isLoading = false;
             productsgen = withList(productosDos, loading, 6);
+        }
     } else {
+        isLoading = false;
+        productsgen = withList(productosDos, loading, 6);
         products = <p>Producto no encontrado.</p>;
     }
 
@@ -633,12 +641,14 @@ const SearchPhotoItemsMaximize = (props) => {
         dispatch(getCloseOpenVehSearch(1));
     };
 
+    /*
     useEffect(() => {
         const interval = setInterval(() => {
             setIsLoading(false);
         }, 1500);
         return () => clearInterval(interval);
     }, [isLoading]);
+*/
 
     const handleClickAway = () => {
         setCount(0);
@@ -661,7 +671,14 @@ const SearchPhotoItemsMaximize = (props) => {
         }
     }, [viewaddcart, maxvehaddcart]);
 
-    console.log("VIEWADDCAR : ", addcartId, " - ", addcartIdLogin, " - ", maxvehaddcart);
+    console.log(
+        "VIEWADDCAR : ",
+        addcartId,
+        " - ",
+        addcartIdLogin,
+        " - ",
+        maxvehaddcart
+    );
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -686,12 +703,46 @@ const SearchPhotoItemsMaximize = (props) => {
                                     ? longprd
                                     : 0}
                                 ) Productos resultado de tu busqueda {ubicacion}{" "}
-                                del vehículo{" "}
-                                {datFindInteractive.nombrecarroceria}
-                                {""}
-                                {datFindInteractive.nombremarca}
-                                {""}
-                                {datFindInteractive.nombremodelo}
+                                del vehículo
+                                {", "}
+                                {datosbuscadorinteractivo?.nombrecarroceria}
+                                {", "}
+                                {datosbuscadorinteractivo?.nombremarca}
+                                {", "}
+                                {datosbuscadorinteractivo?.nombremodelo}
+                                {datosbuscadorinteractivo?.nombrecilindraje !=
+                                    "Cilindraje" &&
+                                datosbuscadorinteractivo?.nombrecilindraje != ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombrecilindraje
+                                    : null}
+                                {datosbuscadorinteractivo?.annosseleccionado !=
+                                    "Año" &&
+                                datosbuscadorinteractivo?.annosseleccionado !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.annosseleccionado
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretipocombustible !=
+                                    "Combustible" &&
+                                datosbuscadorinteractivo?.nombretipocombustible !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretipocombustible
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretraccion !=
+                                    "Tracción" &&
+                                datosbuscadorinteractivo?.nombretraccion != ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretraccion
+                                    : null}
+                                {datosbuscadorinteractivo?.nombretransmision !=
+                                    "Transmisión" &&
+                                datosbuscadorinteractivo?.nombretransmision !=
+                                    ""
+                                    ? ", " +
+                                      datosbuscadorinteractivo?.nombretransmision
+                                    : null}
                             </h1>
                         </div>
                         {selCiudad.length == 0 && filtroCond == 0 ? (
