@@ -8,6 +8,8 @@ import useEcomerce from "~/hooks/useEcomerce";
 import ModuleEcomerceWishlist from "~/components/ecomerce/modules/ModuleEcomerceWishlist";
 import SkeletonTable from "~/components/elements/skeletons/SkeletonTable";
 import { Result } from "antd";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
+import { useSelector, useDispatch } from "react-redux";
 
 const breadcrumb = [
     {
@@ -25,12 +27,15 @@ const breadcrumb = [
 
 const WishlistScreen = ({ ecomerce }) => {
     const { loading, products, getProducts } = useEcomerce();
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getMaxVehAddCart(false));
         if (ecomerce) {
             getProducts(ecomerce.wishlistItems);
         }
     }, [ecomerce]);
+
     // view
     let totalView, wishListView;
     if (products && products.length > 0) {

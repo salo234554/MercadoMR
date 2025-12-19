@@ -26,6 +26,7 @@ import ModalControlAcceso from "../mensajes/ModalControlAcceso";
 import { RiSubtractLine } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import BreadCumbBusqueda from "~/components/elements/BreadCumbBusqueda";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
 
 const breadcrumb = [
     {
@@ -102,6 +103,7 @@ const WishlistScreen = ({ ecomerce }) => {
     });
 
     useEffect(() => {
+        dispatch(getMaxVehAddCart(false));
         if (unidadesSelect == 0) {
             setClassUnd("btnunidselshoppingcartmenos sinborder deshabilitar");
         } else {

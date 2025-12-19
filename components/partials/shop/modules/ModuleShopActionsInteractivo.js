@@ -19,6 +19,7 @@ import { getFilterSearchInteractive } from "~/store/filtersearchinteractive/acti
 import { getPageSelect } from "~/store/pageselect/action";
 import { getOptionSelect } from "~/store/optionselect/action";
 import { getViewAddCart } from "~/store/viewaddcart/action";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
 
 const layoutItems = [
     {
@@ -147,6 +148,7 @@ const ModuleShopActionsInteractivo = (props) => {
         setSelectItem("botonheaderinteractivoderechaselect mlmenos5");
         setSelectPhoto("botonheaderinteractivoderecha mlmenos20 colornoseleccion");
         setMaximizarOption(1);
+        dispatch(getMaxVehAddCart(false));
     };
 
     const MostrarFotos = (seleccion) => {
@@ -162,6 +164,7 @@ const ModuleShopActionsInteractivo = (props) => {
         setSelectPhoto("botonheaderinteractivoderechaselect mlmenos20");
         setSelectItem("botonheaderinteractivoderecha colornoseleccion");
         setMaximizarOption(2);
+        dispatch(getMaxVehAddCart(false));
     };
 
     const MostrarFotosItems = (seleccion) => {
@@ -180,9 +183,11 @@ const ModuleShopActionsInteractivo = (props) => {
         setSelectPhoto("botonheaderinteractivoderechaselect mlmenos20");
         setSelectItem("botonheaderinteractivoderecha colornoseleccion");
         setMaximizarOption(3);
+        dispatch(getMaxVehAddCart(false));
     };
 
     const maximizar = () => {
+        dispatch(getMaxVehAddCart(false));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         dispatch(getChangeSearch(0));
@@ -195,6 +200,7 @@ const ModuleShopActionsInteractivo = (props) => {
     };
 
     const minimizar = () => {
+        dispatch(getMaxVehAddCart(false));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
         localStorage.setItem("iraprd14", JSON.stringify(null));
