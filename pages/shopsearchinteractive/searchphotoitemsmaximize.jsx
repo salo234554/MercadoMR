@@ -660,7 +660,7 @@ const SearchPhotoItemsMaximize = (props) => {
             setShowMensajesWishList(true);
             setTituloMensajesWishList("Carrito de compra");
             let texto =
-                "No puedes agregar productos al carrito de compras, máximo 15 productosxxxx33333";
+                "No puedes agregar productos al carrito de compras, máximo 15 productos";
             setTextoMensajesWishList(texto);
         }
 
