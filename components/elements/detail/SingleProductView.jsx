@@ -87,7 +87,7 @@ const SingleProductView = ({ product, status = "in-stock" }) => {
 
                 await axios({
                     method: "post",
-                    url: URL_BD_MR +"298",
+                    url: URL_BD_MR + "298",
                     params,
                 })
                     .then((res) => {

@@ -720,7 +720,7 @@ const SearchItemsMaximize = (props) => {
                             datosbuscadorinteractivo
                         )}
                         <div className="mb-10">
-                            <h1 className="titulocantidadproductossearchlistnREw">
+                            <div className="titulocantidadproductossearchlistnREw">
                                 (
                                 {productItems && productItems.length > 0
                                     ? longprd
@@ -739,13 +739,15 @@ const SearchItemsMaximize = (props) => {
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombrecilindraje
                                     : null}
-                                {datosbuscadorinteractivo?.annosseleccionado !=
-                                    "Año" &&
-                                datosbuscadorinteractivo?.annosseleccionado !=
-                                    ""
-                                    ? ", " +
-                                      datosbuscadorinteractivo?.annosseleccionado
-                                    : null}
+                               
+                                    {datosbuscadorinteractivo?.annosseleccionado !=
+                                        "Año" &&
+                                    datosbuscadorinteractivo?.annosseleccionado !=
+                                        ""
+                                        ? ", " +
+                                          datosbuscadorinteractivo?.annosseleccionado
+                                        : null}
+                               
                                 {datosbuscadorinteractivo?.nombretipocombustible !=
                                     "Combustible" &&
                                 datosbuscadorinteractivo?.nombretipocombustible !=
@@ -766,7 +768,7 @@ const SearchItemsMaximize = (props) => {
                                     ? ", " +
                                       datosbuscadorinteractivo?.nombretransmision
                                     : null}
-                            </h1>
+                            </div>
                         </div>
 
                         {selCiudad.length == 0 && filtroCond == 0 ? (

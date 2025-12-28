@@ -4,6 +4,7 @@ import { Button, Row, Col, Modal, Form } from "react-bootstrap";
 import InfoIcon from "@material-ui/icons/Info";
 import { getBlockScreen } from "~/store/blockscreen/action";
 import { useDispatch, useSelector } from "react-redux";
+import { getMaxVehAddCart } from "~/store/maxvehaddcart/action";
 
 function ModalMensajesWishList(props) {
     const { shown, close, titulo, mensaje, tipo } = props;
@@ -19,6 +20,7 @@ function ModalMensajesWishList(props) {
     useEffect(() => {
         if (shown) {
             dispatch(getBlockScreen(1));
+            dispatch(getMaxVehAddCart(null));
         } else {
             let ira = JSON.parse(localStorage.getItem("ira"));
             if (ira != 15) dispatch(getBlockScreen(0));

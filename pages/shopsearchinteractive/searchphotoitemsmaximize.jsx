@@ -117,7 +117,6 @@ const SearchPhotoItemsMaximize = (props) => {
         (state) => state.changesearchprice.changesearchprice
     );
 
-    //console.log("VIEW SEARCHXXX : ", selectviewprd);
     // Asignamos Datos al arreglo de Usuarios desde el state
     const irA = useRef(null);
 
@@ -549,12 +548,12 @@ const SearchPhotoItemsMaximize = (props) => {
         //console.log("NUMPAG111 : ", productosUno);
         //console.log("NUMPAG222 : ", productosDos);
 
-        if (prdrangprecio.length > 0) {
+        if (prdrangprecio.length > 0 && dataPrdItem?.length > 0) {
             isLoading = false;
             products = withList(productosUno, loading, 6);
         }
 
-        if (prdrangpreciogen.length > 0) {
+        if (prdrangpreciogen.length > 0 && dataPrdItem?.length > 0) {
             isLoading = false;
             productsgen = withList(productosDos, loading, 6);
         }
@@ -661,7 +660,7 @@ const SearchPhotoItemsMaximize = (props) => {
             setShowMensajesWishList(true);
             setTituloMensajesWishList("Carrito de compra");
             let texto =
-                "No puedes agregar productos al carrito de compras, máximo 15 productos";
+                "No puedes agregar productos al carrito de compras, máximo 15 productosxxxx33333";
             setTextoMensajesWishList(texto);
         }
 
@@ -827,7 +826,7 @@ const SearchPhotoItemsMaximize = (props) => {
                                     resetDataSearch={resetDataSearch}
                                     setResetDataSearch={setResetDataSearch}
                                 />
-
+                                
                                 <div onClick={() => OpenCloseVeh()}>
                                     {productosUno?.length > 0 ? (
                                         <div>{products}</div>
@@ -862,7 +861,6 @@ const SearchPhotoItemsMaximize = (props) => {
                         <ViewPrd
                             producto={productView}
                             setCloseWindow={setCloseWindow}
-                            setIsLoading={setIsLoading}
                         />
                     </div>
                 )}

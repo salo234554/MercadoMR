@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { toggleDrawer } from "~/store/app/action";
 import useEcomerce from "~/hooks/useEcomerce";
@@ -19,7 +19,6 @@ import { getAddLogin } from "../../../../store/addlogin/action";
 import { getSelectedAddress } from "../../../../store/selectedaddress/action";
 import { getUserMenuPrimary } from "../../../../store/usermenuprimary/action";
 import { getFiltroPrd } from "../../../../store/filtroprd/action";
-
 import { useRouter } from "next/router";
 import Moment from "moment";
 
@@ -31,6 +30,8 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     //console.log("PRD XXX 291 : ", product)
     const dispatch = useDispatch();
     const router = useRouter();
+    const initialized = useRef(false);
+
     const [quantity, setQuantity] = useState(1);
     const { brand } = useProduct();
     const { loading, addItem } = useEcomerce();
@@ -100,6 +101,21 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             localStorage.setItem("itemaddcart", JSON.stringify(dataaddcart));
         }
     }, [product]);
+
+    useEffect(() => {
+        //alert("asasasasasasasassa")
+        // Intercepta el botón ATRÁS solo aquí
+        router.beforePopState(() => {
+            //alert("ENTERERE")
+            router.replace("/searchinteractive/searchinteractive");
+            return false; // ⛔ bloquea la navegación normal
+        });
+
+        return () => {
+            // 🔄 Restaurar comportamiento normal al salir
+            router.beforePopState(() => true);
+        };
+    }, [router]);
 
     useEffect(() => {
         dispatch(getUserMenuPrimary(false));
@@ -359,6 +375,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     const comprarAhora = () => {
+        const urlorigen = window.location.pathname;
         console.log("PRODUCT : ", product);
 
         if (product?.usuario == datosusuarios.uid) {
@@ -424,6 +441,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             );
             let texto = "";
             setTextoMensajesShoppingCart(texto);
+            localStorage.setItem("urlorigen", JSON.stringify(urlorigen));
             //setLogin(true);
             return;
         }
@@ -769,7 +787,6 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                             //return
 
                             const actualizarItemCarrito = async () => {
-                               
                                 let params = {
                                     id: res.data?.listaritemcarrito[0]?.id,
                                     idproducto:
@@ -950,18 +967,15 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                                         router.pathname === ruta
                                                     ) {
                                                         if (leeira == 14) {
-                                                           
                                                             router.push(
                                                                 "/searchinteractive/searchinteractive/"
                                                             );
                                                             router.refresh();
                                                         } else {
-                                                          
                                                             router.push(ruta);
                                                             router.refresh();
                                                         }
                                                     } else {
-                                                       
                                                         router.push(
                                                             "/searchinteractive/searchinteractive/"
                                                         ); // 👉 Navegar si es distinta
@@ -1002,6 +1016,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
     };
 
     const agregarCarritoCompra = (data) => {
+        const urlorigen = window.location.pathname;
         let leeira = JSON.parse(localStorage.getItem("ira"));
         let rutaira = JSON.parse(localStorage.getItem("rutaira"));
 
@@ -1086,12 +1101,12 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
             );
             let texto = "";
             setTextoMensajesShoppingCart(texto);
+            localStorage.setItem("urlorigen", JSON.stringify(urlorigen));
             //setLogin(true);
             return;
         }
 
         const grabarItemCarrito = async () => {
-           
             let params = {
                 idproducto: product?.id,
                 compatible: product?.compatible,
@@ -1234,7 +1249,7 @@ const ModuleDetailShoppingActions = ({ product, cart, ecomerce }) => {
                                     idprd: product?.id,
                                     imagen: product?.nombreImagen,
                                 };
-                              
+
                                 localStorage.setItem(
                                     "iraprd14",
                                     JSON.stringify(iraprd14)

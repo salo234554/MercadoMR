@@ -309,6 +309,7 @@ const SearchInteractiveItems = (props) => {
                 });
 
             datosfiltrador = nvoprod;
+            console.log("DATFILTRAR : ", nvoprod)
         } else {
             let dataExpandirFiltradaII = JSON.parse(
                 sessionStorage.getItem("dataExpandirFiltradaII")

@@ -489,12 +489,12 @@ const SearchPhotoMaximize = (props) => {
 
         //console.log("RAN PRECCC : ", prdrangprecio);
 
-        if (prdrangprecio.length > 0) {
+        if (prdrangprecio.length > 0 && dataPrdItem?.length > 0) {
             isLoading = false;
             products = withGrid(productosUno, loading, 6);
         }
 
-        if (prdrangpreciogen.length > 0) {
+        if (prdrangpreciogen.length > 0 && dataPrdItem?.length > 0) {
             isLoading = false;
             productsgen = withGrid(productosDos, loading, 6);
         }

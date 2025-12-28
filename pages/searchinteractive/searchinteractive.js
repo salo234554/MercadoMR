@@ -49,6 +49,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 let dato = [];
 let controltraccion = 0;
 let longveh = 0;
+let annos = [];
 
 const CustomMenu = React.forwardRef(
     ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
@@ -993,6 +994,18 @@ function SearchInteractive() {
     }, [editardatos, datasearchinteractive, datosannos]);
 
     const leerDatosHistorial = () => {
+        //AQUI  
+        if (nombreTipoVeh === "Tipo Vehículo" || nombreCarroceriaVeh === "Carrocería") {
+            setAlertaTipo("textoalertdos");
+             setAlertaCarroceria("textoalertdos");
+            setShowModalMensajes(true);
+            setTituloMensajes("Información faltante");
+            setTextoMensajes(
+                "Por favor selecciona los datos del Vehículo..."
+            );
+            return;
+        }
+
         localStorage.setItem("maxvehcart", JSON.stringify(false));
         dispatch(getMaxVehAddCart(false));
         localStorage.setItem("iraprd14", JSON.stringify(null));
@@ -1297,7 +1310,7 @@ function SearchInteractive() {
         if (longano > 0 && !controlVeh) {
             for (var i = 0; i < annoVehiculo.length; i++) {
 
-                console.log("AÑOS SELEC: ", annoVehiculo[i].anovehiculo)
+                //console.log("AÑOS SELEC: ", annoVehiculo[i].anovehiculo)
 
                 if (annoVehiculo[i].anovehiculo === "Año") {
                     //alert(annoVehiculo[i].anovehiculo)
@@ -2301,7 +2314,33 @@ function SearchInteractive() {
         }
     };
 
+    useEffect(() => {
+        if (annoVehiculo?.length > 10) {
+
+            let array = annoVehiculo;
+            let arrayanos = [];
+            array &&
+                array.map((row, index) => {
+                    if (index <= 9) {
+                        arrayanos.push(row);
+                    }
+                });
+
+            setAnnoVehiculo(arrayanos);
+            //return;
+
+            setShowModalMensajes(true);
+            setTituloMensajes("FIltros por Años");
+            setTextoMensajes(
+                "Como maximo puedes seleccionar 10 años en la busqueda."
+            );
+        }
+
+    }, [annoVehiculo]);
+
     const handleChangeAnno = (selectedOptions) => {
+        console.log("ANOSXXXX : ", selectedOptions)
+
 
         setAnnoVehiculo(selectedOptions);
 
@@ -2312,6 +2351,19 @@ function SearchInteractive() {
             });
 
         setNombreAnnoVeh(nombres);
+
+        if (nombres?.length > 10) {
+            let array = nombres;
+            nombres = [];
+            array &&
+                array.map((row, index) => {
+                    if (index <= 9) {
+                        nombres.push(row);
+                    }
+                });
+            setNombreAnnoVeh(nombres);
+        }
+
 
         if (selectedOptions.length === 0) {
             setAnnoVehiculo([]);
@@ -2777,9 +2829,7 @@ function SearchInteractive() {
                                                         "Todos"
                                                 }}
                                             />
-
                                         </Col>
-
                                     </Row>
                                 </div>
                                 <br />

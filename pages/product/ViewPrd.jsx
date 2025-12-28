@@ -17,7 +17,7 @@ function ViewPrd({
     setMaximizarOption,
     maximizarOption,
     viewSearch,
-    setCloseWindow
+    setCloseWindow,
 }) {
     const Router = useRouter();
     const { id } = Router.query;
