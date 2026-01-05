@@ -129,7 +129,7 @@ const ShopScreen = (props) => {
     let viewvehprd = useSelector((state) => state.viewvehprd.viewvehprd);
 
     //console.log("PRODUGEN00000 : ",  ",resetdatasearch," - ",filtersearch," - ",arrayPrd," - ",changepartveh," - ",deleteitemfind," - ",paginaselect," - ",datosBuscar);
-    console.log("DAT00XXXXXXXX : ", filtersearch);
+    //console.log("DAT00XXXXXXXX : ", filtersearch);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -317,7 +317,7 @@ const ShopScreen = (props) => {
                     );
                 }
 
-                console.log("dataFiltradaXXX : ", dataResultPrd);
+                //dataFiltradaXXX : ", dataResultPrd);
 
                 let norepeat = [];
                 let array = [];
@@ -411,7 +411,7 @@ const ShopScreen = (props) => {
                             }
                         }
 
-                        if (index >= itemsIni && index <= itemsFin) {
+                        if (index >= itemsIni && index < itemsFin) {
                             if (row.productogenerico == "No") {
                                 array = [...array, row];
                             } else {
@@ -986,7 +986,7 @@ const ShopScreen = (props) => {
             dataPrdGenericos = arraygen;
             dataFiltrada = [...array, ...arraygen];
 
-            //console.log("AAAAAAA333333 : ", dataFiltrada);
+            //console.log("FIND0000222222 : ", dataFiltrada);
 
             if (array?.length > 0) {
                 dataPrdtItems = array;
@@ -1118,6 +1118,7 @@ const ShopScreen = (props) => {
                         {optionSelect == 2 ? (
                             <Grid item xs={12} sm={12} md={12} lg={12}>
                                 <div className={ajustarCaja}>
+                                    
                                     <div className="divprincipalviewsearch2">
                                         <ImageList
                                             sx={{ width: 470, height: 400 }}
@@ -1127,7 +1128,7 @@ const ShopScreen = (props) => {
                                                     onClick={() =>
                                                         verProducto(item)
                                                     }>
-                                                    <ImageListItem key={index}>
+                                                    <ImageListItem key={item?.id}>
                                                         <img
                                                             className="tamanoimg"
                                                             src={
@@ -1245,6 +1246,7 @@ const ShopScreen = (props) => {
                             </Grid>
                         ) : (
                             <Grid item xs={12} sm={12} md={12} lg={12}>
+                              
                                 <div className={ajustarCaja}>
                                     <div className="divprincipalviewsearch">
                                         {products &&
@@ -1252,6 +1254,7 @@ const ShopScreen = (props) => {
                                                 return (
                                                     <div
                                                         className="viewlistsearch"
+                                                        key={prd?.id}
                                                         onClick={() =>
                                                             verProducto(prd)
                                                         }>

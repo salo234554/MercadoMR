@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import SearchInteractiveEdit from "../searchinteractive/searchinteractiveedit";
 import { IoMdClose, IoMdInformationCircle } from "react-icons/io";
-
-
+import { getFilterSearchInteractive } from "~/store/filtersearchinteractive/action";
 
 function ModalMensajesBuscar(props) {
     const router = useRouter();
@@ -63,6 +62,12 @@ function ModalMensajesBuscar(props) {
     }, [clicAqui]);
 
     const cerrar = () => {
+        let partetrensel = JSON.parse(localStorage.getItem("partetrensel"));
+       
+        if (partetrensel?.length === 0 || !partetrensel) {
+            dispatch(getFilterSearchInteractive(3));
+        }
+
         let editar = {
             editarCombustible: false,
             editarTraccion: false,
@@ -75,26 +80,26 @@ function ModalMensajesBuscar(props) {
     };
 
     return shown ? (
-        <div
-            className="modal-fondo" 
-        >
+        <div className="modal-fondo">
             <div
                 className="modal-mensajes-buscar-edit-searchh redondearventamensajes "
-                onClick={(e) => { 
-                    e.stopPropagation(); 
-                }}> 
+                onClick={(e) => {
+                    e.stopPropagation();
+                }}>
                 <div className="topModalBsucIntEdit">
                     <span className="infoModalBsucIntEdit">
                         <IoMdInformationCircle />
                     </span>
                     <p>{titulo}</p>
-                    <span className="closeModalBsucIntEdit" onClick={() => cerrar(false)}>
+                    <span
+                        className="closeModalBsucIntEdit"
+                        onClick={() => cerrar(false)}>
                         <IoMdClose />
                     </span>
                 </div>
                 <div className="msjModalEditInt">
                     <p>{mensaje}</p>
-                </div> 
+                </div>
                 <SearchInteractiveEdit
                     close={close}
                     setIsLoading={setIsLoading}

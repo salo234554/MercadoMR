@@ -86,7 +86,7 @@ const ShopInteractivoHeader = (props) => {
     }, [selectviewprd, viewSearch])
 
     useEffect(() => {
-        if (optionSelect === "0" || !optionSelect  || optionSelect === 3)
+        if (optionSelect === "0" || !optionSelect || optionSelect === 3)
             setOptionSelect(1);
 
         setRegistrosPorPagina(9);
@@ -118,6 +118,7 @@ const ShopInteractivoHeader = (props) => {
     };
 
     const maximizar = () => {
+        dispatch(getPageSelect(1));
         localStorage.setItem("iraprd14", JSON.stringify(null));
         localStorage.setItem("itemswishlistadd", JSON.stringify(null));
         localStorage.setItem("ira", JSON.stringify(null));
@@ -204,6 +205,7 @@ const ShopInteractivoHeader = (props) => {
     }, []);
 
     const minimizar = () => {
+        dispatch(getPageSelect(1));
         //*****REINICIAL FILTRO DE PRECIOS ***/
         let item = {
             menorprecio: 1,

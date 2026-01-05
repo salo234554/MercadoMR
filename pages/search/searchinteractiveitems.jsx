@@ -200,6 +200,8 @@ const SearchInteractiveItems = (props) => {
             dataPrdItem = viewDataSearch;
         }
 
+        //console.log("FIND0000111111 : ",dataPrdItem);
+
         let allprdciud = [];
         let itemciud = [];
 
@@ -309,7 +311,7 @@ const SearchInteractiveItems = (props) => {
                 });
 
             datosfiltrador = nvoprod;
-            console.log("DATFILTRAR : ", nvoprod)
+            //console.log("DATFILTRAR : ", nvoprod)
         } else {
             let dataExpandirFiltradaII = JSON.parse(
                 sessionStorage.getItem("dataExpandirFiltradaII")
@@ -354,6 +356,7 @@ const SearchInteractiveItems = (props) => {
                 "dataExpandirFiltrada",
                 JSON.stringify(null)
             );
+            dataPrdItem = datosfiltrador;
             //console.log("11111333333 : ", "000000000");
         } else if (datosfiltrador.length > 0) {
             dataPrdItem = datosfiltrador;
@@ -362,7 +365,7 @@ const SearchInteractiveItems = (props) => {
             //console.log("111114444444 : ", datosfiltrador);
         }
 
-        //console.log("DATOSXXXX : ", datosbuscar, " - ", datosfiltrador);
+        //console.log("FIND0000 : ",dataPrdItem, " - ", datosbuscar);
 
         let precios = [];
         dataPrdItem &&
@@ -488,7 +491,7 @@ const SearchInteractiveItems = (props) => {
         }
     }, [productItems]);
 
-    console.log("ProductItems : ", productItems);
+    //console.log("ProductItems : ", productItems);
 
     useEffect(() => {
         SelectCondition(condicionPrd);

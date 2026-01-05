@@ -2970,9 +2970,9 @@ const SearchInteractiveMotorElectrico = (props) => {
 
     const eliminarElemento = (item, part) => {
         let array = [...partesTrenMotrizSeleccionada];
-        array.splice(item, 1);
+        array?.splice(item, 1);
         dispatch(getDeleteItemFind(part.sistemasel));
-        if (array.length == "0") {
+        if (array?.length == "0") {
             reiniciarSistemas();
             dispatch(getResetDataSearch(true));
             dispatch(getFilterSearchInteractive(3));
