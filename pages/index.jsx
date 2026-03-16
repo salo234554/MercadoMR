@@ -14,6 +14,7 @@ import RecomendadosParaTi from "../components/partials/homepages/home-1/Recomend
 import { URL_BD_MR, URL_IMAGES_RESULTS } from "../helpers/Constants";
 import axios from "axios";
 
+
 const HomeDefaultPage = () => {
     const dispatch = useDispatch();
 
