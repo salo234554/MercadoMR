@@ -16,7 +16,6 @@ import axios from "axios";
 
 const HomeDefaultPage = () => {
     const dispatch = useDispatch();
-
     useEffect(() => {
         const variablesgenerales = {
             direccionservidor: "https://mercadorepuesto.gimcloud.com",
@@ -46,7 +45,6 @@ const HomeDefaultPage = () => {
 
     return (
         <Container header={<HeaderDefault classes="without-border" />}>
-            
             <main id="homepage-one">
                 <div className="mbmenos26">
                     <HomeOneTopBanners />
