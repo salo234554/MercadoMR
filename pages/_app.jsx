@@ -42,7 +42,6 @@ import ModalDenegarAcceso from "./mensajes/ModalDenegarAcceso";
 import { getControlAcceso } from "../store/controlacceso/action";
 import ModalMensajes from "./mensajes/ModalMensajes";
 import { getIraLoginUser } from "~/store/iraloginuser/action";
-
 //Firebase
 import firebase from "../utilities/firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
